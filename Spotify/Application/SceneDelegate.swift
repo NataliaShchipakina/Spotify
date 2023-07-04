@@ -16,15 +16,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         let window = UIWindow(windowScene: windowScene)
-        let rootViewController: UIViewController
         
         if AuthManager.shared.isSignedIn {
-            rootViewController = TabBarViewController()
+            window.rootViewController = TabBarViewController()
         } else {
-            rootViewController = UINavigationController(rootViewController: WelcomeViewController())
+            let navVC = UINavigationController(rootViewController: WelcomeViewController())
+            navVC.navigationBar.prefersLargeTitles = true
+            navVC.viewControllers.first?.navigationItem.largeTitleDisplayMode = .always
+            window.rootViewController = navVC
         }
 
-        window.rootViewController = rootViewController
+        
         window.makeKeyAndVisible()
         self.window = window
         
