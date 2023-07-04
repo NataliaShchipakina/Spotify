@@ -27,7 +27,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
 
         
-        print(AuthManager.shared.signInURL)
         window.makeKeyAndVisible()
         self.window = window
         
