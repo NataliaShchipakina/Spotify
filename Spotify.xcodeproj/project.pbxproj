@@ -20,6 +20,7 @@
 		1110FB042A52F418007135BD /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1110FB032A52F418007135BD /* AuthManager.swift */; };
 		1110FB062A52F439007135BD /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1110FB052A52F439007135BD /* APICaller.swift */; };
 		1110FB082A52F490007135BD /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1110FB072A52F490007135BD /* HapticsManager.swift */; };
+		1110FB132A544110007135BD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1110FB122A544110007135BD /* Extensions.swift */; };
 		112B928D2A52D8D50037C97F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112B928C2A52D8D50037C97F /* AppDelegate.swift */; };
 		112B928F2A52D8D50037C97F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112B928E2A52D8D50037C97F /* SceneDelegate.swift */; };
 		112B92912A52D8D50037C97F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112B92902A52D8D50037C97F /* HomeViewController.swift */; };
@@ -41,6 +42,7 @@
 		1110FB032A52F418007135BD /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		1110FB052A52F439007135BD /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		1110FB072A52F490007135BD /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
+		1110FB122A544110007135BD /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		112B92892A52D8D50037C97F /* Spotify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spotify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		112B928C2A52D8D50037C97F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		112B928E2A52D8D50037C97F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 				112B928E2A52D8D50037C97F /* SceneDelegate.swift */,
 				112B92952A52D8D60037C97F /* Assets.xcassets */,
 				112B92972A52D8D60037C97F /* LaunchScreen.storyboard */,
+				1110FB122A544110007135BD /* Extensions.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				1110FAF22A52F1C6007135BD /* LibraryViewController.swift in Sources */,
 				112B928F2A52D8D50037C97F /* SceneDelegate.swift in Sources */,
 				1110FB022A52F304007135BD /* SearchResultViewController.swift in Sources */,
+				1110FB132A544110007135BD /* Extensions.swift in Sources */,
 				1110FB062A52F439007135BD /* APICaller.swift in Sources */,
 				1110FAFA2A52F27B007135BD /* SettingsViewController.swift in Sources */,
 			);
