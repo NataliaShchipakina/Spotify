@@ -25,11 +25,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             navVC.viewControllers.first?.navigationItem.largeTitleDisplayMode = .always
             window.rootViewController = navVC
         }
-
+        
         
         window.makeKeyAndVisible()
         self.window = window
-        
+     
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

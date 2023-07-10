@@ -27,9 +27,7 @@ class AuthViewController: UIViewController, WKNavigationDelegate {
         view.backgroundColor = .systemBackground
         webView.navigationDelegate = self
         view.addSubview(webView)
-        guard let url = AuthManager.shared.signInURL else {
-            return
-        }
+        guard let url = AuthManager.shared.signInURL else { return }
         webView.load(URLRequest(url: url))
     }
     
@@ -43,11 +41,18 @@ class AuthViewController: UIViewController, WKNavigationDelegate {
             return
         }
         // Exchange the code for access token
-
+        
         guard let code = URLComponents(string: url.absoluteString)?.queryItems?.first(where: {$0.name == "code"})?.value else {
             return
         }
+        webView.isHidden = true
         
         print("Code: \(code)")
+        AuthManager.shared.exchandeCodeForToken(code: code) { [weak self] success in
+            DispatchQueue.main.async {
+                self?.navigationController?.popToRootViewController(animated: true)
+                self?.completionHandler?(success)
+            }
+        }
     }
 }
