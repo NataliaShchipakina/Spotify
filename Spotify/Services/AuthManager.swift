@@ -112,11 +112,6 @@ final class AuthManager {
     }
     
     public func refreshIfNeeded(completion: @escaping (Bool) -> Void) {
-//                guard shouldRefreshToken else {
-//                    completion(true)
-//                    return
-//                }
-        
         guard let refreshToken = self.refreshToken else {
             return
         }
