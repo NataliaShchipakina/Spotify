@@ -14,5 +14,3 @@ struct AuthResponse: Codable {
     let scope: String
     let token_type: String
 }
-
-
