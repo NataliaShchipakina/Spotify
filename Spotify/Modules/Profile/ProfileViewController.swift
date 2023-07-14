@@ -29,12 +29,17 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Profile"
         tableView.delegate = self
         tableView.dataSource = self
-        view.addSubview(tableView)
         fetchProfile()
+        setupUI()
+    }
+    
+    private func setupUI() {
+        title = "Profile"
+        view.addSubview(tableView)
         view.backgroundColor = .systemBackground
+
     }
     
     override func viewDidLayoutSubviews() {
@@ -59,7 +64,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     private func updateUI(with model: UserProfile) {
         tableView.isHidden = false
         // configure table models
-        models.append("Full Name : \(model.display_name)")
+        models.append("Full Name : \(model.displayName)")
         models.append("Email Adress: \(model.email)")
         models.append("User ID : \(model.id)")
         models.append("Plan : \(model.product)")

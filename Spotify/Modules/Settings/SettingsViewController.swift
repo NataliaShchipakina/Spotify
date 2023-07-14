@@ -29,7 +29,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     private func configureModels() {
-        sections.append(Section(title: "Profile", options: [Option(title: "View your profole", handler: { [weak self] in
+        sections.append(Section(title: "Profile", options: [Option(title: "View your profile", handler: { [weak self] in
             DispatchQueue.main.async {
                 self?.viewProfile()
             }

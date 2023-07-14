@@ -9,17 +9,20 @@ import Foundation
 
 struct UserProfile: Codable {
     let country: String
-    let display_name: String
+    let displayName: String
     let email: String
-    let explicit_content: [String: Bool]
-    let external_urls: [String: String]
+    let explicitContent: [String: Bool]
+    let externalUrls: [String: String]
     let id: String
     let product: String
-    let images: [UserImage]
+    let images: [APIImage]
     
+    enum CodingKeys: String, CodingKey {
+            case country, email, id, product, images
+            case displayName = "display_name"
+            case explicitContent = "explicit_content"
+            case externalUrls = "external_urls"
+    }
 }
 
-struct UserImage: Codable {
-    let url: String
-}
 
