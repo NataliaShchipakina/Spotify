@@ -1,5 +1,5 @@
 //
-//  AuthViewController.swift
+//  AuthetificationViewController.swift
 //  Spotify
 //
 //  Created by Natalia Shchipakina on 03.07.2023.
@@ -8,7 +8,7 @@
 import UIKit
 import WebKit
 
-class AuthViewController: UIViewController, WKNavigationDelegate {
+class AuthetificationViewController: UIViewController, WKNavigationDelegate {
     
     private let webView: WKWebView = {
         let prefs = WKWebpagePreferences()
