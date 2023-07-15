@@ -7,8 +7,16 @@
 
 import Foundation
 
-final class APICaller {
-    static let shared = APICaller()
+protocol ISpotifyService {
+    func getCurrentUserProfile(completion: @escaping (Result<UserProfile, Error>) -> Void)
+    func getNewReleases(completion: @escaping ((Result<NewReleasesResponse, Error>)) -> Void)
+    func getFeaturedPlaylists(completion: @escaping ((Result<FeaturedPlaylistsResponse, Error>) -> Void))
+    func getRecommendedGenres(completion: @escaping ((Result<RecommendedGenresResponse , Error>) -> Void))
+    func getRecommendations(genres: Set<String>, completion: @escaping ((Result<String , Error>) -> Void))
+}
+
+final class SpotifyService: ISpotifyService {
+    static let shared = SpotifyService()
     private init() {}
     
     struct Constants {

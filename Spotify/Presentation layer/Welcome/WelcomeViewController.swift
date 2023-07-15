@@ -7,7 +7,28 @@
 
 import UIKit
 
+protocol IWelcomeView: AnyObject {
+    
+}
+
 class WelcomeViewController: UIViewController {
+    
+    // MARK: - Dependecies
+    
+    private let presenter: IWelcomePresenter
+    
+    // MARK: - Init
+    
+    init(presenter: IWelcomePresenter) {
+        self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - UI
     
     private let signInButton: UIButton = {
         let button = UIButton()
@@ -17,22 +38,28 @@ class WelcomeViewController: UIViewController {
         return button
     }()
     
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Spotify"
-        view.backgroundColor = .systemGreen
-        view.addSubview(signInButton)
-        signInButton.addTarget(self, action: #selector(didTapSignIn), for: .touchUpInside)
+        setupUI()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         signInButton.frame = CGRect(
             x: 20,
-            y: view.height-50-view.safeAreaInsets.bottom,
-            width: view.width-40,
+            y: view.height - 50 - view.safeAreaInsets.bottom,
+            width: view.width - 40,
             height: 50
         )
+    }
+    
+    private func setupUI() {
+        title = "Spotify"
+        view.backgroundColor = .systemGreen
+        view.addSubview(signInButton)
+        signInButton.addTarget(self, action: #selector(didTapSignIn), for: .touchUpInside)
     }
     
     @objc func didTapSignIn() {
@@ -56,8 +83,14 @@ class WelcomeViewController: UIViewController {
             return
         }
         
-        let mainAppTabBarVC = TabBarViewController()
-        mainAppTabBarVC.modalPresentationStyle = .fullScreen
-        present(mainAppTabBarVC, animated: true)
+//        let mainAppTabBarVC = TabBarViewController()
+//        mainAppTabBarVC.modalPresentationStyle = .fullScreen
+//        present(mainAppTabBarVC, animated: true)
     }
+}
+
+// MARK: - IWelcomeView
+
+extension WelcomeViewController: IWelcomeView {
+    
 }

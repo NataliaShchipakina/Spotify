@@ -9,39 +9,64 @@ import UIKit
 
 class TabBarViewController: UITabBarController {
     
+    // MARK: - Dependencies
+    
+    let rawViewControllers: [UIViewController]
+    
+    // MARK: - Init
+
+    init(viewControllers: [UIViewController]) {
+        self.rawViewControllers = viewControllers
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTabs()
+    }
+}
+
+// MARK: - Private
+
+private extension TabBarViewController {
+    func setupTabs() {
+        guard rawViewControllers.count == 3 else { return }
         
-        let vc1 = HomeViewController()
-        let vc2 = SearchViewController()
-        let vc3 = LibraryViewController()
+        let vc1 = rawViewControllers[0]
+        let vc2 = rawViewControllers[1]
+        let vc3 = rawViewControllers[2]
         
         vc1.title = "Browse"
         vc2.title = "Search"
         vc3.title = "Library"
         
-        vc1.navigationItem.largeTitleDisplayMode = .always
-        vc2.navigationItem.largeTitleDisplayMode = .always
-        vc3.navigationItem.largeTitleDisplayMode = .always
+        rawViewControllers.forEach { $0.navigationItem.largeTitleDisplayMode = .always }
+        let navigationsViewControllers = rawViewControllers.map { UINavigationController(rootViewController: $0) }
+        navigationsViewControllers.forEach { $0.navigationBar.tintColor = .label }
+        navigationsViewControllers.forEach { $0.navigationBar.prefersLargeTitles = true }
+
+        navigationsViewControllers[0].tabBarItem = UITabBarItem(
+            title: "Home",
+            image: UIImage(systemName: "house"),
+            tag: 0
+        )
         
-        let nav1 = UINavigationController(rootViewController: vc1)
-        let nav2 = UINavigationController(rootViewController: vc2)
-        let nav3 = UINavigationController(rootViewController: vc3)
+        navigationsViewControllers[1].tabBarItem = UITabBarItem(
+            title: "Search",
+            image: UIImage(systemName: "magnifyingglass"),
+            tag: 1
+        )
         
-        nav1.navigationBar.tintColor = .label
-        nav2.navigationBar.tintColor = .label
-        nav3.navigationBar.tintColor = .label
+        navigationsViewControllers[2].tabBarItem = UITabBarItem(
+            title: "Library",
+            image: UIImage(systemName: "music.note.list"),
+            tag: 2
+        )
         
-        nav1.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 1)
-        nav2.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag: 2)
-        nav3.tabBarItem = UITabBarItem(title: "Library", image: UIImage(systemName: "music.note.list"), tag: 3)
-        
-        nav1.navigationBar.prefersLargeTitles = true
-        nav2.navigationBar.prefersLargeTitles = true
-        nav3.navigationBar.prefersLargeTitles = true
-        
-        setViewControllers([nav1, nav2, nav3], animated: false)
+        setViewControllers(navigationsViewControllers, animated: false)
     }
-    
-    
 }

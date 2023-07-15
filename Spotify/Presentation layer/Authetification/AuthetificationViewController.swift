@@ -16,6 +16,7 @@ class AuthetificationViewController: UIViewController, WKNavigationDelegate {
         let config = WKWebViewConfiguration()
         config.defaultWebpagePreferences = prefs
         let webView = WKWebView(frame: .zero, configuration: config)
+        
         return webView
     }()
     
