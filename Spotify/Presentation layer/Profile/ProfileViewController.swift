@@ -9,10 +9,11 @@ import UIKit
 import Kingfisher
 
 protocol IProfileView: AnyObject {
-    
+    func showProfile(with model: UserProfile)
+    func showFailedLoadProfileView()
 }
 
-class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, IProfileView {
+class ProfileViewController: UIViewController {
     
     // MARK: - UI
     
@@ -45,47 +46,24 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     // MARK: - Lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         setupDelegates()
-        fetchProfile()
-    }
-    
-    private func setupUI() {
-        title = "Profile"
-        view.addSubview(tableView)
-        view.backgroundColor = .systemBackground
-    }
-
-    private func setupDelegates() {
-        tableView.delegate = self
-        tableView.dataSource = self
-    }
-    
-    private func fetchProfile() {
-        SpotifyService.shared.getCurrentUserProfile { [weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                case.success(let model):
-                    self?.updateUI(with: model)
-                case .failure(let error):
-                    print(error.localizedDescription)
-                    self?.failedToGetProfile()
-                }
-            }
-        }
+        presenter.viewDidLoad()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
     }
+}
 
-    private func updateUI(with model: UserProfile) {
+extension ProfileViewController: IProfileView {
+    func showProfile(with model: UserProfile) {
         tableView.isHidden = false
         // configure table models
         models.append("Full Name : \(model.displayName)")
@@ -96,7 +74,29 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.reloadData()
     }
     
-    private func createTableHeader(with string: String?) {
+    func showFailedLoadProfileView() {
+        let label = UILabel(frame: .zero)
+        label.text = "Failed to load profile."
+        label.sizeToFit()
+        label.textColor = .secondaryLabel
+        view.addSubview(label)
+        label.center = view.center
+    }
+}
+
+private extension ProfileViewController {
+    func setupUI() {
+        title = "Profile"
+        view.addSubview(tableView)
+        view.backgroundColor = .systemBackground
+    }
+    
+    func setupDelegates() {
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    
+    func createTableHeader(with string: String?) {
         guard let urlString = string, let url = URL(string: urlString) else {
             return
         }
@@ -112,15 +112,11 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         imageView.layer.cornerRadius = imageSize/2
         tableView.tableHeaderView = headerView
     }
-    
-    private func failedToGetProfile() {
-        let label = UILabel(frame: .zero)
-        label.text = "Failed to load profile."
-        label.sizeToFit()
-        label.textColor = .secondaryLabel
-        view.addSubview(label)
-        label.center = view.center
-    }
+}
+
+// MARK: - UITableViewDataSource, UITableViewDelegate
+
+extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     
     // MARK: - TableView
     
@@ -135,4 +131,3 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         return cell
     }
 }
-

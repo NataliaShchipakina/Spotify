@@ -15,15 +15,19 @@ final class ProfileAssembly: IProfileAssembly {
     
     // MARK: - Dependencies
     
+    private let spotifyService: Lazy<ISpotifyService>
+    
     // MARK: - Init
     
-    init() { }
+    init(spotifyService: Lazy<ISpotifyService>) {
+        self.spotifyService = spotifyService
+    }
     
     // MARK: - IHomeAssembly
     
     func assemble() -> UIViewController {
         let router = ProfileRouter()
-        let presenter = ProfilePresenter(router: router)
+        let presenter = ProfilePresenter(router: router, spotifyService: spotifyService)
         let viewController = ProfileViewController(presenter: presenter)
         
         router.transitionHandler = viewController

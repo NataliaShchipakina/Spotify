@@ -58,6 +58,8 @@ final class DependenciesAssembly: IDependenciesAssembly {
     }
     
     var profileAssembly: Lazy<IProfileAssembly> {
-        Lazy(ProfileAssembly())
+        Lazy(ProfileAssembly(
+            spotifyService: self.spotifyService
+        ))
     }
 }
