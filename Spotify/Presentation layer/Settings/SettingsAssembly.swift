@@ -15,14 +15,18 @@ final class SettingsAssembly: ISettingsAssembly {
     
     // MARK: - Dependencies
     
+    private let profileAssembly: Lazy<IProfileAssembly>
+    
     // MARK: - Init
     
-    init() { }
+    init(profileAssembly: Lazy<IProfileAssembly>) {
+        self.profileAssembly = profileAssembly
+    }
     
     // MARK: - ISettingsAssembly
     
     func assemble() -> UIViewController {
-        let router = SettingsRouter()
+        let router = SettingsRouter(profileAssembly: profileAssembly)
         let presenter = SettingsPresenter(router: router)
         let viewController = SettingsViewController(presenter: presenter)
         

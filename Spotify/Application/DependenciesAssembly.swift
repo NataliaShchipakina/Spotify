@@ -54,7 +54,7 @@ final class DependenciesAssembly: IDependenciesAssembly {
     }
     
     var settingsAssembly: Lazy<ISettingsAssembly> {
-        Lazy(SettingsAssembly())
+        Lazy(SettingsAssembly(profileAssembly: self.profileAssembly))
     }
     
     var profileAssembly: Lazy<IProfileAssembly> {

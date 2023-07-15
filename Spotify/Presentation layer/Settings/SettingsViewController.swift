@@ -11,6 +11,16 @@ protocol ISettingsView: AnyObject {
     
 }
 
+struct SectionViewModel {
+    let title: String
+    let options: [OptionViewModel]
+}
+
+struct OptionViewModel {
+    let title: String
+    let handler: () -> Void
+}
+
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ISettingsView {
        
     // MARK: - UI
@@ -22,7 +32,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         return tableView
     }()
     
-    private var sections = [Section]()
+    private var sections = [SectionViewModel]()
 
     // MARK: - Dependecies
     
@@ -52,13 +62,13 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     private func configureModels() {
-        sections.append(Section(title: "Profile", options: [Option(title: "View your profile", handler: { [weak self] in
+        sections.append(SectionViewModel(title: "Profile", options: [OptionViewModel(title: "View your profile", handler: { [weak self] in
             DispatchQueue.main.async {
                 self?.viewProfile()
             }
         })]))
         
-        sections.append(Section(title: "Account", options: [Option(title: "Sign Out", handler: { [weak self] in
+        sections.append(SectionViewModel(title: "Account", options: [OptionViewModel(title: "Sign Out", handler: { [weak self] in
             DispatchQueue.main.async {
                 self?.signOutTapped()
             }
@@ -71,10 +81,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     private func viewProfile() {
-//        let vc = ProfileViewController()
-//        vc.title = "Profile"
-//        vc.navigationItem.largeTitleDisplayMode = .never
-//        navigationController?.pushViewController(vc, animated: true)
+        presenter.profileButtonDidTap()
     }
     
     override func viewDidLayoutSubviews() {
@@ -109,5 +116,4 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let model = sections[section]
         return model.title
     }
-    
 }

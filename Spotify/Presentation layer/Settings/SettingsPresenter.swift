@@ -8,7 +8,7 @@
 import Foundation
 
 protocol ISettingsPresenter {
-    
+    func profileButtonDidTap()
 }
 
 final class SettingsPresenter: ISettingsPresenter {
@@ -26,4 +26,8 @@ final class SettingsPresenter: ISettingsPresenter {
     }
     
     // MARK: - ISettingsPresenter
+    
+    func profileButtonDidTap() {
+        router.showProfileScreen()
+    }
 }
