@@ -7,8 +7,14 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+protocol ISettingsView: AnyObject {
+    
+}
+
+class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ISettingsView {
        
+    // MARK: - UI
+    
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(UITableViewCell.self,
@@ -18,6 +24,23 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     private var sections = [Section]()
 
+    // MARK: - Dependecies
+    
+    private let presenter: ISettingsPresenter
+    
+    // MARK: - Init
+    
+    init(presenter: ISettingsPresenter) {
+        self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureModels()
@@ -48,10 +71,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     private func viewProfile() {
-        let vc = ProfileViewController()
-        vc.title = "Profile"
-        vc.navigationItem.largeTitleDisplayMode = .never
-        navigationController?.pushViewController(vc, animated: true)
+//        let vc = ProfileViewController()
+//        vc.title = "Profile"
+//        vc.navigationItem.largeTitleDisplayMode = .never
+//        navigationController?.pushViewController(vc, animated: true)
     }
     
     override func viewDidLayoutSubviews() {

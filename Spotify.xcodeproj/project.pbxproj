@@ -44,6 +44,12 @@
 		DF58D97F2A6329040062061E /* WelcomeAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF58D97E2A6329040062061E /* WelcomeAssembly.swift */; };
 		DF58D9812A632CA50062061E /* WelcomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF58D9802A632CA50062061E /* WelcomeRouter.swift */; };
 		DF58D9832A632CAC0062061E /* WelcomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF58D9822A632CAC0062061E /* WelcomePresenter.swift */; };
+		DF58D9862A6336340062061E /* ProfileAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF58D9852A6336340062061E /* ProfileAssembly.swift */; };
+		DF58D9882A63363C0062061E /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF58D9872A63363C0062061E /* ProfileRouter.swift */; };
+		DF58D98A2A6336440062061E /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF58D9892A6336440062061E /* ProfilePresenter.swift */; };
+		DF58D98C2A633A860062061E /* SettingsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF58D98B2A633A860062061E /* SettingsAssembly.swift */; };
+		DF58D98E2A633A8F0062061E /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF58D98D2A633A8F0062061E /* SettingsPresenter.swift */; };
+		DF58D9902A633A950062061E /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF58D98F2A633A950062061E /* SettingsRouter.swift */; };
 		F864CE0EE9425617E773CC6C /* Pods_Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF67EAC705669A98A0A20A77 /* Pods_Spotify.framework */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +95,12 @@
 		DF58D97E2A6329040062061E /* WelcomeAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeAssembly.swift; sourceTree = "<group>"; };
 		DF58D9802A632CA50062061E /* WelcomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeRouter.swift; sourceTree = "<group>"; };
 		DF58D9822A632CAC0062061E /* WelcomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePresenter.swift; sourceTree = "<group>"; };
+		DF58D9852A6336340062061E /* ProfileAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAssembly.swift; sourceTree = "<group>"; };
+		DF58D9872A63363C0062061E /* ProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
+		DF58D9892A6336440062061E /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
+		DF58D98B2A633A860062061E /* SettingsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAssembly.swift; sourceTree = "<group>"; };
+		DF58D98D2A633A8F0062061E /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
+		DF58D98F2A633A950062061E /* SettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
 		DF67EAC705669A98A0A20A77 /* Pods_Spotify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spotify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -126,6 +138,9 @@
 		1110FB0C2A531BED007135BD /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				DF58D98B2A633A860062061E /* SettingsAssembly.swift */,
+				DF58D98D2A633A8F0062061E /* SettingsPresenter.swift */,
+				DF58D98F2A633A950062061E /* SettingsRouter.swift */,
 				1110FAF92A52F27B007135BD /* SettingsViewController.swift */,
 			);
 			path = Settings;
@@ -134,6 +149,9 @@
 		1110FB0D2A531C08007135BD /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				DF58D9852A6336340062061E /* ProfileAssembly.swift */,
+				DF58D9892A6336440062061E /* ProfilePresenter.swift */,
+				DF58D9872A63363C0062061E /* ProfileRouter.swift */,
 				1110FAFB2A52F287007135BD /* ProfileViewController.swift */,
 			);
 			path = Profile;
@@ -467,17 +485,23 @@
 				112B92912A52D8D50037C97F /* HomeViewController.swift in Sources */,
 				1110FB082A52F490007135BD /* HapticsManager.swift in Sources */,
 				DF58D9832A632CAC0062061E /* WelcomePresenter.swift in Sources */,
+				DF58D9862A6336340062061E /* ProfileAssembly.swift in Sources */,
 				1110FB002A52F2CF007135BD /* PlayerViewController.swift in Sources */,
+				DF58D98E2A633A8F0062061E /* SettingsPresenter.swift in Sources */,
 				1110FAF62A52F227007135BD /* AuthetificationViewController.swift in Sources */,
 				1118083A2A619020004F1026 /* Artist.swift in Sources */,
+				DF58D9882A63363C0062061E /* ProfileRouter.swift in Sources */,
 				DF58D9702A630CEF0062061E /* ApplicationAssembly.swift in Sources */,
 				112B928D2A52D8D50037C97F /* AppDelegate.swift in Sources */,
+				DF58D9902A633A950062061E /* SettingsRouter.swift in Sources */,
 				1110FAFE2A52F2BC007135BD /* PlaylistViewController.swift in Sources */,
 				DF58D9792A6314530062061E /* HomeRouter.swift in Sources */,
 				1110FAF22A52F1C6007135BD /* LibraryViewController.swift in Sources */,
 				112B928F2A52D8D50037C97F /* SceneDelegate.swift in Sources */,
+				DF58D98C2A633A860062061E /* SettingsAssembly.swift in Sources */,
 				11325B4C2A5C43B9009CC67F /* UserProfile.swift in Sources */,
 				1110FB022A52F304007135BD /* SearchResultViewController.swift in Sources */,
+				DF58D98A2A6336440062061E /* ProfilePresenter.swift in Sources */,
 				1110FB132A544110007135BD /* UIView+Extensions.swift in Sources */,
 				1110FB062A52F439007135BD /* SpotifyService.swift in Sources */,
 				DF58D97D2A6320130062061E /* TabBarAssembly.swift in Sources */,

@@ -32,6 +32,11 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
+        fetchData()
+    }
+    
+    private func setupUI() {
         title = "Browse"
         view.backgroundColor = .systemBackground
         navigationItem.rightBarButtonItem = UIBarButtonItem(
@@ -40,8 +45,6 @@ class HomeViewController: UIViewController {
             target: self,
             action: #selector(didTapSettings)
         )
-        
-        fetchData()
     }
     
     private func fetchData() {
@@ -67,10 +70,10 @@ class HomeViewController: UIViewController {
     
 
     @objc func didTapSettings() {
-        let vc = SettingsViewController()
-        vc.title = "Settings"
-        vc.navigationItem.largeTitleDisplayMode = .never
-        navigationController?.pushViewController(vc, animated: true)
+//        let vc = SettingsViewController()
+//        vc.title = "Settings"
+//        vc.navigationItem.largeTitleDisplayMode = .never
+//        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

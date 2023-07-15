@@ -13,6 +13,16 @@ protocol IWelcomeView: AnyObject {
 
 class WelcomeViewController: UIViewController {
     
+    // MARK: - UI
+    
+    private let signInButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .white
+        button.setTitle("Sign In with Spotify", for: .normal)
+        button.setTitleColor(.blue, for: .normal)
+        return button
+    }()
+    
     // MARK: - Dependecies
     
     private let presenter: IWelcomePresenter
@@ -27,16 +37,6 @@ class WelcomeViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    // MARK: - UI
-    
-    private let signInButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .white
-        button.setTitle("Sign In with Spotify", for: .normal)
-        button.setTitleColor(.blue, for: .normal)
-        return button
-    }()
     
     // MARK: - Lifecycle
     

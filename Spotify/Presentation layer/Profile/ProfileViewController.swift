@@ -8,7 +8,13 @@
 import UIKit
 import Kingfisher
 
-class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+protocol IProfileView: AnyObject {
+    
+}
+
+class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, IProfileView {
+    
+    // MARK: - UI
     
     private let avatarImageView: UIImageView = {
         let imageView = UIImageView()
@@ -19,32 +25,45 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.isHidden = true
-        tableView.register(UITableViewCell.self,
-                           forCellReuseIdentifier: "cell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         return tableView
     }()
     
     private var models = [String]()
     
+    // MARK: - Dependecies
     
+    private let presenter: IProfilePresenter
+    
+    // MARK: - Init
+    
+    init(presenter: IProfilePresenter) {
+        self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
-        fetchProfile()
         setupUI()
+        setupDelegates()
+        fetchProfile()
     }
     
     private func setupUI() {
         title = "Profile"
         view.addSubview(tableView)
         view.backgroundColor = .systemBackground
-
     }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        tableView.frame = view.bounds
+
+    private func setupDelegates() {
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
     private func fetchProfile() {
@@ -61,6 +80,11 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.frame = view.bounds
+    }
+
     private func updateUI(with model: UserProfile) {
         tableView.isHidden = false
         // configure table models
@@ -71,6 +95,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         createTableHeader(with: model.images[1].url)
         tableView.reloadData()
     }
+    
     private func createTableHeader(with string: String?) {
         guard let urlString = string, let url = URL(string: urlString) else {
             return

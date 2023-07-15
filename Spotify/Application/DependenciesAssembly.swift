@@ -9,8 +9,6 @@ import Foundation
 
 protocol IDependenciesAssembly {
     
-    // MARK: - Core
-
     // MARK: - Services
     
     var spotifyService: Lazy<ISpotifyService> { get }
@@ -20,6 +18,8 @@ protocol IDependenciesAssembly {
     var tabBarAssembly: Lazy<ITabBarAssembly> { get }
     var welcomeAssembly: Lazy<IWelcomeAssembly> { get }
     var homeAssembly: Lazy<IHomeAssembly> { get }
+    var settingsAssembly: Lazy<ISettingsAssembly> { get }
+    var profileAssembly: Lazy<IProfileAssembly> { get }
 }
 
 final class DependenciesAssembly: IDependenciesAssembly {
@@ -48,5 +48,13 @@ final class DependenciesAssembly: IDependenciesAssembly {
     
     var homeAssembly: Lazy<IHomeAssembly> {
         Lazy(HomeAssembly())
+    }
+    
+    var settingsAssembly: Lazy<ISettingsAssembly> {
+        Lazy(SettingsAssembly())
+    }
+    
+    var profileAssembly: Lazy<IProfileAssembly> {
+        Lazy(ProfileAssembly())
     }
 }
