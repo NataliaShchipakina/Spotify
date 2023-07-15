@@ -47,7 +47,10 @@ final class DependenciesAssembly: IDependenciesAssembly {
     }
     
     var homeAssembly: Lazy<IHomeAssembly> {
-        Lazy(HomeAssembly())
+        Lazy(HomeAssembly(
+            settingAssembly: self.settingsAssembly,
+            spotifyService: self.spotifyService
+        ))
     }
     
     var settingsAssembly: Lazy<ISettingsAssembly> {

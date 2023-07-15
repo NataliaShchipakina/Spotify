@@ -15,15 +15,24 @@ final class HomeAssembly: IHomeAssembly {
     
     // MARK: - Dependencies
     
+    private let settingAssembly: Lazy<ISettingsAssembly>
+    private let spotifyService: Lazy<ISpotifyService>
+    
     // MARK: - Init
     
-    init() { }
+    init(
+        settingAssembly: Lazy<ISettingsAssembly>,
+        spotifyService: Lazy<ISpotifyService>
+    ) {
+        self.settingAssembly = settingAssembly
+        self.spotifyService = spotifyService
+    }
     
     // MARK: - IHomeAssembly
     
     func assemble() -> UIViewController {
-        let router = HomeRouter()
-        let presenter = HomePresenter(router: router)
+        let router = HomeRouter(settingAssembly: settingAssembly)
+        let presenter = HomePresenter(router: router, spotifyService: spotifyService)
         let viewController = HomeViewController(presenter: presenter)
         
         router.transitionHandler = viewController

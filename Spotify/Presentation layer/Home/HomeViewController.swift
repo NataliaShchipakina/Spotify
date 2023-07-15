@@ -33,7 +33,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        fetchData()
+        presenter.viewDidLoad()
     }
     
     private func setupUI() {
@@ -46,34 +46,9 @@ class HomeViewController: UIViewController {
             action: #selector(didTapSettings)
         )
     }
-    
-    private func fetchData() {
-        SpotifyService.shared.getRecommendedGenres { result in
-            switch result {
-            case .success(let model):
-                let genres = model.genres
-                var seeds = Set<String>()
-                while seeds.count < 5 {
-                    if let random = genres.randomElement() {
-                        seeds.insert(random)
-                    }
-                }
-                SpotifyService.shared.getRecommendations(genres: seeds) { _  in
-                    
-                }
-                
-            case .failure(let error): break
-
-            }
-        }
-    }
-    
 
     @objc func didTapSettings() {
-//        let vc = SettingsViewController()
-//        vc.title = "Settings"
-//        vc.navigationItem.largeTitleDisplayMode = .never
-//        navigationController?.pushViewController(vc, animated: true)
+        presenter.didTapSettingsButton()
     }
 }
 
