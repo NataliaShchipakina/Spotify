@@ -21,9 +21,10 @@ final class ApplicationAssembly {
 
     func getRootViewController() -> UIViewController {
         let rootViewController: UIViewController
+        let isSignedIn = dependenciesAssembly.authetificationService.get().isSignedIn
         
-        if AuthetificationService.shared.isSignedIn {
-            AuthetificationService.shared.refreshIfNeeded(completion: nil)
+        if isSignedIn {
+            dependenciesAssembly.authetificationService.get().refreshIfNeeded(completion: nil)
 
             rootViewController = dependenciesAssembly.tabBarAssembly.get().assembly()
         } else {

@@ -16,8 +16,8 @@ protocol ISpotifyService {
 }
 
 final class SpotifyService: ISpotifyService {
+    @available(*, deprecated, message: "Pls use DI instead")
     static let shared = SpotifyService()
-    private init() {}
     
     struct Constants {
         static let baseAPIURL = "https://api.spotify.com/v1"

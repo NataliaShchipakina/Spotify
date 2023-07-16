@@ -31,11 +31,11 @@ final class DependenciesAssembly: IDependenciesAssembly {
     // MARK: - Services
     
     var authetificationService: Lazy<IAuthetificationService> {
-        Lazy(AuthetificationService.shared)
+        Lazy(AuthetificationService())
     }
     
     var spotifyService: Lazy<ISpotifyService> {
-        Lazy(SpotifyService.shared)
+        Lazy(SpotifyService())
     }
     
     // MARK: - Presentation

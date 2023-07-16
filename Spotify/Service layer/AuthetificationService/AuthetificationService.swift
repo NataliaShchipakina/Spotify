@@ -10,11 +10,17 @@ import Foundation
 protocol IAuthetificationService {
     /// Ссылка для авторизации, после авторизации получаем code
     var signInURL: URL? { get }
+    /// Признак авторизованности пользователя
+    var isSignedIn: Bool { get }
+    /// Обновляем токен если токен просрочен
+    /// - Parameter completion: completion handler
+    func refreshIfNeeded(completion: ((Bool) -> Void)?)
     func exchandeCodeForToken(code: String, completion: @escaping ((Bool) -> Void))
 }
 
 final class AuthetificationService: IAuthetificationService {
     
+    @available(*, deprecated, message: "Pls use DI instead")
     static let shared = AuthetificationService()
     
     private var refreshingToken = false
@@ -26,9 +32,6 @@ final class AuthetificationService: IAuthetificationService {
         static let redirectURI = "https://github.com/NataliaShchipakina"
         static let scopes = "user-read-private%20playlist-modify-public%20playlist-read-private%20playlist-modify-private%20user-follow-read%20user-library-modify%20user-library-read%20user-read-email"
     }
-    
-    
-    private init() {}
     
     public var signInURL: URL? {
         let base = "https://accounts.spotify.com/authorize"
