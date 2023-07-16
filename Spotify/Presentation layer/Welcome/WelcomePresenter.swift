@@ -8,7 +8,7 @@
 import Foundation
 
 protocol IWelcomePresenter {
-    
+    func signInButtonDidTap()
 }
 
 final class WelcomePresenter: IWelcomePresenter {
@@ -26,4 +26,18 @@ final class WelcomePresenter: IWelcomePresenter {
     }
     
     // MARK: - IWelcomePresenter
+    
+    func signInButtonDidTap() {
+        router.showAuthetificationScreen(delegate: self)
+    }
+}
+
+extension WelcomePresenter: AuthetificationDelegate {
+    func handleAuthetificationResponse(_ isSuccess: Bool) {
+        if isSuccess {
+            router.showMainTabBarScreen()
+        } else {
+            router.showFailedAuthetificatioAlert()
+        }
+    }
 }

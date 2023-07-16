@@ -11,12 +11,14 @@ protocol IDependenciesAssembly {
     
     // MARK: - Services
     
+    var authetificationService: Lazy<IAuthetificationService> { get }
     var spotifyService: Lazy<ISpotifyService> { get }
 
     // MARK: - Presentation
 
     var tabBarAssembly: Lazy<ITabBarAssembly> { get }
     var welcomeAssembly: Lazy<IWelcomeAssembly> { get }
+    var authetificationAssembly: Lazy<IAuthetificationAssembly> { get }
     var homeAssembly: Lazy<IHomeAssembly> { get }
     var settingsAssembly: Lazy<ISettingsAssembly> { get }
     var profileAssembly: Lazy<IProfileAssembly> { get }
@@ -27,6 +29,10 @@ final class DependenciesAssembly: IDependenciesAssembly {
     // MARK: - Core
     
     // MARK: - Services
+    
+    var authetificationService: Lazy<IAuthetificationService> {
+        Lazy(AuthetificationService.shared)
+    }
     
     var spotifyService: Lazy<ISpotifyService> {
         Lazy(SpotifyService.shared)
@@ -43,7 +49,14 @@ final class DependenciesAssembly: IDependenciesAssembly {
     }
     
     var welcomeAssembly: Lazy<IWelcomeAssembly> {
-        Lazy(WelcomeAssembly(tabBarAssembly: self.tabBarAssembly))
+        Lazy(WelcomeAssembly(
+            tabBarAssembly: self.tabBarAssembly,
+            authetificationAssembly: self.authetificationAssembly
+        ))
+    }
+    
+    var authetificationAssembly: Lazy<IAuthetificationAssembly> {
+        Lazy(AuthetificationAssembly(authetificationService: self.authetificationService))
     }
     
     var homeAssembly: Lazy<IHomeAssembly> {

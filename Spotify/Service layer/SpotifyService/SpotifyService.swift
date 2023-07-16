@@ -157,7 +157,7 @@ enum HTTPMethod:String {
 private func createRequest(with url: URL?,
                            type: HTTPMethod,
                            completion: @escaping (URLRequest) -> Void) {
-    AuthManager.shared.withValidToken { token in
+    AuthetificationService.shared.withValidToken { token in
         guard let apiURL = url else {
             return
         }

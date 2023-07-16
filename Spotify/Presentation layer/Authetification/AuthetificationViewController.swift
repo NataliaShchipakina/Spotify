@@ -8,7 +8,28 @@
 import UIKit
 import WebKit
 
+protocol IAuthetificationView: AnyObject {
+    func showWebView(with request: URLRequest)
+}
+
 class AuthetificationViewController: UIViewController, WKNavigationDelegate {
+    
+    // MARK: - Dependecies
+    
+    private let presenter: IAuthetificationPresenter
+    
+    // MARK: - Init
+    
+    init(presenter: IAuthetificationPresenter) {
+        self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+        
+    // MARK: - UI
     
     private let webView: WKWebView = {
         let prefs = WKWebpagePreferences()
@@ -19,17 +40,13 @@ class AuthetificationViewController: UIViewController, WKNavigationDelegate {
         
         return webView
     }()
-    
-    public var completionHandler: ((Bool) -> Void)?
-    
+
+    // MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Sign In"
-        view.backgroundColor = .systemBackground
-        webView.navigationDelegate = self
-        view.addSubview(webView)
-        guard let url = AuthManager.shared.signInURL else { return }
-        webView.load(URLRequest(url: url))
+        setupUI()
+        presenter.viewDidLoad()
     }
     
     override func viewDidLayoutSubviews() {
@@ -38,22 +55,25 @@ class AuthetificationViewController: UIViewController, WKNavigationDelegate {
     }
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        guard let url = webView.url else {
-            return
-        }
-        // Exchange the code for access token
-        
-        guard let code = URLComponents(string: url.absoluteString)?.queryItems?.first(where: {$0.name == "code"})?.value else {
-            return
-        }
-        webView.isHidden = true
-        
-        print("Code: \(code)")
-        AuthManager.shared.exchandeCodeForToken(code: code) { [weak self] success in
-            DispatchQueue.main.async {
-                self?.navigationController?.popToRootViewController(animated: true)
-                self?.completionHandler?(success)
-            }
-        }
+        presenter.webView(webView, didStartProvisionalNavigation: navigation)
+    }
+}
+
+// MARK: - Private
+
+private extension AuthetificationViewController {
+    func setupUI() {
+        title = "Sign In"
+        view.backgroundColor = .systemBackground
+        webView.navigationDelegate = self
+        view.addSubview(webView)
+    }
+}
+
+// MARK: - IAuthetificationView
+
+extension AuthetificationViewController: IAuthetificationView {
+    func showWebView(with request: URLRequest) {
+        webView.load(request)
     }
 }

@@ -20,6 +20,7 @@ class WelcomeViewController: UIViewController {
         button.backgroundColor = .white
         button.setTitle("Sign In with Spotify", for: .normal)
         button.setTitleColor(.blue, for: .normal)
+
         return button
     }()
     
@@ -54,8 +55,18 @@ class WelcomeViewController: UIViewController {
             height: 50
         )
     }
+}
+
+// MARK: - IWelcomeView
+
+extension WelcomeViewController: IWelcomeView {
     
-    private func setupUI() {
+}
+
+// MARK: - Private
+
+private extension WelcomeViewController {
+    func setupUI() {
         title = "Spotify"
         view.backgroundColor = .systemGreen
         view.addSubview(signInButton)
@@ -63,34 +74,6 @@ class WelcomeViewController: UIViewController {
     }
     
     @objc func didTapSignIn() {
-        let vc = AuthetificationViewController()
-        vc.completionHandler = { [weak self] success in
-            DispatchQueue.main.async {
-                self?.handleSignIn(success: success)
-            }
-        }
-        vc.navigationItem.largeTitleDisplayMode = .never
-        navigationController?.pushViewController(vc, animated: true)
+        presenter.signInButtonDidTap()
     }
-    
-    private func handleSignIn(success: Bool) {
-        guard success else {
-            let alert = UIAlertController(title: "Oops",
-                                          message: "Something went wrong when signing in",
-                                          preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
-            present(alert, animated: true)
-            return
-        }
-        
-//        let mainAppTabBarVC = TabBarViewController()
-//        mainAppTabBarVC.modalPresentationStyle = .fullScreen
-//        present(mainAppTabBarVC, animated: true)
-    }
-}
-
-// MARK: - IWelcomeView
-
-extension WelcomeViewController: IWelcomeView {
-    
 }

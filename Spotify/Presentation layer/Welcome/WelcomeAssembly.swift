@@ -16,17 +16,22 @@ final class WelcomeAssembly: IWelcomeAssembly {
     // MARK: - Dependencies
     
     private let tabBarAssembly: Lazy<ITabBarAssembly>
+    private let authetificationAssembly: Lazy<IAuthetificationAssembly>
     
     // MARK: - Init
     
-    init(tabBarAssembly: Lazy<ITabBarAssembly>) {
+    init(
+        tabBarAssembly: Lazy<ITabBarAssembly>,
+        authetificationAssembly: Lazy<IAuthetificationAssembly>
+    ) {
         self.tabBarAssembly = tabBarAssembly
+        self.authetificationAssembly = authetificationAssembly
     }
     
     // MARK: - IWelcomeAssembly
         
     func assembly() -> UIViewController {
-        let router = WelcomeRouter()
+        let router = WelcomeRouter(tabBarAssembly: tabBarAssembly, authetificationAssembly: authetificationAssembly)
         let presenter = WelcomePresenter(router: router)
         let viewController = WelcomeViewController(presenter: presenter)
         

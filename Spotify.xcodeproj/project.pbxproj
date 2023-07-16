@@ -17,11 +17,11 @@
 		1110FAFE2A52F2BC007135BD /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1110FAFD2A52F2BC007135BD /* PlaylistViewController.swift */; };
 		1110FB002A52F2CF007135BD /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1110FAFF2A52F2CF007135BD /* PlayerViewController.swift */; };
 		1110FB022A52F304007135BD /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1110FB012A52F304007135BD /* SearchResultViewController.swift */; };
-		1110FB042A52F418007135BD /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1110FB032A52F418007135BD /* AuthManager.swift */; };
+		1110FB042A52F418007135BD /* AuthetificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1110FB032A52F418007135BD /* AuthetificationService.swift */; };
 		1110FB062A52F439007135BD /* SpotifyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1110FB052A52F439007135BD /* SpotifyService.swift */; };
-		1110FB082A52F490007135BD /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1110FB072A52F490007135BD /* HapticsManager.swift */; };
+		1110FB082A52F490007135BD /* HapticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1110FB072A52F490007135BD /* HapticsService.swift */; };
 		1110FB132A544110007135BD /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1110FB122A544110007135BD /* UIView+Extensions.swift */; };
-		1110FB172A55A0C7007135BD /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1110FB162A55A0C7007135BD /* AuthResponse.swift */; };
+		1110FB172A55A0C7007135BD /* AuthetificationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1110FB162A55A0C7007135BD /* AuthetificationResponse.swift */; };
 		111808352A6166FE004F1026 /* NewReleasesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111808342A6166FE004F1026 /* NewReleasesResponse.swift */; };
 		111808372A616F9A004F1026 /* APIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111808362A616F9A004F1026 /* APIImage.swift */; };
 		1118083A2A619020004F1026 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111808392A619020004F1026 /* Artist.swift */; };
@@ -49,6 +49,9 @@
 		DF58D98C2A633A860062061E /* SettingsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF58D98B2A633A860062061E /* SettingsAssembly.swift */; };
 		DF58D98E2A633A8F0062061E /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF58D98D2A633A8F0062061E /* SettingsPresenter.swift */; };
 		DF58D9902A633A950062061E /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF58D98F2A633A950062061E /* SettingsRouter.swift */; };
+		DFF8F1B82A64047500D76813 /* AuthetificationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF8F1B72A64047500D76813 /* AuthetificationAssembly.swift */; };
+		DFF8F1BA2A6405DF00D76813 /* AuthetificationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF8F1B92A6405DF00D76813 /* AuthetificationRouter.swift */; };
+		DFF8F1BC2A6405E600D76813 /* AuthetificationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF8F1BB2A6405E600D76813 /* AuthetificationPresenter.swift */; };
 		F864CE0EE9425617E773CC6C /* Pods_Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF67EAC705669A98A0A20A77 /* Pods_Spotify.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,11 +66,11 @@
 		1110FAFD2A52F2BC007135BD /* PlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
 		1110FAFF2A52F2CF007135BD /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		1110FB012A52F304007135BD /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
-		1110FB032A52F418007135BD /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		1110FB032A52F418007135BD /* AuthetificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthetificationService.swift; sourceTree = "<group>"; };
 		1110FB052A52F439007135BD /* SpotifyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyService.swift; sourceTree = "<group>"; };
-		1110FB072A52F490007135BD /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
+		1110FB072A52F490007135BD /* HapticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsService.swift; sourceTree = "<group>"; };
 		1110FB122A544110007135BD /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
-		1110FB162A55A0C7007135BD /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
+		1110FB162A55A0C7007135BD /* AuthetificationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthetificationResponse.swift; sourceTree = "<group>"; };
 		111808342A6166FE004F1026 /* NewReleasesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReleasesResponse.swift; sourceTree = "<group>"; };
 		111808362A616F9A004F1026 /* APIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIImage.swift; sourceTree = "<group>"; };
 		111808392A619020004F1026 /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
@@ -100,6 +103,9 @@
 		DF58D98D2A633A8F0062061E /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		DF58D98F2A633A950062061E /* SettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
 		DF67EAC705669A98A0A20A77 /* Pods_Spotify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spotify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DFF8F1B72A64047500D76813 /* AuthetificationAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthetificationAssembly.swift; sourceTree = "<group>"; };
+		DFF8F1B92A6405DF00D76813 /* AuthetificationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthetificationRouter.swift; sourceTree = "<group>"; };
+		DFF8F1BB2A6405E600D76813 /* AuthetificationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthetificationPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +123,9 @@
 		1110FB0A2A5319BE007135BD /* Authetification */ = {
 			isa = PBXGroup;
 			children = (
+				DFF8F1B72A64047500D76813 /* AuthetificationAssembly.swift */,
+				DFF8F1BB2A6405E600D76813 /* AuthetificationPresenter.swift */,
+				DFF8F1B92A6405DF00D76813 /* AuthetificationRouter.swift */,
 				1110FAF52A52F227007135BD /* AuthetificationViewController.swift */,
 			);
 			path = Authetification;
@@ -244,8 +253,9 @@
 		112B92A42A52E5AD0037C97F /* Service layer */ = {
 			isa = PBXGroup;
 			children = (
+				DFF8F1BE2A640CCB00D76813 /* HapticsService */,
+				DFF8F1BD2A640BAE00D76813 /* AuthetificationService */,
 				DF58D9842A6332660062061E /* SpotifyService */,
-				1110FB072A52F490007135BD /* HapticsManager.swift */,
 			);
 			path = "Service layer";
 			sourceTree = "<group>";
@@ -292,8 +302,6 @@
 		DF5810972A6304C10062061E /* Core layer */ = {
 			isa = PBXGroup;
 			children = (
-				1110FB032A52F418007135BD /* AuthManager.swift */,
-				1110FB162A55A0C7007135BD /* AuthResponse.swift */,
 			);
 			path = "Core layer";
 			sourceTree = "<group>";
@@ -341,6 +349,23 @@
 				112B92A02A52E5880037C97F /* Models */,
 			);
 			path = SpotifyService;
+			sourceTree = "<group>";
+		};
+		DFF8F1BD2A640BAE00D76813 /* AuthetificationService */ = {
+			isa = PBXGroup;
+			children = (
+				1110FB032A52F418007135BD /* AuthetificationService.swift */,
+				1110FB162A55A0C7007135BD /* AuthetificationResponse.swift */,
+			);
+			path = AuthetificationService;
+			sourceTree = "<group>";
+		};
+		DFF8F1BE2A640CCB00D76813 /* HapticsService */ = {
+			isa = PBXGroup;
+			children = (
+				1110FB072A52F490007135BD /* HapticsService.swift */,
+			);
+			path = HapticsService;
 			sourceTree = "<group>";
 		};
 		E1046B640DC82C322FF94753 /* Frameworks */ = {
@@ -468,22 +493,24 @@
 				111808372A616F9A004F1026 /* APIImage.swift in Sources */,
 				111808352A6166FE004F1026 /* NewReleasesResponse.swift in Sources */,
 				1110FAF02A52EFA3007135BD /* SearchViewController.swift in Sources */,
+				DFF8F1B82A64047500D76813 /* AuthetificationAssembly.swift in Sources */,
 				DF58D97F2A6329040062061E /* WelcomeAssembly.swift in Sources */,
 				DF58D97B2A6314650062061E /* HomeAssembly.swift in Sources */,
-				1110FB042A52F418007135BD /* AuthManager.swift in Sources */,
+				1110FB042A52F418007135BD /* AuthetificationService.swift in Sources */,
 				DF58D9772A63144C0062061E /* HomePresenter.swift in Sources */,
 				DF58D9812A632CA50062061E /* WelcomeRouter.swift in Sources */,
 				1110FAF82A52F247007135BD /* WelcomeViewController.swift in Sources */,
 				1110FAFC2A52F287007135BD /* ProfileViewController.swift in Sources */,
-				1110FB172A55A0C7007135BD /* AuthResponse.swift in Sources */,
+				1110FB172A55A0C7007135BD /* AuthetificationResponse.swift in Sources */,
 				1110FAEE2A52EF24007135BD /* TabBarViewController.swift in Sources */,
 				DF58D9752A6310B20062061E /* Lazy.swift in Sources */,
 				112B92912A52D8D50037C97F /* HomeViewController.swift in Sources */,
-				1110FB082A52F490007135BD /* HapticsManager.swift in Sources */,
+				1110FB082A52F490007135BD /* HapticsService.swift in Sources */,
 				DF58D9832A632CAC0062061E /* WelcomePresenter.swift in Sources */,
 				DF58D9862A6336340062061E /* ProfileAssembly.swift in Sources */,
 				1110FB002A52F2CF007135BD /* PlayerViewController.swift in Sources */,
 				DF58D98E2A633A8F0062061E /* SettingsPresenter.swift in Sources */,
+				DFF8F1BA2A6405DF00D76813 /* AuthetificationRouter.swift in Sources */,
 				1110FAF62A52F227007135BD /* AuthetificationViewController.swift in Sources */,
 				1118083A2A619020004F1026 /* Artist.swift in Sources */,
 				DF58D9882A63363C0062061E /* ProfileRouter.swift in Sources */,
@@ -502,6 +529,7 @@
 				1110FB062A52F439007135BD /* SpotifyService.swift in Sources */,
 				DF58D97D2A6320130062061E /* TabBarAssembly.swift in Sources */,
 				1130ACCA2A61E69D002836EE /* FeaturedPlaylistsResponse.swift in Sources */,
+				DFF8F1BC2A6405E600D76813 /* AuthetificationPresenter.swift in Sources */,
 				1110FAFA2A52F27B007135BD /* SettingsViewController.swift in Sources */,
 				1130ACCC2A61F77E002836EE /* RecommendedGenres.swift in Sources */,
 				DF58D9722A630F6E0062061E /* DependenciesAssembly.swift in Sources */,

@@ -7,9 +7,15 @@
 
 import Foundation
 
-final class AuthManager {
+protocol IAuthetificationService {
+    /// Ссылка для авторизации, после авторизации получаем code
+    var signInURL: URL? { get }
+    func exchandeCodeForToken(code: String, completion: @escaping ((Bool) -> Void))
+}
+
+final class AuthetificationService: IAuthetificationService {
     
-    static let shared = AuthManager()
+    static let shared = AuthetificationService()
     
     private var refreshingToken = false
     
@@ -100,7 +106,7 @@ final class AuthManager {
             }
             
             do {
-                let result = try JSONDecoder().decode(AuthResponse.self, from: data)
+                let result = try JSONDecoder().decode(AuthetificationResponse.self, from: data)
                 print("Successfully refreshed")
                 self?.casheToken(result: result)
                 completion(true)
@@ -192,7 +198,7 @@ final class AuthManager {
             }
             
             do {
-                let result = try JSONDecoder().decode(AuthResponse.self, from: data)
+                let result = try JSONDecoder().decode(AuthetificationResponse.self, from: data)
                 self?.onRefreshBlocks.forEach { $0(result.access_token) }
                 self?.onRefreshBlocks.removeAll()
                 self?.casheToken(result: result)
@@ -206,7 +212,7 @@ final class AuthManager {
         task.resume()
     }
     
-    private func casheToken(result: AuthResponse) {
+    private func casheToken(result: AuthetificationResponse) {
         UserDefaults.standard.setValue(result.access_token,
                                        forKey: "access_token")
         if let refresh_token = result.refresh_token {

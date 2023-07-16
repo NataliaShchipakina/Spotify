@@ -11,19 +11,19 @@ final class ApplicationAssembly {
     
     // MARK: - Dependecies
     
-    private let dependenciesAssembly: DependenciesAssembly
+    private let dependenciesAssembly: IDependenciesAssembly
     
     // MARK: - Init
     
-    init(dependenciesAssembly: DependenciesAssembly = DependenciesAssembly()) {
+    init(dependenciesAssembly: IDependenciesAssembly = DependenciesAssembly()) {
         self.dependenciesAssembly = dependenciesAssembly
     }
 
     func getRootViewController() -> UIViewController {
         let rootViewController: UIViewController
         
-        if AuthManager.shared.isSignedIn {
-            AuthManager.shared.refreshIfNeeded(completion: nil)
+        if AuthetificationService.shared.isSignedIn {
+            AuthetificationService.shared.refreshIfNeeded(completion: nil)
 
             rootViewController = dependenciesAssembly.tabBarAssembly.get().assembly()
         } else {
