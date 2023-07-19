@@ -49,6 +49,9 @@
 		DF58D98C2A633A860062061E /* SettingsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF58D98B2A633A860062061E /* SettingsAssembly.swift */; };
 		DF58D98E2A633A8F0062061E /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF58D98D2A633A8F0062061E /* SettingsPresenter.swift */; };
 		DF58D9902A633A950062061E /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF58D98F2A633A950062061E /* SettingsRouter.swift */; };
+		DF6E2CAA2A68632700A51361 /* UserDefaultsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6E2CA92A68632700A51361 /* UserDefaultsStorage.swift */; };
+		DF6E2CAE2A68649500A51361 /* IStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6E2CAD2A68649500A51361 /* IStorageManager.swift */; };
+		DF6E2CB02A68690000A51361 /* AuthetificationConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6E2CAF2A68690000A51361 /* AuthetificationConfig.swift */; };
 		DFF8F1B82A64047500D76813 /* AuthetificationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF8F1B72A64047500D76813 /* AuthetificationAssembly.swift */; };
 		DFF8F1BA2A6405DF00D76813 /* AuthetificationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF8F1B92A6405DF00D76813 /* AuthetificationRouter.swift */; };
 		DFF8F1BC2A6405E600D76813 /* AuthetificationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF8F1BB2A6405E600D76813 /* AuthetificationPresenter.swift */; };
@@ -103,6 +106,9 @@
 		DF58D98D2A633A8F0062061E /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		DF58D98F2A633A950062061E /* SettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
 		DF67EAC705669A98A0A20A77 /* Pods_Spotify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spotify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF6E2CA92A68632700A51361 /* UserDefaultsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStorage.swift; sourceTree = "<group>"; };
+		DF6E2CAD2A68649500A51361 /* IStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IStorageManager.swift; sourceTree = "<group>"; };
+		DF6E2CAF2A68690000A51361 /* AuthetificationConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthetificationConfig.swift; sourceTree = "<group>"; };
 		DFF8F1B72A64047500D76813 /* AuthetificationAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthetificationAssembly.swift; sourceTree = "<group>"; };
 		DFF8F1B92A6405DF00D76813 /* AuthetificationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthetificationRouter.swift; sourceTree = "<group>"; };
 		DFF8F1BB2A6405E600D76813 /* AuthetificationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthetificationPresenter.swift; sourceTree = "<group>"; };
@@ -192,6 +198,7 @@
 		1110FB142A54B9D0007135BD /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				DF6E2CAB2A68648500A51361 /* Protocols */,
 				DF58D9732A63106E0062061E /* Data Structures */,
 				1110FB152A54BA69007135BD /* Extensions */,
 			);
@@ -302,6 +309,7 @@
 		DF5810972A6304C10062061E /* Core layer */ = {
 			isa = PBXGroup;
 			children = (
+				DF6E2CA62A685E8300A51361 /* UserDefaultsStorage */,
 			);
 			path = "Core layer";
 			sourceTree = "<group>";
@@ -351,11 +359,28 @@
 			path = SpotifyService;
 			sourceTree = "<group>";
 		};
+		DF6E2CA62A685E8300A51361 /* UserDefaultsStorage */ = {
+			isa = PBXGroup;
+			children = (
+				DF6E2CA92A68632700A51361 /* UserDefaultsStorage.swift */,
+			);
+			path = UserDefaultsStorage;
+			sourceTree = "<group>";
+		};
+		DF6E2CAB2A68648500A51361 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				DF6E2CAD2A68649500A51361 /* IStorageManager.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		DFF8F1BD2A640BAE00D76813 /* AuthetificationService */ = {
 			isa = PBXGroup;
 			children = (
 				1110FB032A52F418007135BD /* AuthetificationService.swift */,
 				1110FB162A55A0C7007135BD /* AuthetificationResponse.swift */,
+				DF6E2CAF2A68690000A51361 /* AuthetificationConfig.swift */,
 			);
 			path = AuthetificationService;
 			sourceTree = "<group>";
@@ -491,6 +516,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				111808372A616F9A004F1026 /* APIImage.swift in Sources */,
+				DF6E2CAA2A68632700A51361 /* UserDefaultsStorage.swift in Sources */,
 				111808352A6166FE004F1026 /* NewReleasesResponse.swift in Sources */,
 				1110FAF02A52EFA3007135BD /* SearchViewController.swift in Sources */,
 				DFF8F1B82A64047500D76813 /* AuthetificationAssembly.swift in Sources */,
@@ -522,7 +548,9 @@
 				1110FAF22A52F1C6007135BD /* LibraryViewController.swift in Sources */,
 				112B928F2A52D8D50037C97F /* SceneDelegate.swift in Sources */,
 				DF58D98C2A633A860062061E /* SettingsAssembly.swift in Sources */,
+				DF6E2CB02A68690000A51361 /* AuthetificationConfig.swift in Sources */,
 				11325B4C2A5C43B9009CC67F /* UserProfile.swift in Sources */,
+				DF6E2CAE2A68649500A51361 /* IStorageManager.swift in Sources */,
 				1110FB022A52F304007135BD /* SearchResultViewController.swift in Sources */,
 				DF58D98A2A6336440062061E /* ProfilePresenter.swift in Sources */,
 				1110FB132A544110007135BD /* UIView+Extensions.swift in Sources */,

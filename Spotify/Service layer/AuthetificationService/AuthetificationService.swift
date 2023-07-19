@@ -20,40 +20,43 @@ protocol IAuthetificationService {
 
 final class AuthetificationService: IAuthetificationService {
     
+    // MARK: - Deprecated
+    
     @available(*, deprecated, message: "Pls use DI instead")
-    static let shared = AuthetificationService()
+    static let shared = AuthetificationService(
+        storageManager: Lazy(UserDefaultsStorage()),
+        authetificationConfig: AuthetificationConfig()
+    )
+    
+    // MARK: Dependencies
+    
+    private let storageManager: Lazy<IStorageManager>
+    private let authetificationConfig: AuthetificationConfig
+    
+    // MARK: - Init
+    
+    init(storageManager: Lazy<IStorageManager>, authetificationConfig: AuthetificationConfig) {
+        self.storageManager = storageManager
+        self.authetificationConfig = authetificationConfig
+    }
+    
+    // MARK: - IAuthetificationService
     
     private var refreshingToken = false
     
-    struct Constants {
-        static let clientID = "3c97f978fe294c9a8f333a584e9237c7"
-        static let clientSecret = "524152b77f8142f9a3a7c0ed4d7325eb"
-        static let tokenAPIURL = "https://accounts.spotify.com/api/token"
-        static let redirectURI = "https://github.com/NataliaShchipakina"
-        static let scopes = "user-read-private%20playlist-modify-public%20playlist-read-private%20playlist-modify-private%20user-follow-read%20user-library-modify%20user-library-read%20user-read-email"
-    }
-    
-    public var signInURL: URL? {
-        let base = "https://accounts.spotify.com/authorize"
-        let string = "\(base)?response_type=code&client_id=\(Constants.clientID)&scope=\(Constants.scopes)&redirect_uri=\(Constants.redirectURI)&show_dialog=TRUE"
-        
-        return URL(string: string)
-    }
-    
-    var isSignedIn: Bool {
-        return accessToken != nil
-    }
+    var signInURL: URL? { authetificationConfig.signInURL }
+    var isSignedIn: Bool { accessToken != nil }
     
     private var accessToken: String? {
-        return UserDefaults.standard.string(forKey: "access_token")
+        storageManager.get().get(key: "access_token")
     }
     
     private var refreshToken: String? {
-        return UserDefaults.standard.string(forKey: "refresh_token")
+        storageManager.get().get(key: "refresh_token")
     }
     
     private var tokenExpirationDate: Date? {
-        return UserDefaults.standard.object(forKey: "expirationDate") as? Date
+        storageManager.get().get(key: "expirationDate")
     }
     
     private var shouldRefreshToken: Bool {
@@ -70,7 +73,7 @@ final class AuthetificationService: IAuthetificationService {
         completion: @escaping ((Bool) -> Void)
     ) {
         // Get Token
-        guard let url = URL(string: Constants.tokenAPIURL) else {
+        guard let url = URL(string: authetificationConfig.tokenAPIURL) else {
             return
         }
         
@@ -81,7 +84,7 @@ final class AuthetificationService: IAuthetificationService {
             URLQueryItem(name: "code",
                          value: code),
             URLQueryItem(name: "redirect_uri",
-                         value: Constants.redirectURI)
+                         value: authetificationConfig.redirectURI)
         ]
         
         var request = URLRequest(url: url)
@@ -90,7 +93,7 @@ final class AuthetificationService: IAuthetificationService {
                          forHTTPHeaderField: "Content-Type")
         request.httpBody = components.query?.data(using: .utf8)
         
-        let basicToken = Constants.clientID+":"+Constants.clientSecret
+        let basicToken = authetificationConfig.clientID+":"+authetificationConfig.clientSecret
         let data = basicToken.data(using: .utf8)
         guard let base64String = data?.base64EncodedString() else {
             print("Failure to get base64")
@@ -111,7 +114,7 @@ final class AuthetificationService: IAuthetificationService {
             do {
                 let result = try JSONDecoder().decode(AuthetificationResponse.self, from: data)
                 print("Successfully refreshed")
-                self?.casheToken(result: result)
+                self?.saveToken(result: result)
                 completion(true)
             }
             catch {
@@ -161,7 +164,7 @@ final class AuthetificationService: IAuthetificationService {
         
         // Refresh the token
         
-        guard let url = URL(string: Constants.tokenAPIURL) else {
+        guard let url = URL(string: authetificationConfig.tokenAPIURL) else {
             return
         }
         
@@ -181,7 +184,7 @@ final class AuthetificationService: IAuthetificationService {
                          forHTTPHeaderField: "Content-Type")
         request.httpBody = components.query?.data(using: .utf8)
         
-        let basicToken = Constants.clientID+":"+Constants.clientSecret
+        let basicToken = authetificationConfig.clientID+":"+authetificationConfig.clientSecret
         let data = basicToken.data(using: .utf8)
         guard let base64String = data?.base64EncodedString() else {
             print("Failure to get base64")
@@ -204,7 +207,7 @@ final class AuthetificationService: IAuthetificationService {
                 let result = try JSONDecoder().decode(AuthetificationResponse.self, from: data)
                 self?.onRefreshBlocks.forEach { $0(result.access_token) }
                 self?.onRefreshBlocks.removeAll()
-                self?.casheToken(result: result)
+                self?.saveToken(result: result)
                 completion?(true)
             }
             catch {
@@ -215,15 +218,17 @@ final class AuthetificationService: IAuthetificationService {
         task.resume()
     }
     
-    private func casheToken(result: AuthetificationResponse) {
-        UserDefaults.standard.setValue(result.access_token,
-                                       forKey: "access_token")
-        if let refresh_token = result.refresh_token {
-            UserDefaults.standard.setValue(refresh_token,
-                                           forKey: "refresh_token")
-        }
-        UserDefaults.standard.setValue(Date().addingTimeInterval(TimeInterval(result.expires_in)),
-                                       forKey: "expirationDate")
+    private func saveToken(result: AuthetificationResponse) {
+        // Сохраняем accessToken
+        storageManager.get().set(key: "access_token", value: result.access_token)
         
+        // Сохраняем expirationDate
+        let expirationDate = Date().addingTimeInterval(TimeInterval(result.expires_in))
+        storageManager.get().set(key: "expirationDate", value: expirationDate)
+        
+        // Сохраняем refreshToken
+        if let refreshToken = result.refresh_token {
+            storageManager.get().set(key: "refresh_token", value: refreshToken)
+        }
     }
 }

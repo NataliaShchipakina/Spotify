@@ -9,6 +9,10 @@ import Foundation
 
 protocol IDependenciesAssembly {
     
+    // MARK: - Core
+    
+    var userDefaultsStorage: Lazy<IStorageManager> { get }
+    
     // MARK: - Services
     
     var authetificationService: Lazy<IAuthetificationService> { get }
@@ -28,10 +32,18 @@ final class DependenciesAssembly: IDependenciesAssembly {
     
     // MARK: - Core
     
+    var userDefaultsStorage: Lazy<IStorageManager>{
+        Lazy(UserDefaultsStorage())
+    }
+
+    
     // MARK: - Services
     
     var authetificationService: Lazy<IAuthetificationService> {
-        Lazy(AuthetificationService())
+        Lazy(AuthetificationService(
+            storageManager: self.userDefaultsStorage,
+            authetificationConfig: AuthetificationConfig()
+        ))
     }
     
     var spotifyService: Lazy<ISpotifyService> {
