@@ -38,8 +38,6 @@ final class AuthetificationPresenter: IAuthetificationPresenter {
     
     func viewDidLoad() {
         let clientID = "3c97f978fe294c9a8f333a584e9237c7"
-        let clientSecret = "524152b77f8142f9a3a7c0ed4d7325eb"
-        let tokenAPIURL = "https://accounts.spotify.com/api/token"
         let redirectURI = "https://github.com/NataliaShchipakina"
         let scopes =
             "user-read-private%20" +

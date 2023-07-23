@@ -8,8 +8,6 @@
 import Foundation
 
 final class UserDefaultsStorage: IStorageManager {
-    
-    static let shared = UserDefaultsStorage()
 
     // MARK: - IStorageManager
     

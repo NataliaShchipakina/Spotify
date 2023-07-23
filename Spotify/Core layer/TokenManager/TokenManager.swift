@@ -16,6 +16,8 @@ protocol ITokenManager {
 
 final class TokenManager: ITokenManager {
     
+    static let shared = TokenManager()
+    
     // MARK: - Constants
 
     private let accessTokenKey = "accessTokenKey"
@@ -28,7 +30,7 @@ final class TokenManager: ITokenManager {
 
     // MARK: - Init
     
-    init(storageManager: Lazy<IStorageManager>) {
+    init(storageManager: Lazy<IStorageManager> = Lazy(UserDefaultsStorage())) {
         self.storageManager = storageManager
     }
     

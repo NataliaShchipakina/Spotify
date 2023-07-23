@@ -40,7 +40,7 @@ extension SpotifyEndpoint: Endpoint {
     var httpMethod: HTTPMethod { .get }
     
     var headers: [String: String]? {
-        guard let token: String = UserDefaultsStorage.shared.get(key: "access_token") else { fatalError("Don't run this request without token") }
+        guard let token: String = TokenManager.shared.getAccessToken() else { fatalError("Don't run this request without token") }
         return ["Authorization": "Bearer \(token)"]
     }
     
