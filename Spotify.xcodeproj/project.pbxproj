@@ -50,7 +50,6 @@
 		DF58D98E2A633A8F0062061E /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF58D98D2A633A8F0062061E /* SettingsPresenter.swift */; };
 		DF58D9902A633A950062061E /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF58D98F2A633A950062061E /* SettingsRouter.swift */; };
 		DF6E2CAA2A68632700A51361 /* UserDefaultsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6E2CA92A68632700A51361 /* UserDefaultsStorage.swift */; };
-		DF6E2CAE2A68649500A51361 /* IStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6E2CAD2A68649500A51361 /* IStorageManager.swift */; };
 		DFBEF1402A6C2C340085E854 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBEF13F2A6C2C340085E854 /* Endpoint.swift */; };
 		DFBEF1422A6C2C940085E854 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBEF1412A6C2C940085E854 /* HTTPMethod.swift */; };
 		DFBEF1442A6C2F4B0085E854 /* SpotifyEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBEF1432A6C2F4B0085E854 /* SpotifyEndpoint.swift */; };
@@ -111,7 +110,6 @@
 		DF58D98F2A633A950062061E /* SettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
 		DF67EAC705669A98A0A20A77 /* Pods_Spotify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spotify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF6E2CA92A68632700A51361 /* UserDefaultsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStorage.swift; sourceTree = "<group>"; };
-		DF6E2CAD2A68649500A51361 /* IStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IStorageManager.swift; sourceTree = "<group>"; };
 		DFBEF13F2A6C2C340085E854 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		DFBEF1412A6C2C940085E854 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		DFBEF1432A6C2F4B0085E854 /* SpotifyEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyEndpoint.swift; sourceTree = "<group>"; };
@@ -207,7 +205,6 @@
 			isa = PBXGroup;
 			children = (
 				DFBEF13E2A6C26AE0085E854 /* Network */,
-				DF6E2CAB2A68648500A51361 /* Protocols */,
 				DF58D9732A63106E0062061E /* Data Structures */,
 				1110FB152A54BA69007135BD /* Extensions */,
 			);
@@ -383,14 +380,6 @@
 				DF6E2CA92A68632700A51361 /* UserDefaultsStorage.swift */,
 			);
 			path = UserDefaultsStorage;
-			sourceTree = "<group>";
-		};
-		DF6E2CAB2A68648500A51361 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				DF6E2CAD2A68649500A51361 /* IStorageManager.swift */,
-			);
-			path = Protocols;
 			sourceTree = "<group>";
 		};
 		DFBEF13E2A6C26AE0085E854 /* Network */ = {
@@ -587,7 +576,6 @@
 				112B928F2A52D8D50037C97F /* SceneDelegate.swift in Sources */,
 				DF58D98C2A633A860062061E /* SettingsAssembly.swift in Sources */,
 				11325B4C2A5C43B9009CC67F /* UserProfile.swift in Sources */,
-				DF6E2CAE2A68649500A51361 /* IStorageManager.swift in Sources */,
 				1110FB022A52F304007135BD /* SearchResultViewController.swift in Sources */,
 				DF58D98A2A6336440062061E /* ProfilePresenter.swift in Sources */,
 				1110FB132A544110007135BD /* UIView+Extensions.swift in Sources */,

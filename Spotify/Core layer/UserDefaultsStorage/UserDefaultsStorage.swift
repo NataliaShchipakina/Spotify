@@ -7,6 +7,12 @@
 
 import Foundation
 
+public protocol IStorageManager {
+    func get<T: Codable>(key: String) -> T?
+    func set<T: Codable>(key: String, value: T)
+    func remove(key: String)
+}
+
 final class UserDefaultsStorage: IStorageManager {
 
     // MARK: - IStorageManager

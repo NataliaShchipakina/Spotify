@@ -32,6 +32,7 @@ final class RequestProcessor: IRequestProcessor {
         var request = URLRequest(url: requestURL)
         request.allHTTPHeaderFields = endpoint.headers
         request.httpMethod = endpoint.httpMethod.rawValue
+        request.timeoutInterval = 60
         
         var urlComponents = URLComponents()
         urlComponents.queryItems = endpoint.httpBodyQueryParameters
