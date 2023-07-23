@@ -21,17 +21,18 @@ final class ApplicationAssembly {
 
     func getRootViewController() -> UIViewController {
         let rootViewController: UIViewController
-        let isSignedIn = dependenciesAssembly.authetificationService.get().isSignedIn
         
-        if isSignedIn {
-            dependenciesAssembly.authetificationService.get().refreshIfNeeded(completion: nil)
+        let tokenManager = dependenciesAssembly.tokenManager.get()
+        let accessToken = tokenManager.getAccessToken()
+        let refreshToken = tokenManager.getRefreshToken()
+        
+        if accessToken != nil, let refreshToken {
+            dependenciesAssembly.authetificationService.get().getRefreshedAuthentificationTokens(refreshToken: refreshToken, completion: nil)
 
             rootViewController = dependenciesAssembly.tabBarAssembly.get().assembly()
         } else {
             let welcomeViewController = dependenciesAssembly.welcomeAssembly.get().assembly()
             let navigationViewController = UINavigationController(rootViewController: welcomeViewController)
-            navigationViewController.navigationBar.prefersLargeTitles = true
-            navigationViewController.viewControllers.first?.navigationItem.largeTitleDisplayMode = .always
             
             rootViewController = navigationViewController
         }

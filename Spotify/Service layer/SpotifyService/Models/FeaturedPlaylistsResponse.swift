@@ -34,11 +34,4 @@ struct User: Codable {
     let displayName: String
     let externalUrls: [String: String]
     let id: String
-    
-    enum CodingKeys: String, CodingKey {
-        case displayName = "display_name"
-        case externalUrls = "external_urls"
-        case id
-    }
-    
 }

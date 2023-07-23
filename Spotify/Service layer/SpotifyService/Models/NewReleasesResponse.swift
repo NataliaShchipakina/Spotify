@@ -24,17 +24,4 @@ struct Album: Codable {
     let releaseDate: String
     let totalTracks: Int
     let artists: [Artist]
-    
-    enum CodingKeys: String, CodingKey {
-        case id, images, name, artists
-        case albumType = "album_type"
-        case availableMarkets = "available_markets"
-        case releaseDate = "release_date"
-        case totalTracks = "total_tracks"
-
-    }
 }
-
-
-
-

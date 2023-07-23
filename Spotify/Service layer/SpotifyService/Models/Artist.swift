@@ -16,8 +16,5 @@ struct Artist: Codable {
     enum CodingKeys: String, CodingKey {
         case id, name, type
         case externalUrls = "external_urls"
-
     }
 }
-
-

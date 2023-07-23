@@ -8,9 +8,9 @@
 import Foundation
 
 struct AuthetificationResponse: Codable {
-    let access_token: String
-    let expires_in: Int
-    let refresh_token: String?
+    let accessToken: String
+    let expiresIn: Int
+    let refreshToken: String?
     let scope: String
-    let token_type: String
+    let tokenType: String
 }

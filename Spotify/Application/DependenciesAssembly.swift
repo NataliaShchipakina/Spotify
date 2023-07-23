@@ -11,6 +11,8 @@ protocol IDependenciesAssembly {
     
     // MARK: - Core
     
+    var tokenManager: Lazy<ITokenManager> { get }
+    var requestProcessor: Lazy<IRequestProcessor> { get }
     var userDefaultsStorage: Lazy<IStorageManager> { get }
     
     // MARK: - Services
@@ -32,6 +34,14 @@ final class DependenciesAssembly: IDependenciesAssembly {
     
     // MARK: - Core
     
+    var tokenManager: Lazy<ITokenManager>{
+        Lazy(TokenManager(storageManager: self.userDefaultsStorage))
+    }
+    
+    var requestProcessor: Lazy<IRequestProcessor>{
+        Lazy(RequestProcessor())
+    }
+    
     var userDefaultsStorage: Lazy<IStorageManager>{
         Lazy(UserDefaultsStorage())
     }
@@ -41,13 +51,13 @@ final class DependenciesAssembly: IDependenciesAssembly {
     
     var authetificationService: Lazy<IAuthetificationService> {
         Lazy(AuthetificationService(
-            storageManager: self.userDefaultsStorage,
-            authetificationConfig: AuthetificationConfig()
+            tokenManager: self.tokenManager,
+            requestProcessor: self.requestProcessor
         ))
     }
     
     var spotifyService: Lazy<ISpotifyService> {
-        Lazy(SpotifyService())
+        Lazy(SpotifyService(requestProcessor: self.requestProcessor))
     }
     
     // MARK: - Presentation

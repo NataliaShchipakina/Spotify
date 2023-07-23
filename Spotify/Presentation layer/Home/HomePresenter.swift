@@ -50,7 +50,7 @@ private extension HomePresenter {
         switch result {
         case .success(let model):
             handleGenresResponse(with: model)
-        case .failure:
+        case .failure(let error):
             // view?.showErrorState()
             break
         }
