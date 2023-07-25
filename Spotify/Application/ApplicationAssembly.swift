@@ -27,7 +27,7 @@ final class ApplicationAssembly {
         let refreshToken = tokenManager.getRefreshToken()
         
         if accessToken != nil, let refreshToken {
-            dependenciesAssembly.authetificationService.get().getRefreshedAuthentificationTokens(refreshToken: refreshToken, completion: nil)
+//            dependenciesAssembly.authetificationService.get().getRefreshedAuthentificationTokens(refreshToken: refreshToken, completion: nil)
 
             rootViewController = dependenciesAssembly.tabBarAssembly.get().assembly()
         } else {
@@ -40,3 +40,4 @@ final class ApplicationAssembly {
         return rootViewController
     }
 }
+

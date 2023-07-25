@@ -17,7 +17,7 @@ final class HomePresenter: IHomePresenter {
     // MARK: - Dependencies
     
     private let router: IHomeRouter
-    private let spotifyService: Lazy<ISpotifyService>
+    private let spotifyService: ISpotifyService
     
     weak var view: IHomeView?
     
@@ -25,7 +25,7 @@ final class HomePresenter: IHomePresenter {
     
     init(router: IHomeRouter, spotifyService: Lazy<ISpotifyService>) {
         self.router = router
-        self.spotifyService = spotifyService
+        self.spotifyService = spotifyService.get()
     }
     
     // MARK: - IHomePresenter
@@ -41,7 +41,7 @@ final class HomePresenter: IHomePresenter {
 
 private extension HomePresenter {
     func fetchData() {
-        spotifyService.get().getRecommendedGenres { [weak self] result in
+        spotifyService.getRecommendedGenres { [weak self] result in
             self?.handleRecommendationedGenresResult(result)
         }
     }
@@ -65,10 +65,12 @@ private extension HomePresenter {
             }
         }
         
-        spotifyService.get().getRecommendations(genres: seeds) { [weak self] result  in
+        spotifyService.getRecommendations(genres: seeds) { [weak self] result  in
             self?.handleRecommendationsResult(result)
         }
     }
     
-    func handleRecommendationsResult(_ result: Result<String , Error>) { }
+    func handleRecommendationsResult(_ result: Result<RecommendationsResponse , Error>) {
+        
+    }
 }
