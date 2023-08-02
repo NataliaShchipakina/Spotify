@@ -38,6 +38,7 @@
 		1195E0652A6FCBB800C096F6 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1195E0642A6FCBB800C096F6 /* Playlist.swift */; };
 		1195E0672A6FD51600C096F6 /* RecommendationsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1195E0662A6FD51600C096F6 /* RecommendationsResponse.swift */; };
 		1195E0692A6FD62500C096F6 /* AudioTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1195E0682A6FD62500C096F6 /* AudioTrack.swift */; };
+		11A48AFB2A7AAC55006DE3CD /* HomeCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A48AFA2A7AAC55006DE3CD /* HomeCollectionViewLayout.swift */; };
 		11F2A43C2A77F2B50075860D /* NewReleasesCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F2A43B2A77F2B50075860D /* NewReleasesCellModel.swift */; };
 		DF2496CB2A6D3AC00009B944 /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2496CA2A6D3AC00009B944 /* TokenManager.swift */; };
 		DF58D9702A630CEF0062061E /* ApplicationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF58D96F2A630CEF0062061E /* ApplicationAssembly.swift */; };
@@ -106,6 +107,7 @@
 		1195E0642A6FCBB800C096F6 /* Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		1195E0662A6FD51600C096F6 /* RecommendationsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationsResponse.swift; sourceTree = "<group>"; };
 		1195E0682A6FD62500C096F6 /* AudioTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioTrack.swift; sourceTree = "<group>"; };
+		11A48AFA2A7AAC55006DE3CD /* HomeCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewLayout.swift; sourceTree = "<group>"; };
 		11F2A43B2A77F2B50075860D /* NewReleasesCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReleasesCellModel.swift; sourceTree = "<group>"; };
 		BF36328DD2708777662C120C /* Pods-Spotify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spotify.debug.xcconfig"; path = "Target Support Files/Pods-Spotify/Pods-Spotify.debug.xcconfig"; sourceTree = "<group>"; };
 		CC3E39F741B2313B1323CEA3 /* Pods-Spotify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spotify.release.xcconfig"; path = "Target Support Files/Pods-Spotify/Pods-Spotify.release.xcconfig"; sourceTree = "<group>"; };
@@ -373,6 +375,7 @@
 				DF58D9762A63144C0062061E /* HomePresenter.swift */,
 				DF58D9782A6314530062061E /* HomeRouter.swift */,
 				112B92902A52D8D50037C97F /* HomeViewController.swift */,
+				11A48AFA2A7AAC55006DE3CD /* HomeCollectionViewLayout.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -637,6 +640,7 @@
 				DF58D98A2A6336440062061E /* ProfilePresenter.swift in Sources */,
 				113B67852A7005D90091DFA9 /* RecommendedTrackCollectionViewCell.swift in Sources */,
 				1110FB132A544110007135BD /* UIView+Extensions.swift in Sources */,
+				11A48AFB2A7AAC55006DE3CD /* HomeCollectionViewLayout.swift in Sources */,
 				1110FB062A52F439007135BD /* SpotifyService.swift in Sources */,
 				DFF209C52A7C36AF009F6A6B /* LoadingPresenter.swift in Sources */,
 				DF58D97D2A6320130062061E /* TabBarAssembly.swift in Sources */,
