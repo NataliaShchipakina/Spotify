@@ -133,6 +133,7 @@ private extension HomePresenter {
         playlists: [Playlist],
         tracks: [AudioTrack]
     ) {
+
         sections.append(.newReleases(viewModels: newAlbums.compactMap({
             return NewReleasesCellModel(
                 name: $0.name,
@@ -142,5 +143,7 @@ private extension HomePresenter {
         })))
         sections.append(.featuredPlaylists(viewModels: []))
         sections.append(.recommendedTracks(viewModels: []))
+        self.view?.reloadData()
     }
+    
 }
