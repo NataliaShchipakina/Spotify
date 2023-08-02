@@ -26,7 +26,6 @@ final class RequestProcessor: IRequestProcessor {
     // MARK: - IRequestProcessor
     
     func load<T: Codable>(_ endpoint: Endpoint, completion: @escaping (Result<T, Error>) -> Void) {
-        print(endpoint)
         guard var requestURL = URL(string: endpoint.baseURL + endpoint.path) else { fatalError("Wrong URL string") }
         requestURL.append(queryItems: endpoint.urlQueryParameters)
 
@@ -52,9 +51,7 @@ final class RequestProcessor: IRequestProcessor {
 
             do {
                 let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                print(json)
                 let result = try endpoint.decoder.decode(T.self, from: data)
-                print(result)
                 completion(.success(result))
             } catch {
                 completion(.failure(error))
