@@ -99,7 +99,7 @@ private extension HomePresenter {
             }
         }
         
-        spotifyService.getNewReleases(limit: 5) { result in
+        spotifyService.getNewReleases(limit: 6) { result in
             defer {
                 group.leave()
             }
