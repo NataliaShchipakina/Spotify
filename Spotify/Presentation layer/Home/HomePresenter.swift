@@ -44,6 +44,18 @@ private extension HomePresenter {
         spotifyService.getRecommendedGenres { [weak self] result in
             self?.handleRecommendationedGenresResult(result)
         }
+        
+        spotifyService.getFeaturedPlaylists(limit: 50) { result in
+            switch result {
+            case .success(let model):
+                break
+            case .failure(let error):
+                break
+            }
+        }
+        
+        
+        view?.showData(viewModels: [])
     }
     
     func handleRecommendationedGenresResult(_ result: Result<RecommendedGenresResponse, Error>) {
