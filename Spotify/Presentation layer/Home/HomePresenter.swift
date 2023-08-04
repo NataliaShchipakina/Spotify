@@ -50,11 +50,9 @@ private extension HomePresenter {
         group.enter()
         group.enter()
         
-        
         var newReleases: NewReleasesResponse?
         var featuredPlaylist: FeaturedPlaylistsResponse?
         var recommendations: RecommendationsResponse?
-
         
         spotifyService.getRecommendedGenres { [weak self] result in
             switch result {
@@ -66,8 +64,7 @@ private extension HomePresenter {
                         seeds.insert(random)
                     }
                 }
-                
-                                
+                               
                 self?.spotifyService.getRecommendations(genres: seeds) { [weak self] recommendedResult  in
                     defer {
                         group.leave()
@@ -78,7 +75,6 @@ private extension HomePresenter {
                     case .failure(let error):
                         print(error.localizedDescription)
                     }
-                    
                 }
             
             case .failure(let error):
@@ -87,7 +83,7 @@ private extension HomePresenter {
             }
         }
         
-        spotifyService.getFeaturedPlaylists(limit: 5) { result in
+        spotifyService.getFeaturedPlaylists(limit: 20) { result in
             defer {
                 group.leave()
             }
@@ -99,7 +95,7 @@ private extension HomePresenter {
             }
         }
         
-        spotifyService.getNewReleases(limit: 6) { result in
+        spotifyService.getNewReleases(limit: 25) { result in
             defer {
                 group.leave()
             }
@@ -141,8 +137,19 @@ private extension HomePresenter {
                 numberOfTracks: $0.totalTracks,
                 artistName: $0.artists.first?.name ?? "-")
         })))
-        sections.append(.featuredPlaylists(viewModels: []))
-        sections.append(.recommendedTracks(viewModels: []))
+        sections.append(.featuredPlaylists(viewModels: playlists.compactMap({
+            return FeaturedPlaylistCellModel(
+                name: $0.name,
+                artworkURL: URL(string: $0.images.first?.url ?? ""),
+                creatorName: $0.owner.displayName
+            )
+        })))
+         sections.append(.recommendedTracks(viewModels: tracks.compactMap({
+            return RecommendedTrackCellModel(
+                name: $0.name,
+                artistName: $0.artists.first?.name ?? "-",
+                artworkURL: URL(string: $0.album.images.first?.url ?? ""))
+        })))
         self.view?.reloadData()
     }
     

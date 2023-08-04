@@ -22,6 +22,8 @@
 		1110FB082A52F490007135BD /* HapticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1110FB072A52F490007135BD /* HapticsService.swift */; };
 		1110FB132A544110007135BD /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1110FB122A544110007135BD /* UIView+Extensions.swift */; };
 		1110FB172A55A0C7007135BD /* AuthetificationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1110FB162A55A0C7007135BD /* AuthetificationResponse.swift */; };
+		1115CC3D2A7D05A7003459A6 /* FeaturedPlaylistCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1115CC3C2A7D05A7003459A6 /* FeaturedPlaylistCellModel.swift */; };
+		1115CC3F2A7D06E7003459A6 /* RecommendedTrackCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1115CC3E2A7D06E7003459A6 /* RecommendedTrackCellModel.swift */; };
 		111808352A6166FE004F1026 /* NewReleasesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111808342A6166FE004F1026 /* NewReleasesResponse.swift */; };
 		1118083A2A619020004F1026 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111808392A619020004F1026 /* Artist.swift */; };
 		112B928D2A52D8D50037C97F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112B928C2A52D8D50037C97F /* AppDelegate.swift */; };
@@ -89,6 +91,8 @@
 		1110FB072A52F490007135BD /* HapticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsService.swift; sourceTree = "<group>"; };
 		1110FB122A544110007135BD /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		1110FB162A55A0C7007135BD /* AuthetificationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthetificationResponse.swift; sourceTree = "<group>"; };
+		1115CC3C2A7D05A7003459A6 /* FeaturedPlaylistCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedPlaylistCellModel.swift; sourceTree = "<group>"; };
+		1115CC3E2A7D06E7003459A6 /* RecommendedTrackCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedTrackCellModel.swift; sourceTree = "<group>"; };
 		111808342A6166FE004F1026 /* NewReleasesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReleasesResponse.swift; sourceTree = "<group>"; };
 		111808392A619020004F1026 /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		112B92892A52D8D50037C97F /* Spotify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spotify.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -286,6 +290,8 @@
 				1195E0662A6FD51600C096F6 /* RecommendationsResponse.swift */,
 				1195E0682A6FD62500C096F6 /* AudioTrack.swift */,
 				11F2A43B2A77F2B50075860D /* NewReleasesCellModel.swift */,
+				1115CC3C2A7D05A7003459A6 /* FeaturedPlaylistCellModel.swift */,
+				1115CC3E2A7D06E7003459A6 /* RecommendedTrackCellModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -615,6 +621,7 @@
 				DFBEF1442A6C2F4B0085E854 /* SpotifyEndpoint.swift in Sources */,
 				112B92912A52D8D50037C97F /* HomeViewController.swift in Sources */,
 				DFF209C32A7C35A7009F6A6B /* LoadingAssembly.swift in Sources */,
+				1115CC3F2A7D06E7003459A6 /* RecommendedTrackCellModel.swift in Sources */,
 				1110FB082A52F490007135BD /* HapticsService.swift in Sources */,
 				1195E0652A6FCBB800C096F6 /* Playlist.swift in Sources */,
 				DF58D9832A632CAC0062061E /* WelcomePresenter.swift in Sources */,
@@ -631,7 +638,11 @@
 				1110FAFE2A52F2BC007135BD /* PlaylistViewController.swift in Sources */,
 				DF58D9792A6314530062061E /* HomeRouter.swift in Sources */,
 				1110FAF22A52F1C6007135BD /* LibraryViewController.swift in Sources */,
+<<<<<<< HEAD
 				DFF209C92A7C36C0009F6A6B /* LoadingRouter.swift in Sources */,
+=======
+				1115CC3D2A7D05A7003459A6 /* FeaturedPlaylistCellModel.swift in Sources */,
+>>>>>>> 1a412dd (Spotify: setting collection view cells (new releases, featured playlists, recommendation tracks) with albums on main screen)
 				112B928F2A52D8D50037C97F /* SceneDelegate.swift in Sources */,
 				DF58D98C2A633A860062061E /* SettingsAssembly.swift in Sources */,
 				11325B4C2A5C43B9009CC67F /* UserProfile.swift in Sources */,

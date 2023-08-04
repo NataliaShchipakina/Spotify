@@ -17,14 +17,4 @@ struct AudioTrack: Codable {
     let id: String
     let name: String
     let popularity: Int
-   
-//
-//    enum CodingKeys: String, CodingKey {
-//        case album, artists, explicit
-//        case availableMarkets = "available_markets"
-//        case discNumber = "disc_number"
-//        case durationMS = "duration_ms"
-//        case externalUrls = "external_urls"
-//        case id, name, popularity
-//    }
 }

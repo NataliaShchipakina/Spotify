@@ -41,9 +41,9 @@ class NewReleaseCollectionViewCell: UICollectionViewCell {
     }()
     
     private lazy var stackView: UIStackView = {
-       let stackView = UIStackView(arrangedSubviews: [albumNameLabel, numberOfTracksLabel, artistNameLabel])
+       let stackView = UIStackView(arrangedSubviews: [albumNameLabel, artistNameLabel, numberOfTracksLabel])
         stackView.axis = .vertical
-        stackView.distribution = .equalCentering
+        stackView.distribution = .equalSpacing
         stackView.alignment = .leading
         
         return stackView
@@ -97,8 +97,7 @@ private extension NewReleaseCollectionViewCell {
             albumCoverImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             albumCoverImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             albumCoverImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            albumCoverImageView.heightAnchor.constraint(equalToConstant: 126),
-            albumCoverImageView.widthAnchor.constraint(equalToConstant: 126),
+            albumCoverImageView.widthAnchor.constraint(equalTo: albumCoverImageView.heightAnchor)
         ])
         
         NSLayoutConstraint.activate([

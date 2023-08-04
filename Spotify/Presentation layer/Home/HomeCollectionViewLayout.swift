@@ -29,7 +29,7 @@ final class HomeCollectionViewLayout: IHomeCollectionViewLayout {
             let verticalGroup = NSCollectionLayoutGroup.vertical(
                 layoutSize: NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(1.0),
-                    heightDimension: .absolute(390)
+                    heightDimension: .absolute(320)
                 ),
                 subitem: item,
                 count: 3
@@ -38,7 +38,7 @@ final class HomeCollectionViewLayout: IHomeCollectionViewLayout {
             let horizontalGroup = NSCollectionLayoutGroup.horizontal(
                 layoutSize: NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(0.9),
-                    heightDimension: .absolute(390)
+                    heightDimension: .absolute(320)
                 ),
                 subitem: verticalGroup,
                 count: 1

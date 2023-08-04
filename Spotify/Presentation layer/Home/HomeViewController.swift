@@ -13,8 +13,8 @@ protocol IHomeView: AnyObject {
 
 enum BrowseSectionType {
     case newReleases(viewModels: [NewReleasesCellModel])
-    case featuredPlaylists(viewModels: [NewReleasesCellModel])
-    case recommendedTracks(viewModels: [NewReleasesCellModel])
+    case featuredPlaylists(viewModels: [FeaturedPlaylistCellModel])
+    case recommendedTracks(viewModels: [RecommendedTrackCellModel])
 }
 
 class HomeViewController: UIViewController {
@@ -154,7 +154,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             ) as? FeaturedPlaylistCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            cell.backgroundColor = .blue
+            cell.configure(with: viewModels[indexPath.row])
             return cell
         case .recommendedTracks(let viewModels):
             guard let cell = collectionView.dequeueReusableCell(
@@ -163,7 +163,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             ) as? RecommendedTrackCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            cell.backgroundColor = .orange
+            cell.configure(with: viewModels[indexPath.row])
             return cell
             
         }
