@@ -32,9 +32,10 @@ final class LoadingRouter: ILoadingRouter {
     
     func showWelcomeScreen() {
         let welcomeController = welcomeAssembly.get().assembly()
-        welcomeController.modalPresentationStyle = .fullScreen
-        welcomeController.modalTransitionStyle = .flipHorizontal
-        transitionHandler?.present(welcomeController, animated: true)
+        let navigationViewController = UINavigationController(rootViewController: welcomeController)
+        navigationViewController.modalPresentationStyle = .fullScreen
+        navigationViewController.modalTransitionStyle = .flipHorizontal
+        transitionHandler?.present(navigationViewController, animated: true)
     }
     
     func showTabBarScreen() {
