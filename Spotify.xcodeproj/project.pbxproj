@@ -638,11 +638,8 @@
 				1110FAFE2A52F2BC007135BD /* PlaylistViewController.swift in Sources */,
 				DF58D9792A6314530062061E /* HomeRouter.swift in Sources */,
 				1110FAF22A52F1C6007135BD /* LibraryViewController.swift in Sources */,
-<<<<<<< HEAD
 				DFF209C92A7C36C0009F6A6B /* LoadingRouter.swift in Sources */,
-=======
 				1115CC3D2A7D05A7003459A6 /* FeaturedPlaylistCellModel.swift in Sources */,
->>>>>>> 1a412dd (Spotify: setting collection view cells (new releases, featured playlists, recommendation tracks) with albums on main screen)
 				112B928F2A52D8D50037C97F /* SceneDelegate.swift in Sources */,
 				DF58D98C2A633A860062061E /* SettingsAssembly.swift in Sources */,
 				11325B4C2A5C43B9009CC67F /* UserProfile.swift in Sources */,
