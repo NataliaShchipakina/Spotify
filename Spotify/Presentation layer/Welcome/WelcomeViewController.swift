@@ -20,7 +20,8 @@ class WelcomeViewController: UIViewController {
         button.backgroundColor = .white
         button.setTitle("Sign In with Spotify", for: .normal)
         button.setTitleColor(.blue, for: .normal)
-
+        button.layer.cornerRadius = 16
+        
         return button
     }()
     
@@ -44,16 +45,7 @@ class WelcomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        signInButton.frame = CGRect(
-            x: 20,
-            y: view.height - 50 - view.safeAreaInsets.bottom,
-            width: view.width - 40,
-            height: 50
-        )
+        setupConstraints()
     }
 }
 
@@ -71,6 +63,17 @@ private extension WelcomeViewController {
         view.backgroundColor = .systemGreen
         view.addSubview(signInButton)
         signInButton.addTarget(self, action: #selector(didTapSignIn), for: .touchUpInside)
+    }
+    
+    func setupConstraints() {
+        signInButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            signInButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            signInButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            signInButton.heightAnchor.constraint(equalToConstant: 50),
+            signInButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -40),
+        ])
     }
     
     @objc func didTapSignIn() {
