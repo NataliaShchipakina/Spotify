@@ -65,7 +65,11 @@ final class LoadingViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         setupConstraints()
-        presenter.viewDidLoad()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        presenter.viewDidAppear()
     }
     
     private func setupUI() {
