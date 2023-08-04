@@ -55,6 +55,10 @@
 		DFBEF1442A6C2F4B0085E854 /* SpotifyEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBEF1432A6C2F4B0085E854 /* SpotifyEndpoint.swift */; };
 		DFBEF1462A6C32A80085E854 /* RequestProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBEF1452A6C32A80085E854 /* RequestProcessor.swift */; };
 		DFBEF1482A6C7F080085E854 /* AuthetificationEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBEF1472A6C7F080085E854 /* AuthetificationEndpoint.swift */; };
+		DFF209C32A7C35A7009F6A6B /* LoadingAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF209C22A7C35A7009F6A6B /* LoadingAssembly.swift */; };
+		DFF209C52A7C36AF009F6A6B /* LoadingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF209C42A7C36AF009F6A6B /* LoadingPresenter.swift */; };
+		DFF209C72A7C36B7009F6A6B /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF209C62A7C36B7009F6A6B /* LoadingViewController.swift */; };
+		DFF209C92A7C36C0009F6A6B /* LoadingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF209C82A7C36C0009F6A6B /* LoadingRouter.swift */; };
 		DFF8F1B82A64047500D76813 /* AuthetificationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF8F1B72A64047500D76813 /* AuthetificationAssembly.swift */; };
 		DFF8F1BA2A6405DF00D76813 /* AuthetificationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF8F1B92A6405DF00D76813 /* AuthetificationRouter.swift */; };
 		DFF8F1BC2A6405E600D76813 /* AuthetificationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF8F1BB2A6405E600D76813 /* AuthetificationPresenter.swift */; };
@@ -115,6 +119,10 @@
 		DFBEF1432A6C2F4B0085E854 /* SpotifyEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyEndpoint.swift; sourceTree = "<group>"; };
 		DFBEF1452A6C32A80085E854 /* RequestProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProcessor.swift; sourceTree = "<group>"; };
 		DFBEF1472A6C7F080085E854 /* AuthetificationEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthetificationEndpoint.swift; sourceTree = "<group>"; };
+		DFF209C22A7C35A7009F6A6B /* LoadingAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingAssembly.swift; sourceTree = "<group>"; };
+		DFF209C42A7C36AF009F6A6B /* LoadingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingPresenter.swift; sourceTree = "<group>"; };
+		DFF209C62A7C36B7009F6A6B /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		DFF209C82A7C36C0009F6A6B /* LoadingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingRouter.swift; sourceTree = "<group>"; };
 		DFF8F1B72A64047500D76813 /* AuthetificationAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthetificationAssembly.swift; sourceTree = "<group>"; };
 		DFF8F1B92A6405DF00D76813 /* AuthetificationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthetificationRouter.swift; sourceTree = "<group>"; };
 		DFF8F1BB2A6405E600D76813 /* AuthetificationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthetificationPresenter.swift; sourceTree = "<group>"; };
@@ -305,6 +313,7 @@
 		DF5810962A6304AF0062061E /* Presentation layer */ = {
 			isa = PBXGroup;
 			children = (
+				DFF209C12A7C3598009F6A6B /* Loading */,
 				DF5810982A6305E80062061E /* Home */,
 				DF5810992A6305F10062061E /* Search */,
 				DF58109A2A6305F70062061E /* Library */,
@@ -398,6 +407,17 @@
 				1110FB162A55A0C7007135BD /* AuthetificationResponse.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		DFF209C12A7C3598009F6A6B /* Loading */ = {
+			isa = PBXGroup;
+			children = (
+				DFF209C22A7C35A7009F6A6B /* LoadingAssembly.swift */,
+				DFF209C42A7C36AF009F6A6B /* LoadingPresenter.swift */,
+				DFF209C62A7C36B7009F6A6B /* LoadingViewController.swift */,
+				DFF209C82A7C36C0009F6A6B /* LoadingRouter.swift */,
+			);
+			path = Loading;
 			sourceTree = "<group>";
 		};
 		DFF8F1BD2A640BAE00D76813 /* AuthetificationService */ = {
@@ -551,6 +571,7 @@
 				DF58D9772A63144C0062061E /* HomePresenter.swift in Sources */,
 				DF58D9812A632CA50062061E /* WelcomeRouter.swift in Sources */,
 				1110FAF82A52F247007135BD /* WelcomeViewController.swift in Sources */,
+				DFF209C72A7C36B7009F6A6B /* LoadingViewController.swift in Sources */,
 				1110FAFC2A52F287007135BD /* ProfileViewController.swift in Sources */,
 				DFBEF1402A6C2C340085E854 /* Endpoint.swift in Sources */,
 				1110FB172A55A0C7007135BD /* AuthetificationResponse.swift in Sources */,
@@ -558,6 +579,7 @@
 				DF58D9752A6310B20062061E /* Lazy.swift in Sources */,
 				DFBEF1442A6C2F4B0085E854 /* SpotifyEndpoint.swift in Sources */,
 				112B92912A52D8D50037C97F /* HomeViewController.swift in Sources */,
+				DFF209C32A7C35A7009F6A6B /* LoadingAssembly.swift in Sources */,
 				1110FB082A52F490007135BD /* HapticsService.swift in Sources */,
 				DF58D9832A632CAC0062061E /* WelcomePresenter.swift in Sources */,
 				DF58D9862A6336340062061E /* ProfileAssembly.swift in Sources */,
@@ -573,6 +595,7 @@
 				1110FAFE2A52F2BC007135BD /* PlaylistViewController.swift in Sources */,
 				DF58D9792A6314530062061E /* HomeRouter.swift in Sources */,
 				1110FAF22A52F1C6007135BD /* LibraryViewController.swift in Sources */,
+				DFF209C92A7C36C0009F6A6B /* LoadingRouter.swift in Sources */,
 				112B928F2A52D8D50037C97F /* SceneDelegate.swift in Sources */,
 				DF58D98C2A633A860062061E /* SettingsAssembly.swift in Sources */,
 				11325B4C2A5C43B9009CC67F /* UserProfile.swift in Sources */,
@@ -580,6 +603,7 @@
 				DF58D98A2A6336440062061E /* ProfilePresenter.swift in Sources */,
 				1110FB132A544110007135BD /* UIView+Extensions.swift in Sources */,
 				1110FB062A52F439007135BD /* SpotifyService.swift in Sources */,
+				DFF209C52A7C36AF009F6A6B /* LoadingPresenter.swift in Sources */,
 				DF58D97D2A6320130062061E /* TabBarAssembly.swift in Sources */,
 				1130ACCA2A61E69D002836EE /* FeaturedPlaylistsResponse.swift in Sources */,
 				DFF8F1BC2A6405E600D76813 /* AuthetificationPresenter.swift in Sources */,

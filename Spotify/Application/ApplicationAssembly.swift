@@ -20,23 +20,6 @@ final class ApplicationAssembly {
     }
 
     func getRootViewController() -> UIViewController {
-        let rootViewController: UIViewController
-        
-        let tokenManager = dependenciesAssembly.tokenManager.get()
-        let accessToken = tokenManager.getAccessToken()
-        let refreshToken = tokenManager.getRefreshToken()
-        
-        if accessToken != nil, let refreshToken {
-            dependenciesAssembly.authetificationService.get().getRefreshedAuthentificationTokens(refreshToken: refreshToken, completion: nil)
-
-            rootViewController = dependenciesAssembly.tabBarAssembly.get().assembly()
-        } else {
-            let welcomeViewController = dependenciesAssembly.welcomeAssembly.get().assembly()
-            let navigationViewController = UINavigationController(rootViewController: welcomeViewController)
-            
-            rootViewController = navigationViewController
-        }
-        
-        return rootViewController
+        dependenciesAssembly.loadingAssembly.get().assemble()
     }
 }

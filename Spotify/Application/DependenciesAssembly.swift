@@ -22,6 +22,7 @@ protocol IDependenciesAssembly {
 
     // MARK: - Presentation
 
+    var loadingAssembly: Lazy<ILoadingAssembly> { get }
     var tabBarAssembly: Lazy<ITabBarAssembly> { get }
     var welcomeAssembly: Lazy<IWelcomeAssembly> { get }
     var authetificationAssembly: Lazy<IAuthetificationAssembly> { get }
@@ -61,6 +62,15 @@ final class DependenciesAssembly: IDependenciesAssembly {
     }
     
     // MARK: - Presentation
+    
+    var loadingAssembly: Lazy<ILoadingAssembly> {
+        Lazy(LoadingAssembly(
+            welcomeAssembly: self.welcomeAssembly,
+            authetificationService: self.authetificationService,
+            tabBarAssembly: self.tabBarAssembly,
+            tokenManager: self.tokenManager
+        ))
+    }
     
     var tabBarAssembly: Lazy<ITabBarAssembly> {
         Lazy(TabBarAssembly(viewControllers: [
