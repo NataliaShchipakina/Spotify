@@ -53,8 +53,8 @@ final class HomeCollectionViewLayout: IHomeCollectionViewLayout {
             // Item
             let item = NSCollectionLayoutItem(
                 layoutSize: NSCollectionLayoutSize(
-                    widthDimension: .absolute(200),
-                    heightDimension: .absolute(200)
+                    widthDimension: .fractionalWidth(1),
+                    heightDimension: .fractionalWidth(0.5)
                 )
             )
             
@@ -62,8 +62,8 @@ final class HomeCollectionViewLayout: IHomeCollectionViewLayout {
             
             let verticalGroup = NSCollectionLayoutGroup.vertical(
                 layoutSize: NSCollectionLayoutSize(
-                    widthDimension: .absolute(200),
-                    heightDimension: .absolute(400)
+                    widthDimension: .fractionalWidth(1),
+                    heightDimension: .fractionalHeight(1)
                 ),
                 subitem: item,
                 count: 2
@@ -71,7 +71,7 @@ final class HomeCollectionViewLayout: IHomeCollectionViewLayout {
             
             let horizontalGroup = NSCollectionLayoutGroup.horizontal(
                 layoutSize: NSCollectionLayoutSize(
-                    widthDimension: .absolute(200),
+                    widthDimension: .fractionalWidth(0.45),
                     heightDimension: .absolute(400)
                 ),
                 subitem: verticalGroup,
@@ -80,7 +80,7 @@ final class HomeCollectionViewLayout: IHomeCollectionViewLayout {
             
             // Section
             let section = NSCollectionLayoutSection(group: horizontalGroup)
-            section.orthogonalScrollingBehavior = .continuous
+            section.orthogonalScrollingBehavior = .groupPaging
             return section
             
         case 2:
