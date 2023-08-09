@@ -62,9 +62,8 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        presenter.viewDidLoad()
-        configureCollectionView()
         view.addSubview(spinner)
+        presenter.viewDidLoad()
     }
     
     private func setupUI() {
@@ -76,14 +75,12 @@ class HomeViewController: UIViewController {
             target: self,
             action: #selector(didTapSettings)
         )
+        configureCollectionView()
     }
     
     private func configureCollectionView() {
         view.addSubview(collectionView)
-        collectionView.register(
-            UICollectionViewCell.self,
-            forCellWithReuseIdentifier: "cell"
-        )
+
         collectionView.register(
             NewReleaseCollectionViewCell.self,
             forCellWithReuseIdentifier: NewReleaseCollectionViewCell.identifier

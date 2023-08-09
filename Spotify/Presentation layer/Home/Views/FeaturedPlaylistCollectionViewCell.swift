@@ -62,6 +62,7 @@ class FeaturedPlaylistCollectionViewCell: UICollectionViewCell {
         super.prepareForReuse()
         playlistNameLabel.text = nil
         creatorNameLabel.text = nil
+        playlistCoverImageView.kf.cancelDownloadTask()
         playlistCoverImageView.image = nil
     }
     
@@ -70,7 +71,7 @@ class FeaturedPlaylistCollectionViewCell: UICollectionViewCell {
     func configure(with viewModel: FeaturedPlaylistCellModel) {
         playlistNameLabel.text = viewModel.name
         creatorNameLabel.text = viewModel.creatorName
-        playlistCoverImageView.kf.setImage(with: viewModel.artworkURL, completionHandler: nil)
+        playlistCoverImageView.kf.setImage(with: viewModel.artworkURL)
     }
     
 }

@@ -60,6 +60,7 @@ class RecommendedTrackCollectionViewCell: UICollectionViewCell {
         super.prepareForReuse()
         trackNameLabel.text = nil
         artistNameLabel.text = nil
+        albumCoverImageView.kf.cancelDownloadTask()
         albumCoverImageView.image = nil
     }
     

@@ -50,7 +50,6 @@ final class RequestProcessor: IRequestProcessor {
             }
 
             do {
-                let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
                 let result = try endpoint.decoder.decode(T.self, from: data)
                 completion(.success(result))
             } catch {

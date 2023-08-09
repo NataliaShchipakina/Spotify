@@ -66,6 +66,7 @@ class NewReleaseCollectionViewCell: UICollectionViewCell {
         albumNameLabel.text = nil
         artistNameLabel.text = nil
         numberOfTracksLabel.text = nil
+        albumCoverImageView.kf.cancelDownloadTask()
         albumCoverImageView.image = nil
     }
     
