@@ -23,3 +23,4 @@ final class ApplicationAssembly {
         dependenciesAssembly.loadingAssembly.get().assemble()
     }
 }
+

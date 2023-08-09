@@ -33,7 +33,8 @@ final class HomeAssembly: IHomeAssembly {
     func assemble() -> UIViewController {
         let router = HomeRouter(settingAssembly: settingAssembly)
         let presenter = HomePresenter(router: router, spotifyService: spotifyService)
-        let viewController = HomeViewController(presenter: presenter)
+        let layoutProvider = HomeCollectionViewLayout()
+        let viewController = HomeViewController(presenter: presenter, layoutProvider: layoutProvider)
         
         router.transitionHandler = viewController
         presenter.view = viewController

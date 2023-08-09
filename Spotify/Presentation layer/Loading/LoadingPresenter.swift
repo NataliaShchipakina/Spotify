@@ -8,7 +8,7 @@
 import Foundation
 
 protocol ILoadingPresenter {
-    func viewDidLoad()
+    func viewDidAppear()
 }
 
 final class LoadingPresenter: ILoadingPresenter {
@@ -35,7 +35,7 @@ final class LoadingPresenter: ILoadingPresenter {
     
     // MARK: - ILoadingPresenter
     
-    func viewDidLoad() {
+    func viewDidAppear() {
         checkToken()
     }
 }
@@ -47,7 +47,7 @@ private extension LoadingPresenter {
         if let refreshToken = tokenManager.get().getRefreshToken() {
             tryRefreshToken(refreshToken)
         } else {
-            router.showWelcomeScreen()
+            self.router.showWelcomeScreen()
         }
     }
     
