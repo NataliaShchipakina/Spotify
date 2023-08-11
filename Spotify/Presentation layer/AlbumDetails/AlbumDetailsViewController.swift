@@ -1,5 +1,5 @@
 //
-//  AlbumViewController.swift
+//  AlbumDetailsViewController.swift
 //  Spotify
 //
 //  Created by Natalia Shchipakina on 09.08.2023.
@@ -7,14 +7,19 @@
 
 import UIKit
 
-class AlbumViewController: UIViewController {
-    
-    private let album: Album
-    
-    init(album: Album) {
-        self.album = album
-        super.init(nibName: nil, bundle: nil)
 
+protocol IAlbumView: AnyObject { }
+
+class AlbumDetailsViewController: UIViewController {
+    
+    // MARK: - Dependecies
+    
+    private let presenter: IAlbumPresenter
+    
+    init(presenter: IAlbumPresenter) {
+        self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
+        
     }
     
     required init?(coder: NSCoder) {
@@ -26,6 +31,10 @@ class AlbumViewController: UIViewController {
         title = "Album"
         view.backgroundColor = .systemBackground
     }
+    
+    
+}
 
-
+extension AlbumDetailsViewController: IAlbumView {
+    
 }

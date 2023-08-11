@@ -149,7 +149,7 @@ private extension HomePresenter {
             return RecommendedTrackCellModel(
                 name: $0.name,
                 artistName: $0.artists.first?.name ?? "Unknown Artist",
-                artworkURL: makeURL(from: $0.album.images.first?.url))
+                artworkURL: makeURL(from: $0.album?.images.first?.url))
         })))
         self.view?.reloadData()
     }
