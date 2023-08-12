@@ -30,11 +30,13 @@ class AlbumDetailsViewController: UIViewController {
         super.viewDidLoad()
         title = "Album"
         view.backgroundColor = .systemBackground
+        navigationItem.largeTitleDisplayMode = .never
     }
-    
-    
+        
 }
 
 extension AlbumDetailsViewController: IAlbumView {
     
 }
+
+

@@ -176,6 +176,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         switch section {
         case .newReleases:
             let album = newAlbums[indexPath.row]
+//            let vc = AlbumDetailsViewController()
         case.featuredPlaylists:
             break
         case.recommendedTracks:

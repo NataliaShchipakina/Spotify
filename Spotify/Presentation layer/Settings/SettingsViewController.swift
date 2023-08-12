@@ -56,6 +56,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         configureModels()
         title = "Settings"
         view.backgroundColor = .systemBackground
+        navigationItem.largeTitleDisplayMode = .never
         view.addSubview(tableView)
         tableView.dataSource = self
         tableView.delegate = self
