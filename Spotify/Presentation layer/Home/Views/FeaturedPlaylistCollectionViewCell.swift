@@ -7,6 +7,12 @@
 
 import UIKit
 
+struct FeaturedPlaylistCellModel {
+    let name: String
+    let artworkURL: URL?
+    let creatorName: String
+}
+
 class FeaturedPlaylistCollectionViewCell: UICollectionViewCell {
     static let identifier = "FeaturedPlaylistCollectionViewCell"
     

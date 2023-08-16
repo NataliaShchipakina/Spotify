@@ -172,16 +172,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        let section = presenter.sections[indexPath.section]
-        switch section {
-        case .newReleases:
-            let album = newAlbums[indexPath.row]
-//            let vc = AlbumDetailsViewController()
-        case.featuredPlaylists:
-            break
-        case.recommendedTracks:
-            break
-        }
+        presenter.didSelectItem(at: indexPath)
     }
-    
 }

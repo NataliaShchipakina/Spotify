@@ -9,8 +9,8 @@ import UIKit
 
 protocol IHomeRouter {
     func showSettingScreen()
-    func showAlbumDetailsScreen(model: AlbumDetailResponse)
-    func showPlaylistDetailsScreen(model: PlaylistDetailsResponse)
+    func showAlbumDetailsScreen(model: Album)
+    func showPlaylistDetailsScreen(model: Playlist)
 }
 
 final class HomeRouter: IHomeRouter {
@@ -35,19 +35,16 @@ final class HomeRouter: IHomeRouter {
     
     func showSettingScreen() {
         let settingsViewController = settingAssembly.get().assemble()
-        
         transitionHandler?.navigationController?.pushViewController(settingsViewController, animated: true)
     }
     
-    func showAlbumDetailsScreen(model: AlbumDetailResponse) {
+    func showAlbumDetailsScreen(model: Album) {
         let albumVC = albumAssembly.get().assemble(model: model)
-        
         transitionHandler?.navigationController?.pushViewController(albumVC, animated: true)
     }
     
-    func showPlaylistDetailsScreen(model: PlaylistDetailsResponse) {
+    func showPlaylistDetailsScreen(model: Playlist) {
         let playlistVC = playlistAssembly.get().assemble(model: model)
-        
         transitionHandler?.navigationController?.pushViewController(playlistVC, animated: true)
     }
 }

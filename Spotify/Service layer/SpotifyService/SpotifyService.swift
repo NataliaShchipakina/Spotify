@@ -13,6 +13,8 @@ protocol ISpotifyService {
     func getFeaturedPlaylists(limit: Int, completion: @escaping ((Result<FeaturedPlaylistsResponse, Error>) -> Void))
     func getRecommendedGenres(completion: @escaping ((Result<RecommendedGenresResponse , Error>) -> Void))
     func getRecommendations(genres: Set<String>, completion: @escaping ((Result<RecommendationsResponse , Error>) -> Void))
+    func getAlbumDetails(albumID: String, completion: @escaping ((Result<AlbumDetailResponse , Error>) -> Void))
+    func getPlaylistDetails(playlistID: String, completion: @escaping ((Result<PlaylistDetailsResponse , Error>) -> Void))
 }
 
 final class SpotifyService: ISpotifyService {
@@ -52,6 +54,16 @@ final class SpotifyService: ISpotifyService {
     func getRecommendations(genres: Set<String>, completion: @escaping ((Result<RecommendationsResponse , Error>) -> Void)) {
         let seeds = genres.joined(separator: ",")
         let endpoint = SpotifyEndpoint.getRecommendations(genres: seeds)
+        requestProcessor.load(endpoint, completion: completion)
+    }
+    
+    func getAlbumDetails(albumID: String, completion: @escaping ((Result<AlbumDetailResponse, Error>) -> Void)) {
+        let endpoint = SpotifyEndpoint.getAlbumDetails(albumID: albumID)
+        requestProcessor.load(endpoint, completion: completion)
+    }
+    
+    func getPlaylistDetails(playlistID: String, completion: @escaping ((Result<PlaylistDetailsResponse , Error>) -> Void)) {
+        let endpoint = SpotifyEndpoint.getPlaylistDetails(playlistID: playlistID)
         requestProcessor.load(endpoint, completion: completion)
     }
 }

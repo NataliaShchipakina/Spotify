@@ -8,7 +8,9 @@
 import UIKit
 
 
-protocol IAlbumView: AnyObject { }
+protocol IAlbumView: AnyObject {
+    func configure(with model: AlbumDetailResponse)
+}
 
 class AlbumDetailsViewController: UIViewController {
     
@@ -28,15 +30,15 @@ class AlbumDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Album"
         view.backgroundColor = .systemBackground
         navigationItem.largeTitleDisplayMode = .never
+        presenter.viewDidLoad()
     }
         
 }
 
 extension AlbumDetailsViewController: IAlbumView {
-    
+    func configure(with model: AlbumDetailResponse) {
+        title = model.name
+    }
 }
-
-

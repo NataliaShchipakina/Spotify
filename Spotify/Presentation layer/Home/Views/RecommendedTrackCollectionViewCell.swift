@@ -7,6 +7,12 @@
 
 import UIKit
 
+struct RecommendedTrackCellModel {
+    let name: String
+    let artistName: String
+    let artworkURL: URL?
+}
+
 class RecommendedTrackCollectionViewCell: UICollectionViewCell {
     static let identifier = "RecommendedTrackCollectionViewCell"
     

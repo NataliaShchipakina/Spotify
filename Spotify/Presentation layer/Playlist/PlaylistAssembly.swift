@@ -8,7 +8,7 @@
 import UIKit
 
 protocol IPlaylistAssembly {
-    func assemble(model: PlaylistDetailsResponse) -> UIViewController
+    func assemble(model: Playlist) -> UIViewController
 }
 
 final class PlaylistAssembly: IPlaylistAssembly {
@@ -25,7 +25,7 @@ final class PlaylistAssembly: IPlaylistAssembly {
     
     // MARK: - IAlbumAssembly
     
-    func assemble(model: PlaylistDetailsResponse) -> UIViewController {
+    func assemble(model: Playlist) -> UIViewController {
         let router = PlaylistRouter()
         let presenter = PlaylistPresenter(router: router, spotifyService: spotifyService, model: model)
         let viewController = PlaylistViewController(presenter: presenter)

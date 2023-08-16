@@ -17,13 +17,13 @@ final class AlbumDetailsPresenter: IAlbumPresenter {
     
     private let router: IAlbumRouter
     private let spotifyService: ISpotifyService
-    private let model: AlbumDetailResponse
+    private let model: Album
     
     weak var view: IAlbumView?
     
     // MARK: - Init
     
-    init(router: IAlbumRouter, spotifyService: Lazy<ISpotifyService>, model: AlbumDetailResponse) {
+    init(router: IAlbumRouter, spotifyService: Lazy<ISpotifyService>, model: Album) {
         self.router = router
         self.spotifyService = spotifyService.get()
         self.model = model
@@ -31,6 +31,23 @@ final class AlbumDetailsPresenter: IAlbumPresenter {
     }
     
     // MARK: -
-    func viewDidLoad() {}
+    func viewDidLoad() {
+        fetchAlbumDetails()
+    }
+}
+
+private extension AlbumDetailsPresenter {
+    func fetchAlbumDetails() {
+        spotifyService.getAlbumDetails(albumID: model.id) { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case.success(let model):
+                    self?.view?.configure(with: model)
+                case .failure(let error):
+                    print("Пришла ошибка на запрос getPlaylistDetails: \(error.localizedDescription)")
+                }
+            }
+        }
+    }
 }
 

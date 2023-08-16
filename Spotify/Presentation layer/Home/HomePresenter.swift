@@ -11,11 +11,16 @@ protocol IHomePresenter {
     var sections: [BrowseSectionType] { get }
     func viewDidLoad()
     func didTapSettingsButton()
+    func didSelectItem(at indexPath: IndexPath)
 }
 
 final class HomePresenter: IHomePresenter {
     
     var sections = [BrowseSectionType]()
+
+    var newReleases: NewReleasesResponse?
+    var featuredPlaylist: FeaturedPlaylistsResponse?
+    var recommendations: RecommendationsResponse?
     
     // MARK: - Dependencies
     
@@ -40,6 +45,21 @@ final class HomePresenter: IHomePresenter {
     func didTapSettingsButton() {
         router.showSettingScreen()
     }
+    
+    func didSelectItem(at indexPath: IndexPath) {
+        let model = sections[indexPath.section]
+
+        switch model {
+        case .newReleases:
+            guard let album = newReleases?.albums.items[indexPath.row] else { return }
+            router.showAlbumDetailsScreen(model: album)
+        case .featuredPlaylists:
+            guard let playlist = featuredPlaylist?.playlists.items[indexPath.row] else { return }
+            router.showPlaylistDetailsScreen(model: playlist)
+        case .recommendedTracks:
+            return
+        }
+    }
 }
 
 private extension HomePresenter {
@@ -49,10 +69,6 @@ private extension HomePresenter {
         group.enter()
         group.enter()
         group.enter()
-        
-        var newReleases: NewReleasesResponse?
-        var featuredPlaylist: FeaturedPlaylistsResponse?
-        var recommendations: RecommendationsResponse?
         
         spotifyService.getRecommendedGenres { [weak self] result in
             switch result {
@@ -70,57 +86,55 @@ private extension HomePresenter {
                         group.leave()
                     }
                     switch recommendedResult {
-                    case .success(let model):
-                        recommendations = model
+                    case .success(let response):
+                        self?.recommendations = response
                     case .failure(let error):
                         print(error.localizedDescription)
                     }
                 }
-                
             case .failure(let error):
-                //                 view?.showErrorState()
                 break
             }
         }
         
-        spotifyService.getFeaturedPlaylists(limit: 40) { result in
+        spotifyService.getFeaturedPlaylists(limit: 40) { [weak self] result in
             defer {
                 group.leave()
             }
             switch result {
-            case .success(let model):
-                featuredPlaylist = model
+            case .success(let response):
+                self?.featuredPlaylist = response
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
         
-        spotifyService.getNewReleases(limit: 40) { result in
+        spotifyService.getNewReleases(limit: 40) { [weak self] result in
             defer {
                 group.leave()
             }
             switch result {
-            case .success(let model):
-                newReleases = model
+            case .success(let response):
+                self?.newReleases = response
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
         
-        group.notify(queue: .main) {
-            guard let newAlbums = newReleases?.albums.items,
-                  let playlists = featuredPlaylist?.playlists.items,
-                  let tracks = recommendations?.tracks else {
+        group.notify(queue: .main) { [weak self] in
+            guard let newAlbums = self?.newReleases?.albums.items,
+                  let playlists = self?.featuredPlaylist?.playlists.items,
+                  let tracks = self?.recommendations?.tracks else {
                 return
             }
             
-            self.configureModels(
+            self?.configureModels(
                 newAlbums: newAlbums,
                 playlists: playlists,
                 tracks: tracks
             )
             
-            self.view?.reloadData()
+            self?.view?.reloadData()
         }
     }
     
@@ -129,8 +143,6 @@ private extension HomePresenter {
         playlists: [Playlist],
         tracks: [AudioTrack]
     ) {
-        
-        
         sections.append(.newReleases(viewModels: newAlbums.compactMap({
             return NewReleasesCellModel(
                 name: $0.name,
@@ -160,5 +172,4 @@ private extension HomePresenter {
         }
         return url
     }
-    
 }
