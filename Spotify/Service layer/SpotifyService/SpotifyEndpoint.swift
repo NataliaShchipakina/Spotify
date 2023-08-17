@@ -64,7 +64,7 @@ extension SpotifyEndpoint: Endpoint {
             return [URLQueryItem(name: "seed_genres", value: genres)]
         case .getAlbumDetails:
             return []
-        case .getPlaylistDetails(playlistID: let playlistID):
+        case .getPlaylistDetails:
             return []
         }
     }

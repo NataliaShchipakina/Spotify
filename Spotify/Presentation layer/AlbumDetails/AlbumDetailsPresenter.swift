@@ -16,7 +16,7 @@ final class AlbumDetailsPresenter: IAlbumPresenter {
     // MARK: - Dependencies
     
     private let router: IAlbumRouter
-    private let spotifyService: ISpotifyService
+    private let spotifyService: Lazy<ISpotifyService>
     private let model: Album
     
     weak var view: IAlbumView?
@@ -25,7 +25,7 @@ final class AlbumDetailsPresenter: IAlbumPresenter {
     
     init(router: IAlbumRouter, spotifyService: Lazy<ISpotifyService>, model: Album) {
         self.router = router
-        self.spotifyService = spotifyService.get()
+        self.spotifyService = spotifyService
         self.model = model
         
     }
@@ -38,7 +38,7 @@ final class AlbumDetailsPresenter: IAlbumPresenter {
 
 private extension AlbumDetailsPresenter {
     func fetchAlbumDetails() {
-        spotifyService.getAlbumDetails(albumID: model.id) { [weak self] result in
+        spotifyService.get().getAlbumDetails(albumID: model.id) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case.success(let model):

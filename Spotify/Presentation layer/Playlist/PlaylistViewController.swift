@@ -44,6 +44,8 @@ class PlaylistViewController: UIViewController {
             let section = NSCollectionLayoutSection(group: group)
             return section
         })
+        
+        
     )
     
     // MARK: - Init
@@ -62,7 +64,6 @@ class PlaylistViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
         navigationItem.largeTitleDisplayMode = .never
         presenter.viewDidLoad()
         
@@ -75,11 +76,21 @@ class PlaylistViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         self.collectionView.reloadData()
+        setupUI()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        collectionView.frame = view.bounds
+        
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview(collectionView)
+
+            NSLayoutConstraint.activate([
+                collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+                collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            ])
     }
 }
 
@@ -95,14 +106,15 @@ extension PlaylistViewController: IPlaylistView {
     func configure(with model: PlaylistDetailsResponse) {
         title = model.name
     }
+    
+    func setupUI() {
+        view.backgroundColor = .systemBackground
+    }
 }
 
 // MARK: - UICollectionViewDelegate, UICollectionViewDataSource
 
 extension PlaylistViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return presenter.viewModels.count
