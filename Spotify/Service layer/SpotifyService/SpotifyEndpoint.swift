@@ -15,6 +15,8 @@ enum SpotifyEndpoint {
     case getFeaturedPlaylists(limit: Int)
     case getRecommendedGenres
     case getRecommendations(genres: String)
+    case getAlbumDetails(albumID: String)
+    case getPlaylistDetails(playlistID: String)
 }
 
 // MARK: - Endpoint
@@ -34,6 +36,10 @@ extension SpotifyEndpoint: Endpoint {
             return "/recommendations/available-genre-seeds"
         case .getRecommendations:
             return "/recommendations"
+        case .getAlbumDetails(albumID: let albumID):
+            return "/albums/\(albumID)"
+        case .getPlaylistDetails(playlistID: let playlistID):
+            return "/playlists/\(playlistID)"
         }
     }
     
@@ -56,6 +62,10 @@ extension SpotifyEndpoint: Endpoint {
             return []
         case .getRecommendations(genres: let genres):
             return [URLQueryItem(name: "seed_genres", value: genres)]
+        case .getAlbumDetails:
+            return []
+        case .getPlaylistDetails:
+            return []
         }
     }
     

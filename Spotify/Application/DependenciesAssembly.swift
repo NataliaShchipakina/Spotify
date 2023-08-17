@@ -94,12 +94,22 @@ final class DependenciesAssembly: IDependenciesAssembly {
     var homeAssembly: Lazy<IHomeAssembly> {
         Lazy(HomeAssembly(
             settingAssembly: self.settingsAssembly,
+            albumAssembly: self.albumAssembly,
+            playlistAssembly: self.playlistAssembly,
             spotifyService: self.spotifyService
         ))
     }
     
     var settingsAssembly: Lazy<ISettingsAssembly> {
         Lazy(SettingsAssembly(profileAssembly: self.profileAssembly))
+    }
+    
+    var albumAssembly: Lazy<IAlbumAssembly> {
+        Lazy(AlbumDetailsAssembly(spotifyService: self.spotifyService))
+    }
+    
+    var playlistAssembly: Lazy<IPlaylistAssembly> {
+        Lazy(PlaylistAssembly(spotifyService: self.spotifyService))
     }
     
     var profileAssembly: Lazy<IProfileAssembly> {

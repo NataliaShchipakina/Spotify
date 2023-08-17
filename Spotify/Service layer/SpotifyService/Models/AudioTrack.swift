@@ -8,7 +8,7 @@
 import Foundation
 
 struct AudioTrack: Codable {
-    let album: Album
+    let album: Album?
     let artists: [Artist]
     let availableMarkets: [String]
     let discNumber, durationMs: Int
@@ -16,5 +16,4 @@ struct AudioTrack: Codable {
     let externalUrls: [String: String]
     let id: String
     let name: String
-    let popularity: Int
 }

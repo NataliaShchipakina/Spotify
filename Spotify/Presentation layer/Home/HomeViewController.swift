@@ -19,6 +19,10 @@ enum BrowseSectionType {
 
 class HomeViewController: UIViewController {
     
+    private var newAlbums: [Album] = []
+    private var playlists: [Playlist] = []
+    private var tracks: [AudioTrack] = []
+    
     // MARK: - Dependecies
     
     private let presenter: IHomePresenter
@@ -166,4 +170,8 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        presenter.didSelectItem(at: indexPath)
+    }
 }

@@ -8,6 +8,13 @@
 import UIKit
 import Kingfisher
 
+struct NewReleasesCellModel {
+    let name: String
+    let artworkURL: URL?
+    let numberOfTracks: Int
+    let artistName: String
+}
+
 class NewReleaseCollectionViewCell: UICollectionViewCell {
     static let identifier = "NewReleaseCollectionViewCell"
     
