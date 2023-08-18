@@ -27,10 +27,10 @@ final class AlbumDetailsPresenter: IAlbumPresenter {
         self.router = router
         self.spotifyService = spotifyService
         self.model = model
-        
     }
     
-    // MARK: -
+    // MARK: - Lifecycle
+    
     func viewDidLoad() {
         fetchAlbumDetails()
     }
@@ -50,4 +50,3 @@ private extension AlbumDetailsPresenter {
         }
     }
 }
-

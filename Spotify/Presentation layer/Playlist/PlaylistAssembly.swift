@@ -28,7 +28,7 @@ final class PlaylistAssembly: IPlaylistAssembly {
     func assemble(model: Playlist) -> UIViewController {
         let router = PlaylistRouter()
         let presenter = PlaylistPresenter(router: router, spotifyService: spotifyService, model: model)
-        let viewController = PlaylistViewController(presenter: presenter)
+        let viewController = PlaylistViewController(presenter: presenter, playlist: model)
         
         router.transitionHandler = viewController
         presenter.view = viewController
