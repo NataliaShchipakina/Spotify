@@ -8,7 +8,7 @@
 import UIKit
 
 protocol IPlaylistView: AnyObject {
-    func configure(with model: PlaylistDetailsResponse)
+    func setTitle(_ title: String)
     func reloadData()
 }
 
@@ -42,10 +42,16 @@ class PlaylistViewController: UIViewController {
             )
             
             let section = NSCollectionLayoutSection(group: group)
+            section.boundarySupplementaryItems = [
+                NSCollectionLayoutBoundarySupplementaryItem(
+                    layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                                       heightDimension: .fractionalWidth(1)),
+                    elementKind: UICollectionView.elementKindSectionHeader,
+                    alignment: .top
+                )
+            ]
             return section
         })
-        
-        
     )
     
     // MARK: - Init
@@ -53,7 +59,6 @@ class PlaylistViewController: UIViewController {
     init(presenter: IPlaylistPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
-        
     }
     
     required init?(coder: NSCoder) {
@@ -66,31 +71,51 @@ class PlaylistViewController: UIViewController {
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .never
         presenter.viewDidLoad()
-        
+        setupUI()
+        setupConstraints()
+    }
+    
+    private func setupUI() {
+        view.backgroundColor = .systemBackground
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .action,
+            target: self,
+            action: #selector(didTapShare)
+        )
+        configureCollectionViewCell()
+    }
+    
+    private func configureCollectionViewCell() {
         view.addSubview(collectionView)
+        
         collectionView.register(
             RecommendedTrackCollectionViewCell.self,
             forCellWithReuseIdentifier: RecommendedTrackCollectionViewCell.identifier
+        )
+        collectionView.register(
+            PlaylistHeaderCollectionReusableView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: PlaylistHeaderCollectionReusableView.identifier
         )
         collectionView.backgroundColor = .systemBackground
         collectionView.delegate = self
         collectionView.dataSource = self
         self.collectionView.reloadData()
-        setupUI()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
+    @objc private func didTapShare() {
+        presenter.didTapShareButton()
+    }
+    
+    private func setupConstraints() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-            view.addSubview(collectionView)
-
-            NSLayoutConstraint.activate([
-                collectionView.topAnchor.constraint(equalTo: view.topAnchor),
-                collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-            ])
+        
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
     }
 }
 
@@ -101,14 +126,10 @@ extension PlaylistViewController: IPlaylistView {
         collectionView.reloadData()
     }
     
-// MARK: - SetPlaylistTitle
+    // MARK: - SetPlaylistTitle
     
-    func configure(with model: PlaylistDetailsResponse) {
-        title = model.name
-    }
-    
-    func setupUI() {
-        view.backgroundColor = .systemBackground
+    func setTitle(_ title: String) {
+        self.title = title
     }
 }
 
@@ -131,9 +152,30 @@ extension PlaylistViewController: UICollectionViewDelegate, UICollectionViewData
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.deselectItem(at: indexPath, animated: true)
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        guard
+            let header = collectionView.dequeueReusableSupplementaryView(
+            ofKind: kind,
+            withReuseIdentifier: PlaylistHeaderCollectionReusableView.identifier,
+            for: indexPath
+        ) as? PlaylistHeaderCollectionReusableView,
+            kind == UICollectionView.elementKindSectionHeader
+        else {
+            fatalError()
+        }
         
+        header.configure(with: presenter.headerViewModel)
+        header.delegate = self
+        return header
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+    }
+}
+
+extension PlaylistViewController: PlaylistHeaderCollectionReusableViewDelegate {
+    func playlistHeaderCollectionReusableViewDidTapPlayAll(_ header: PlaylistHeaderCollectionReusableView) {
+        
+    }
 }

@@ -30,15 +30,18 @@ class AlbumDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
-        navigationItem.largeTitleDisplayMode = .never
+        setupUI()
         presenter.viewDidLoad()
     }
-        
 }
 
 extension AlbumDetailsViewController: IAlbumView {
     func configure(with model: AlbumDetailResponse) {
         title = model.name
+    }
+    
+    func setupUI() {
+        navigationItem.largeTitleDisplayMode = .never
+        view.backgroundColor = .systemBackground
     }
 }

@@ -65,7 +65,6 @@ class ProfileViewController: UIViewController {
 extension ProfileViewController: IProfileView {
     func showProfile(with model: UserProfile) {
         tableView.isHidden = false
-        // configure table models
         models.append("Full Name : \(model.displayName)")
         models.append("Email Adress: \(model.email)")
         models.append("User ID : \(model.id)")
@@ -89,6 +88,7 @@ private extension ProfileViewController {
         title = "Profile"
         view.addSubview(tableView)
         view.backgroundColor = .systemBackground
+        navigationItem.largeTitleDisplayMode = .never
     }
     
     func setupDelegates() {

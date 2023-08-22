@@ -33,4 +33,10 @@ extension UIView {
     var bottom: CGFloat {
         return top + height
     }
+    
+    func addSubviews(_ views: UIView...) {
+        for view in views {
+            addSubview(view)
+        }
+    }
 }

@@ -29,8 +29,6 @@ final class SettingsRouter: ISettingsRouter {
     
     func showProfileScreen() {
         let profileViewController = profileAssembly.get().assemble()
-        profileViewController.navigationItem.largeTitleDisplayMode = .never
-        
         transitionHandler?.navigationController?.pushViewController(profileViewController, animated: true)
     }
 }
