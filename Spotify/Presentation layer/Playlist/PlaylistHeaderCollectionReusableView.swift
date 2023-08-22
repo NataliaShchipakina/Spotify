@@ -60,9 +60,9 @@ final class PlaylistHeaderCollectionReusableView: UICollectionReusableView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .systemBackground
         addSubviews(imageView, nameLabel, descriptionLabel, ownerLabel, playAllButton)
         playAllButton.addTarget(self, action: #selector(didTapPlayAll), for: .touchUpInside)
+        setupUI()
         setupConstraints()
     }
     
@@ -79,6 +79,10 @@ final class PlaylistHeaderCollectionReusableView: UICollectionReusableView {
         ownerLabel.text = viewModel.ownerName
         descriptionLabel.text = viewModel.description
         imageView.kf.setImage(with: viewModel.artworkURL, completionHandler: nil)
+    }
+    
+    func setupUI() {
+        backgroundColor = .systemBackground
     }
     
     private func setupConstraints() {

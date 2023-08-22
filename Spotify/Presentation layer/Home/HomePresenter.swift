@@ -97,7 +97,7 @@ private extension HomePresenter {
             }
         }
         
-        spotifyService.getFeaturedPlaylists(limit: 40) { [weak self] result in
+        spotifyService.getFeaturedPlaylists(limit: 30) { [weak self] result in
             defer {
                 group.leave()
             }
@@ -109,7 +109,7 @@ private extension HomePresenter {
             }
         }
         
-        spotifyService.getNewReleases(limit: 40) { [weak self] result in
+        spotifyService.getNewReleases(limit: 30) { [weak self] result in
             defer {
                 group.leave()
             }

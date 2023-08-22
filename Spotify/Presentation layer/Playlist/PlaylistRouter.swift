@@ -8,6 +8,7 @@
 import UIKit
 
 protocol IPlaylistRouter {
+    func showActivityViewController(with url: URL)
 }
 
 final class PlaylistRouter: IPlaylistRouter {
@@ -22,4 +23,11 @@ final class PlaylistRouter: IPlaylistRouter {
     
     // MARK: - IPlaylistRouter
     
+    func showActivityViewController(with url: URL) {
+        let vc = UIActivityViewController(
+            activityItems: [url],
+            applicationActivities: []
+        )
+        transitionHandler?.present(vc, animated: true)
+    }
 }

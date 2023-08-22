@@ -8,7 +8,7 @@
 import UIKit
 
 protocol IPlaylistView: AnyObject {
-    func configure(with model: PlaylistDetailsResponse)
+    func setTitle(_ title: String)
     func reloadData()
 }
 
@@ -17,7 +17,6 @@ class PlaylistViewController: UIViewController {
     // MARK: - Dependecies
     
     private let presenter: IPlaylistPresenter
-    private let playlist: Playlist
     
     // MARK: - CollectionView
     
@@ -57,9 +56,8 @@ class PlaylistViewController: UIViewController {
     
     // MARK: - Init
     
-    init(presenter: IPlaylistPresenter, playlist: Playlist) {
+    init(presenter: IPlaylistPresenter) {
         self.presenter = presenter
-        self.playlist = playlist
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -73,8 +71,23 @@ class PlaylistViewController: UIViewController {
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .never
         presenter.viewDidLoad()
-        
+        setupUI()
+        setupConstraints()
+    }
+    
+    private func setupUI() {
+        view.backgroundColor = .systemBackground
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .action,
+            target: self,
+            action: #selector(didTapShare)
+        )
+        configureCollectionViewCell()
+    }
+    
+    private func configureCollectionViewCell() {
         view.addSubview(collectionView)
+        
         collectionView.register(
             RecommendedTrackCollectionViewCell.self,
             forCellWithReuseIdentifier: RecommendedTrackCollectionViewCell.identifier
@@ -88,27 +101,10 @@ class PlaylistViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         self.collectionView.reloadData()
-        setupUI()
-        setupConstraints()
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            barButtonSystemItem: .action,
-            target: self,
-            action: #selector(didTapShare)
-        )
     }
     
     @objc private func didTapShare() {
-        guard let url = URL(string: playlist.externalUrls["spotify"] ?? "") else {
-            return
-        }
-        
-        let vc = UIActivityViewController(
-            activityItems: [url],
-            applicationActivities: []
-        )
-        vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
-        present(vc, animated: true)
+        presenter.didTapShareButton()
     }
     
     private func setupConstraints() {
@@ -132,12 +128,8 @@ extension PlaylistViewController: IPlaylistView {
     
     // MARK: - SetPlaylistTitle
     
-    func configure(with model: PlaylistDetailsResponse) {
-        title = model.name
-    }
-    
-    func setupUI() {
-        view.backgroundColor = .systemBackground
+    func setTitle(_ title: String) {
+        self.title = title
     }
 }
 
@@ -161,21 +153,18 @@ extension PlaylistViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard let header = collectionView.dequeueReusableSupplementaryView(
+        guard
+            let header = collectionView.dequeueReusableSupplementaryView(
             ofKind: kind,
             withReuseIdentifier: PlaylistHeaderCollectionReusableView.identifier,
             for: indexPath
         ) as? PlaylistHeaderCollectionReusableView,
-              kind == UICollectionView.elementKindSectionHeader else {
-            return UICollectionReusableView()
+            kind == UICollectionView.elementKindSectionHeader
+        else {
+            fatalError()
         }
-        let headerViewModel = PlaylistHeaderViewModel(
-            name: playlist.name,
-            ownerName: playlist.owner.displayName,
-            description: playlist.description,
-            artworkURL: URL(string: playlist.images.first?.url ?? "")
-        )
-        header.configure(with: headerViewModel)
+        
+        header.configure(with: presenter.headerViewModel)
         header.delegate = self
         return header
     }
