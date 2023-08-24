@@ -17,7 +17,6 @@ protocol IHomePresenter {
 final class HomePresenter: IHomePresenter {
     
     var sections = [BrowseSectionType]()
-
     var newReleases: NewReleasesResponse?
     var featuredPlaylist: FeaturedPlaylistsResponse?
     var recommendations: RecommendationsResponse?

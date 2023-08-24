@@ -13,6 +13,16 @@ protocol IHomeCollectionViewLayout {
 
 final class HomeCollectionViewLayout: IHomeCollectionViewLayout {
     func createSectionLayout(section: Int) -> NSCollectionLayoutSection {
+        let supplementaryViews = [
+            NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1),
+                    heightDimension: .absolute(50)
+                ),
+                elementKind: UICollectionView.elementKindSectionHeader,
+                alignment: .top
+            )
+        ]
         switch section {
         case 0:
             // Item
@@ -47,6 +57,7 @@ final class HomeCollectionViewLayout: IHomeCollectionViewLayout {
             // Section
             let section = NSCollectionLayoutSection(group: horizontalGroup)
             section.orthogonalScrollingBehavior = .groupPaging
+            section.boundarySupplementaryItems = supplementaryViews
             return section
             
         case 1:
@@ -81,6 +92,7 @@ final class HomeCollectionViewLayout: IHomeCollectionViewLayout {
             // Section
             let section = NSCollectionLayoutSection(group: horizontalGroup)
             section.orthogonalScrollingBehavior = .groupPaging
+            section.boundarySupplementaryItems = supplementaryViews
             return section
             
         case 2:
@@ -104,30 +116,11 @@ final class HomeCollectionViewLayout: IHomeCollectionViewLayout {
             )
             
             let section = NSCollectionLayoutSection(group: group)
+            section.boundarySupplementaryItems = supplementaryViews
             return section
             
         default:
-            // Item
-            let item = NSCollectionLayoutItem(
-                layoutSize: NSCollectionLayoutSize(
-                    widthDimension: .fractionalWidth(1.0),
-                    heightDimension: .fractionalHeight(1.0)
-                )
-            )
-            
-            item.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
-            
-            let group = NSCollectionLayoutGroup.vertical(
-                layoutSize: NSCollectionLayoutSize(
-                    widthDimension: .fractionalWidth(1.0),
-                    heightDimension: .absolute(390)
-                ),
-                subitem: item,
-                count: 1
-            )
-            
-            let section = NSCollectionLayoutSection(group: group)
-            return section
+            fatalError()
         }
     }
 }

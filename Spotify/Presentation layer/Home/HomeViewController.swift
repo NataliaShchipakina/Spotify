@@ -15,6 +15,17 @@ enum BrowseSectionType {
     case newReleases(viewModels: [NewReleasesCellModel])
     case featuredPlaylists(viewModels: [FeaturedPlaylistCellModel])
     case recommendedTracks(viewModels: [RecommendedTrackCellModel])
+    
+    var title: String {
+        switch self {
+        case .newReleases:
+            return "New Released Albums"
+        case .featuredPlaylists:
+            return "Featured Playlists"
+        case .recommendedTracks:
+            return "Recommended"
+        }
+    }
 }
 
 class HomeViewController: UIViewController {
@@ -97,6 +108,11 @@ class HomeViewController: UIViewController {
             RecommendedTrackCollectionViewCell.self,
             forCellWithReuseIdentifier: RecommendedTrackCollectionViewCell.identifier
         )
+        collectionView.register(
+            TitleHeaderCollectionReusableView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: TitleHeaderCollectionReusableView.identifier
+        )
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.backgroundColor = .systemBackground
@@ -120,7 +136,6 @@ extension HomeViewController: IHomeView {
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         presenter.sections.count
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -132,6 +147,22 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return viewModels.count
         case .recommendedTracks(let viewModels):
             return viewModels.count
+        }
+        
+        func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+            guard
+                let header = collectionView.dequeueReusableSupplementaryView(
+                ofKind: kind,
+                withReuseIdentifier: TitleHeaderCollectionReusableView.identifier,
+                for: indexPath
+            ) as? TitleHeaderCollectionReusableView, kind == UICollectionView.elementKindSectionHeader else {
+                fatalError()
+            }
+            
+            let section = indexPath.section
+            let title = presenter.sections[section].title
+            header.configure(with: title)
+            return header
         }
     }
     
