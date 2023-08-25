@@ -17,7 +17,7 @@ final class HomeCollectionViewLayout: IHomeCollectionViewLayout {
             NSCollectionLayoutBoundarySupplementaryItem(
                 layoutSize: NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(1),
-                    heightDimension: .absolute(50)
+                    heightDimension: .estimated(50)
                 ),
                 elementKind: UICollectionView.elementKindSectionHeader,
                 alignment: .top

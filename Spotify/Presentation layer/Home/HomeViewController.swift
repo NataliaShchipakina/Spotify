@@ -148,22 +148,22 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         case .recommendedTracks(let viewModels):
             return viewModels.count
         }
-        
-        func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-            guard
-                let header = collectionView.dequeueReusableSupplementaryView(
-                ofKind: kind,
-                withReuseIdentifier: TitleHeaderCollectionReusableView.identifier,
-                for: indexPath
-            ) as? TitleHeaderCollectionReusableView, kind == UICollectionView.elementKindSectionHeader else {
-                fatalError()
-            }
-            
-            let section = indexPath.section
-            let title = presenter.sections[section].title
-            header.configure(with: title)
-            return header
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        guard
+            let header = collectionView.dequeueReusableSupplementaryView(
+            ofKind: kind,
+            withReuseIdentifier: TitleHeaderCollectionReusableView.identifier,
+            for: indexPath
+        ) as? TitleHeaderCollectionReusableView, kind == UICollectionView.elementKindSectionHeader else {
+            fatalError()
         }
+
+        let section = indexPath.section
+        let title = presenter.sections[section].title
+        header.configure(with: title)
+        return header
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -197,7 +197,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             }
             cell.configure(with: viewModels[indexPath.row])
             return cell
-            
         }
     }
     
