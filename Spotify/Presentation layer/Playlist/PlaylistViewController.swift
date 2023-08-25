@@ -69,10 +69,10 @@ class PlaylistViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.largeTitleDisplayMode = .never
-        presenter.viewDidLoad()
         setupUI()
         setupConstraints()
+        configureCollectionViewCell()
+        presenter.viewDidLoad()
     }
     
     private func setupUI() {
@@ -82,7 +82,7 @@ class PlaylistViewController: UIViewController {
             target: self,
             action: #selector(didTapShare)
         )
-        configureCollectionViewCell()
+        navigationItem.largeTitleDisplayMode = .never
     }
     
     private func configureCollectionViewCell() {
@@ -100,7 +100,7 @@ class PlaylistViewController: UIViewController {
         collectionView.backgroundColor = .systemBackground
         collectionView.delegate = self
         collectionView.dataSource = self
-        self.collectionView.reloadData()
+        collectionView.reloadData()
     }
     
     @objc private func didTapShare() {

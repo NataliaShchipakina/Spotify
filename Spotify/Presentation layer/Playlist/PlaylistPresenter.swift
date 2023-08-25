@@ -72,25 +72,17 @@ private extension PlaylistPresenter {
             name: response.name,
             ownerName: playlistModel.owner.displayName,
             description: response.description,
-            artworkURL: makeOptionalURL(from: response.images.first?.url)
+            artworkURL: URL(optionalString: response.images.first?.url)
         )
 
         // 3. Cells viewModels
         viewModels = response.tracks.items.compactMap{ RecommendedTrackCellModel(
             name: $0.track.name,
             artistName: $0.track.artists.first?.name ?? "Unknown Artist",
-            artworkURL: makeOptionalURL(from: $0.track.album?.images.first?.url))
+            artworkURL: URL(optionalString: $0.track.album?.images.first?.url))
         }
 
         // 4. Reload view
         view?.reloadData()
-    }
-    
-    private func makeOptionalURL(from urlString: String?) -> URL? {
-        guard let urlString = urlString, let url = URL(string: urlString) else {
-            return nil
-        }
-
-        return url
     }
 }
