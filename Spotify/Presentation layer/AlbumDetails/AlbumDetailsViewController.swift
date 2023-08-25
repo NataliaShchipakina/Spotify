@@ -112,7 +112,7 @@ class AlbumDetailsViewController: UIViewController, PlaylistHeaderCollectionReus
     }
     
     @objc private func didTapActions() {
-//        presenter.didTapActionButton()
+        presenter.didTapActionButton()
     }
     
     private func setupConstraints() {

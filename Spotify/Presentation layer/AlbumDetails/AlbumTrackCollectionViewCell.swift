@@ -28,7 +28,6 @@ class AlbumTrackCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.addSubviews(trackNameLabel, artistNameLabel)
         setupUI()
         setupConstraints()
     }
@@ -51,6 +50,7 @@ class AlbumTrackCollectionViewCell: UICollectionViewCell {
     func setupUI() {
         backgroundColor = .secondarySystemBackground
         contentView.backgroundColor = .secondarySystemBackground
+        contentView.addSubviews(trackNameLabel, artistNameLabel)
     }
     
     private func setupConstraints() {

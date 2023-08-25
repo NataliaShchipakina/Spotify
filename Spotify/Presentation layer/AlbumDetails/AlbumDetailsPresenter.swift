@@ -11,6 +11,7 @@ protocol IAlbumPresenter {
     var headerViewModel: PlaylistHeaderViewModel { get }
     var viewModels: [AlbumCollectionViewCellVM] { get }
     func viewDidLoad()
+    func didTapActionButton()
 }
 
 final class AlbumDetailsPresenter: IAlbumPresenter {

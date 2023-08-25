@@ -54,6 +54,7 @@
 		11D032772A83D79D0091DCC2 /* AlbumDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D032762A83D79D0091DCC2 /* AlbumDetailsViewController.swift */; };
 		11D032792A83DCC80091DCC2 /* AlbumDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D032782A83DCC80091DCC2 /* AlbumDetailsPresenter.swift */; };
 		11D0327B2A83DE1A0091DCC2 /* AlbumDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D0327A2A83DE1A0091DCC2 /* AlbumDetailsRouter.swift */; };
+		11D627C22A98DFF2001EC227 /* DateFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D627C12A98DFF2001EC227 /* DateFormatter+Extensions.swift */; };
 		DF2496CB2A6D3AC00009B944 /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2496CA2A6D3AC00009B944 /* TokenManager.swift */; };
 		DF58D9702A630CEF0062061E /* ApplicationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF58D96F2A630CEF0062061E /* ApplicationAssembly.swift */; };
 		DF58D9722A630F6E0062061E /* DependenciesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF58D9712A630F6E0062061E /* DependenciesAssembly.swift */; };
@@ -137,6 +138,7 @@
 		11D032762A83D79D0091DCC2 /* AlbumDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailsViewController.swift; sourceTree = "<group>"; };
 		11D032782A83DCC80091DCC2 /* AlbumDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailsPresenter.swift; sourceTree = "<group>"; };
 		11D0327A2A83DE1A0091DCC2 /* AlbumDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailsRouter.swift; sourceTree = "<group>"; };
+		11D627C12A98DFF2001EC227 /* DateFormatter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extensions.swift"; sourceTree = "<group>"; };
 		BF36328DD2708777662C120C /* Pods-Spotify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spotify.debug.xcconfig"; path = "Target Support Files/Pods-Spotify/Pods-Spotify.debug.xcconfig"; sourceTree = "<group>"; };
 		CC3E39F741B2313B1323CEA3 /* Pods-Spotify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spotify.release.xcconfig"; path = "Target Support Files/Pods-Spotify/Pods-Spotify.release.xcconfig"; sourceTree = "<group>"; };
 		DF2496CA2A6D3AC00009B944 /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 			children = (
 				1110FB122A544110007135BD /* UIView+Extensions.swift */,
 				117E41382A97975400D5EB4B /* URL+Extensions.swift */,
+				11D627C12A98DFF2001EC227 /* DateFormatter+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -708,6 +711,7 @@
 				113B67812A7005570091DFA9 /* NewReleaseCollectionViewCell.swift in Sources */,
 				113E042B2A850560007D587F /* AlbumDetailResponse.swift in Sources */,
 				DF58D98A2A6336440062061E /* ProfilePresenter.swift in Sources */,
+				11D627C22A98DFF2001EC227 /* DateFormatter+Extensions.swift in Sources */,
 				113B67852A7005D90091DFA9 /* RecommendedTrackCollectionViewCell.swift in Sources */,
 				1110FB132A544110007135BD /* UIView+Extensions.swift in Sources */,
 				11A48AFB2A7AAC55006DE3CD /* HomeCollectionViewLayout.swift in Sources */,

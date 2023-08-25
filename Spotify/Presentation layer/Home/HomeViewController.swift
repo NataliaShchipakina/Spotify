@@ -77,7 +77,6 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        view.addSubview(spinner)
         presenter.viewDidLoad()
     }
     
@@ -90,6 +89,7 @@ class HomeViewController: UIViewController {
             target: self,
             action: #selector(didTapSettings)
         )
+        view.addSubview(spinner)
         configureCollectionView()
     }
     
