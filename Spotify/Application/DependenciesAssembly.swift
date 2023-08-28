@@ -75,7 +75,7 @@ final class DependenciesAssembly: IDependenciesAssembly {
     var tabBarAssembly: Lazy<ITabBarAssembly> {
         Lazy(TabBarAssembly(viewControllers: [
             self.homeAssembly.get().assemble(),
-            SearchViewController(),
+            self.searchAssembly.get().assembly(),
             LibraryViewController()
         ]))
     }
@@ -86,6 +86,11 @@ final class DependenciesAssembly: IDependenciesAssembly {
             authetificationAssembly: self.authetificationAssembly
         ))
     }
+    
+    var searchAssembly: Lazy<ISearchAssembly> {
+        Lazy(SearchAssembly())
+    }
+    
     
     var authetificationAssembly: Lazy<IAuthetificationAssembly> {
         Lazy(AuthetificationAssembly(authetificationService: self.authetificationService))
