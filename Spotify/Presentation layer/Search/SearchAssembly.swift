@@ -15,11 +15,7 @@ final class SearchAssembly: ISearchAssembly {
     
     // MARK: - Dependencies
     
-
-    
     // MARK: - Init
-    
-
     
     // MARK: - IWelcomeAssembly
         
@@ -28,6 +24,7 @@ final class SearchAssembly: ISearchAssembly {
         let presenter = SearchPresenter(router: router)
         let viewController = SearchViewController(presenter: presenter)
         
+        router.transitionHandler = viewController
         return viewController
     }
 }

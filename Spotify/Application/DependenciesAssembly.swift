@@ -19,9 +19,9 @@ protocol IDependenciesAssembly {
     
     var authetificationService: Lazy<IAuthetificationService> { get }
     var spotifyService: Lazy<ISpotifyService> { get }
-
+    
     // MARK: - Presentation
-
+    
     var loadingAssembly: Lazy<ILoadingAssembly> { get }
     var tabBarAssembly: Lazy<ITabBarAssembly> { get }
     var welcomeAssembly: Lazy<IWelcomeAssembly> { get }
@@ -46,7 +46,6 @@ final class DependenciesAssembly: IDependenciesAssembly {
     var userDefaultsStorage: Lazy<IStorageManager>{
         Lazy(UserDefaultsStorage())
     }
-
     
     // MARK: - Services
     
@@ -90,7 +89,6 @@ final class DependenciesAssembly: IDependenciesAssembly {
     var searchAssembly: Lazy<ISearchAssembly> {
         Lazy(SearchAssembly())
     }
-    
     
     var authetificationAssembly: Lazy<IAuthetificationAssembly> {
         Lazy(AuthetificationAssembly(authetificationService: self.authetificationService))

@@ -17,7 +17,6 @@ class GenreCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.tintColor = .white
-        imageView.image = UIImage(systemName: "music.quarternote.3", withConfiguration: UIImage.SymbolConfiguration(pointSize: 50, weight: .regular))
         return imageView
     }()
 
@@ -44,7 +43,6 @@ class GenreCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .clear
         setupUI()
         setupConstraints()
     }
@@ -56,10 +54,11 @@ class GenreCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         label.text = nil
-        imageView.image = UIImage(systemName: "music.quarternote.3", withConfiguration: UIImage.SymbolConfiguration(pointSize: 50, weight: .regular))
+        imageView.image = nil
     }
     
     private func setupUI() {
+        backgroundColor = .clear
         contentView.layer.cornerRadius = 8
         contentView.layer.masksToBounds = true
         contentView.addSubviews(label, imageView)
@@ -87,5 +86,6 @@ class GenreCollectionViewCell: UICollectionViewCell {
     func configure(with title: String) {
         label.text = title
         contentView.backgroundColor = colors.randomElement()
+        imageView.image = UIImage(systemName: "music.quarternote.3", withConfiguration: UIImage.SymbolConfiguration(pointSize: 50, weight: .regular))
     }
 }

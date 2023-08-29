@@ -65,7 +65,6 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.searchController = searchController
         searchController.searchResultsUpdater = self
         setupUI()
         configureCollectionViewCell()
@@ -75,6 +74,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
     func setupUI() {
         view.addSubview(collectionView)
         view.backgroundColor = .systemBackground
+        navigationItem.searchController = searchController
         collectionView.backgroundColor = .systemBackground
     }
     
