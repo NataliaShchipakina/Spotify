@@ -62,6 +62,20 @@ final class HomePresenter: IHomePresenter {
 }
 
 private extension HomePresenter {
+    fileprivate func extractedFunc(_ group: DispatchGroup) {
+        spotifyService.getFeaturedPlaylists(limit: 30) { [weak self] result in
+            defer {
+                group.leave()
+            }
+            switch result {
+            case .success(let response):
+                self?.featuredPlaylist = response
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
     func fetchData() {
         
         let group = DispatchGroup()
@@ -96,17 +110,7 @@ private extension HomePresenter {
             }
         }
         
-        spotifyService.getFeaturedPlaylists(limit: 30) { [weak self] result in
-            defer {
-                group.leave()
-            }
-            switch result {
-            case .success(let response):
-                self?.featuredPlaylist = response
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
+        extractedFunc(group)
         
         spotifyService.getNewReleases(limit: 30) { [weak self] result in
             defer {

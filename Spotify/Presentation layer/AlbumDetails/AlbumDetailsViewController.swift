@@ -18,7 +18,6 @@ class AlbumDetailsViewController: UIViewController, PlaylistHeaderCollectionReus
         
     }
     
-    
     // MARK: - Dependecies
     
     private let presenter: IAlbumPresenter
@@ -42,7 +41,7 @@ class AlbumDetailsViewController: UIViewController, PlaylistHeaderCollectionReus
                     widthDimension: .fractionalWidth(1),
                     heightDimension: .absolute(60)
                 ),
-                subitem: item,
+                repeatingSubitem: item,
                 count: 1
             )
             

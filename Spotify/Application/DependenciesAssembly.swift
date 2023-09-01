@@ -87,7 +87,7 @@ final class DependenciesAssembly: IDependenciesAssembly {
     }
     
     var searchAssembly: Lazy<ISearchAssembly> {
-        Lazy(SearchAssembly())
+        Lazy(SearchAssembly(spotifyService: self.spotifyService))
     }
     
     var authetificationAssembly: Lazy<IAuthetificationAssembly> {

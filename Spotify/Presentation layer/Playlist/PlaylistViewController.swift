@@ -37,7 +37,7 @@ class PlaylistViewController: UIViewController {
                     widthDimension: .fractionalWidth(1),
                     heightDimension: .absolute(60)
                 ),
-                subitem: item,
+                repeatingSubitem: item,
                 count: 1
             )
             

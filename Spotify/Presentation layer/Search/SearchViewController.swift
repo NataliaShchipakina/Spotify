@@ -7,7 +7,9 @@
 
 import UIKit
 
-protocol ISearchView: AnyObject { }
+protocol ISearchView: AnyObject {
+    func reloadData()
+}
 
 class SearchViewController: UIViewController, UISearchResultsUpdating {
     
@@ -69,6 +71,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
         setupUI()
         configureCollectionViewCell()
         setupConstraints()
+        presenter.viewDidLoad()
     }
     
     func setupUI() {
@@ -120,15 +123,20 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         ) as? GenreCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.configure(with: "Rock")
+        
+        let title = presenter.categories!.categories.items[indexPath.row].name
+        
+        cell.configure(with: title)
         return cell
     }
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        presenter.categories?.categories.items.count ?? 0
+    }
+}
+
+extension SearchViewController: ISearchView {
+    func reloadData() {
+        collectionView.reloadData()
     }
 }
