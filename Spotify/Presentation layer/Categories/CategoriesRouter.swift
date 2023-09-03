@@ -7,18 +7,28 @@
 
 import UIKit
 
-protocol ICategoriesRouter { }
+protocol ICategoriesRouter {
+    func showPlaylistScreen(model: Playlist)
+}
 
 final class CategoriesRouter: ICategoriesRouter {
 
     // MARK: - Dependencies
 
+    private let playlistAssembly: Lazy<IPlaylistAssembly>
+    
     weak var transitionHandler: UIViewController?
 
     // MARK: - Init
 
-    init() { }
+    init(playlistAssembly: Lazy<IPlaylistAssembly>) {
+        self.playlistAssembly = playlistAssembly
+    }
 
     // MARK: - ICategoriesRouter
-
+    
+    func showPlaylistScreen(model: Playlist) {
+        let playlistVC = playlistAssembly.get().assemble(model: model)
+        transitionHandler?.navigationController?.pushViewController(playlistVC, animated: true)
+    }
 }

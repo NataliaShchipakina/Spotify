@@ -9,6 +9,7 @@ import Foundation
 
 protocol ISearchPresenter {
     func viewDidLoad()
+    func didTapCategory(indexRow: Int)
     var categories: AllCategoriesResponse? { get }
 }
 
@@ -36,6 +37,10 @@ final class SearchPresenter: ISearchPresenter {
         fetchCategories()
     }
     
+    func didTapCategory(indexRow: Int) {
+        guard let model = categories?.categories.items[indexRow] else { return }
+        router.showACategoriesScreen(categories: model)
+    }
 }
 // MARK: - ISearchPresenter
 
@@ -53,7 +58,6 @@ private extension SearchPresenter {
             }
         }
     }
-    
 }
 
 

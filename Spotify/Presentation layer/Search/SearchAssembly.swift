@@ -16,16 +16,21 @@ final class SearchAssembly: ISearchAssembly {
     // MARK: - Dependencies
     
     private let spotifyService: Lazy<ISpotifyService>
+    private let categoryAssembly: Lazy<ICategoriesAssembly>
 
     // MARK: - Init
     
-    init(spotifyService: Lazy<ISpotifyService>) {
+    init(
+        spotifyService: Lazy<ISpotifyService>,
+        categoryAssembly: Lazy<ICategoriesAssembly>
+    ) {
         self.spotifyService = spotifyService
+        self.categoryAssembly = categoryAssembly
     }
-    // MARK: - IWelcomeAssembly
+    // MARK: - ISearchAssembly
         
     func assembly() -> UIViewController {
-        let router = SearchRouter()
+        let router = SearchRouter(categoriesAssembly: categoryAssembly)
         let presenter = SearchPresenter(router: router, spotifyService: spotifyService)
         let viewController = SearchViewController(presenter: presenter)
         

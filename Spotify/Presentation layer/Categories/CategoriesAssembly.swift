@@ -8,31 +8,36 @@
 import UIKit
 
 protocol ICategoriesAssembly {
-    func assembly(model: Playlist) -> UIViewController
+    func assembly(caterogy: Category) -> UIViewController
 }
 
 final class CategoriesAssembly: ICategoriesAssembly {
-
+    
+    
     // MARK: - Dependencies
     
     private let spotifyService: Lazy<ISpotifyService>
+    private let playlistAssembly: Lazy<IPlaylistAssembly>
     
-
     // MARK: - Init
-
-    init(spotifyService: Lazy<ISpotifyService>) {
+    
+    init(
+        spotifyService: Lazy<ISpotifyService>,
+        playlistAssembly: Lazy<IPlaylistAssembly>
+    ) {
         self.spotifyService = spotifyService
+        self.playlistAssembly = playlistAssembly
     }
-
+    
     // MARK: - ICategoriesAssembly
-
-    func assembly(model: Playlist) -> UIViewController {
-        let router = CategoriesRouter()
-        let presenter = CategoriesPresenter(router: router, spotifyService: spotifyService, model: model)
+    
+    func assembly(caterogy: Category) -> UIViewController {
+        let router = CategoriesRouter(playlistAssembly: playlistAssembly)
+        let presenter = CategoriesPresenter(router: router, spotifyService: spotifyService, caterogy: caterogy)
         let viewController = CategoriesViewController(presenter: presenter)
         router.transitionHandler = viewController
-
+        presenter.view = viewController
+        
         return viewController
     }
 }
- 

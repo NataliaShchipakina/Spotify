@@ -1,5 +1,5 @@
 //
-//  CategoryCollectionViewCellVM.swift
+//  CategoryCollectionViewCellViewModel.swift
 //  Spotify
 //
 //  Created by Natalia Shchipakina on 30.08.2023.

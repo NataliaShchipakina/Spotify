@@ -17,7 +17,7 @@ class PlaylistViewController: UIViewController {
     // MARK: - Dependecies
     
     private let presenter: IPlaylistPresenter
-    
+
     // MARK: - CollectionView
     
     private let collectionView = UICollectionView(

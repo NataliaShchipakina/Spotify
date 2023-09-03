@@ -51,6 +51,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
     // MARK: - Dependecies
     
     private let presenter: ISearchPresenter
+    private var categories = [Category]()
     
     // MARK: - Init
     
@@ -106,9 +107,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
               !query.trimmingCharacters(in: .whitespaces).isEmpty else {
             return
         }
-        // resultsController.update(with: results)
         print(query)
-        // Perform search
     }
 }
 
@@ -132,6 +131,11 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         presenter.categories?.categories.items.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        presenter.didTapCategory(indexRow: indexPath.row)
     }
 }
 

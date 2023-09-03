@@ -7,15 +7,43 @@
 
 import UIKit
 
-protocol ICategoriesView: AnyObject { }
+protocol ICategoriesView: AnyObject {
+    func reloadData()
+}
 
 final class CategoriesViewController: UIViewController {
     
-    // MARK: - UI
-
     // MARK: - Dependecies
     
     private let presenter: ICategoriesPresenter
+    
+    // MARK: - CollectionView
+    
+    private let collectionView = UICollectionView(
+        frame: .zero,
+        collectionViewLayout: UICollectionViewCompositionalLayout(sectionProvider: { _, _ -> NSCollectionLayoutSection? in
+            let item = NSCollectionLayoutItem(
+                layoutSize: NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1.0),
+                    heightDimension: .fractionalHeight(1.0)
+                )
+            )
+            
+            item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+            
+            let group = NSCollectionLayoutGroup.horizontal(
+                layoutSize: NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1),
+                    heightDimension: .absolute(250)
+                ),
+                repeatingSubitem: item,
+                count: 1
+            )
+            
+            let section = NSCollectionLayoutSection(group: group)
+            return section
+        })
+    )
     
     // MARK: - Init
     
@@ -33,16 +61,75 @@ final class CategoriesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        configureCollectionViewCell()
         setupConstraints()
+        presenter.viewDidLoad()
     }
     
-    private func setupUI() { }
-
-    private func setupConstraints() { }
+    private func setupUI() {
+        title = presenter.caterogy.name
+        view.backgroundColor = .systemBackground
+        collectionView.backgroundColor = .systemBackground
+    }
+    
+    private func configureCollectionViewCell() {
+        view.addSubview(collectionView)
+        
+        collectionView.register(
+            FeaturedPlaylistCollectionViewCell.self,
+            forCellWithReuseIdentifier: FeaturedPlaylistCollectionViewCell.identifier
+        )
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
+    }
+    
+    private func setupConstraints() {
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+    }
 }
 
 // MARK: - ICategoriesView
 
 extension CategoriesViewController: ICategoriesView {
-    func reloadData() {    }
+    func reloadData() {
+        collectionView.reloadData()
+    }
+}
+
+extension CategoriesViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        presenter.playlistDetailsResponse?.tracks.items.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: FeaturedPlaylistCollectionViewCell.identifier,
+                for: indexPath) as? FeaturedPlaylistCollectionViewCell,
+            let playlist = presenter.playlistDetailsResponse?.tracks.items[indexPath.row]
+        else {
+            return UICollectionViewCell()
+        }
+        
+        cell.configure(with: FeaturedPlaylistCellModel(
+            name: playlist.track.name,
+            artworkURL: URL(optionalString: playlist.track.album?.images.first?.url),
+            creatorName: playlist.track.artists.first?.name ?? "Unknown author"
+        ))
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        presenter.playlistDidTap(with: indexPath.row)
+    }
 }

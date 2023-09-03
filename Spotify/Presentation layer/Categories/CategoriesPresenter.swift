@@ -9,7 +9,9 @@ import Foundation
 
 protocol ICategoriesPresenter {
     func viewDidLoad()
-    var categoriesPlaylist: PlaylistDetailsResponse? { get }
+    func playlistDidTap(with index: Int)
+    var caterogy: Category { get }
+    var playlistDetailsResponse: PlaylistDetailsResponse? { get }
 }
 
 final class CategoriesPresenter: ICategoriesPresenter {
@@ -18,38 +20,43 @@ final class CategoriesPresenter: ICategoriesPresenter {
     
     private let router: ICategoriesRouter
     private let spotifyService: Lazy<ISpotifyService>
-    
-    private let model: Playlist
-    var categoriesPlaylist: PlaylistDetailsResponse?
-
+    var playlistDetailsResponse: PlaylistDetailsResponse?
+    let caterogy: Category
     
     weak var view: ICategoriesView?
     
     // MARK: - Init
     
-    init(router: ICategoriesRouter, spotifyService: Lazy<ISpotifyService>, model: Playlist) {
+    init(router: ICategoriesRouter, spotifyService: Lazy<ISpotifyService>, caterogy: Category) {
         self.router = router
         self.spotifyService = spotifyService
-        self.model = model
+        self.caterogy = caterogy
     }
     
     func viewDidLoad() {
         fetchCategoryPlaylist()
     }
+    
+    func playlistDidTap(with index: Int) {
+        guard let model = playlistDetailsResponse?.tracks.items[index] else { return }
+//        router.showPlaylistScreen(model: <#T##Playlist#>)
+    }
 }
 // MARK: - ICategoriesPresenter
-    
-    private extension CategoriesPresenter {
-        func fetchCategoryPlaylist() {
-            spotifyService.get().getCategoryPlaylists(categoryID: model.id) { [weak self] result in
-                DispatchQueue.main.async {
-                    switch result {
-                    case.success(let response):
-                        self?.categoriesPlaylist = response
-                    case .failure(let error):
-                        print(error.localizedDescription)
-                    }
+
+private extension CategoriesPresenter {
+    func fetchCategoryPlaylist() {
+        
+        spotifyService.get().getCategoryPlaylists(categoryID: caterogy.id) { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case.success(let response):
+                    self?.playlistDetailsResponse = response
+                    self?.view?.reloadData()
+                case .failure(let error):
+                    print(error.localizedDescription)
                 }
             }
         }
     }
+}
