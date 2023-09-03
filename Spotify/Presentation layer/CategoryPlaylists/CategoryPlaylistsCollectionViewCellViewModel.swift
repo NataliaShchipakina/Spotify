@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CategoryCollectionViewCellViewModel {
+struct CategoryPlaylistsCollectionViewCellViewModel {
     let title: String
     let artworkURL: URL?
 }

@@ -1,5 +1,5 @@
 //
-//  CategoriesAssembly.swift
+//  CategoryPlaylistsAssembly.swift
 //  Spotify
 //
 //  Created by Natalia Shchipakina on 29.08.2023.
@@ -7,11 +7,11 @@
 
 import UIKit
 
-protocol ICategoriesAssembly {
+protocol ICategoryPlaylistsAssembly {
     func assembly(caterogy: Category) -> UIViewController
 }
 
-final class CategoriesAssembly: ICategoriesAssembly {
+final class CategoryPlaylistsAssembly: ICategoryPlaylistsAssembly {
     
     
     // MARK: - Dependencies
@@ -32,9 +32,9 @@ final class CategoriesAssembly: ICategoriesAssembly {
     // MARK: - ICategoriesAssembly
     
     func assembly(caterogy: Category) -> UIViewController {
-        let router = CategoriesRouter(playlistAssembly: playlistAssembly)
-        let presenter = CategoriesPresenter(router: router, spotifyService: spotifyService, caterogy: caterogy)
-        let viewController = CategoriesViewController(presenter: presenter)
+        let router = CategoryPlaylistsRouter(playlistAssembly: playlistAssembly)
+        let presenter = CategoryPlaylistsPresenter(router: router, spotifyService: spotifyService, caterogy: caterogy)
+        let viewController = CategoryPlaylistsViewController(presenter: presenter)
         router.transitionHandler = viewController
         presenter.view = viewController
         

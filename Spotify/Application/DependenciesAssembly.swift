@@ -87,7 +87,7 @@ final class DependenciesAssembly: IDependenciesAssembly {
     }
     
     var searchAssembly: Lazy<ISearchAssembly> {
-        Lazy(SearchAssembly(spotifyService: self.spotifyService, categoryAssembly: self.categoryAssembly))
+        Lazy(SearchAssembly(spotifyService: self.spotifyService, categoryPlaylistsAssembly: self.categoryPlaylistsAssembly))
     }
     
     var authetificationAssembly: Lazy<IAuthetificationAssembly> {
@@ -121,8 +121,8 @@ final class DependenciesAssembly: IDependenciesAssembly {
         ))
     }
     
-    var categoryAssembly: Lazy<ICategoriesAssembly> {
-        Lazy(CategoriesAssembly(
+    var categoryPlaylistsAssembly: Lazy<ICategoryPlaylistsAssembly> {
+        Lazy(CategoryPlaylistsAssembly(
             spotifyService: self.spotifyService,
             playlistAssembly: self.playlistAssembly
         ))

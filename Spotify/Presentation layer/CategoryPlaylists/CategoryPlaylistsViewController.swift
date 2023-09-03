@@ -1,5 +1,5 @@
 //
-//  CategoriesViewController.swift
+//  CategoryPlaylistsViewController.swift
 //  Spotify
 //
 //  Created by Natalia Shchipakina on 29.08.2023.
@@ -7,11 +7,11 @@
 
 import UIKit
 
-protocol ICategoriesView: AnyObject {
+protocol ICategoryPlaylistsView: AnyObject {
     func reloadData()
 }
 
-final class CategoriesViewController: UIViewController {
+final class CategoryPlaylistsViewController: UIViewController {
     
     // MARK: - Dependecies
     
@@ -98,13 +98,13 @@ final class CategoriesViewController: UIViewController {
 
 // MARK: - ICategoriesView
 
-extension CategoriesViewController: ICategoriesView {
+extension CategoryPlaylistsViewController: ICategoryPlaylistsView {
     func reloadData() {
         collectionView.reloadData()
     }
 }
 
-extension CategoriesViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension CategoryPlaylistsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         presenter.categoriesPlaylistsResponse?.playlists.items.count ?? 0
     }

@@ -1,5 +1,5 @@
 //
-//  CategoriesPresenter.swift
+//  CategoryPlaylistsPresenter.swift
 //  Spotify
 //
 //  Created by Natalia Shchipakina on 29.08.2023.
@@ -14,20 +14,20 @@ protocol ICategoriesPresenter {
     var categoriesPlaylistsResponse: CategoriesPlaylistsResponse? { get }
 }
 
-final class CategoriesPresenter: ICategoriesPresenter {
+final class CategoryPlaylistsPresenter: ICategoriesPresenter {
     
     // MARK: - Dependencies
     
-    private let router: ICategoriesRouter
+    private let router: ICategoryPlaylistsRouter
     private let spotifyService: Lazy<ISpotifyService>
     var categoriesPlaylistsResponse: CategoriesPlaylistsResponse?
     let caterogy: Category
     
-    weak var view: ICategoriesView?
+    weak var view: ICategoryPlaylistsView?
     
     // MARK: - Init
     
-    init(router: ICategoriesRouter, spotifyService: Lazy<ISpotifyService>, caterogy: Category) {
+    init(router: ICategoryPlaylistsRouter, spotifyService: Lazy<ISpotifyService>, caterogy: Category) {
         self.router = router
         self.spotifyService = spotifyService
         self.caterogy = caterogy
@@ -44,7 +44,7 @@ final class CategoriesPresenter: ICategoriesPresenter {
 }
 // MARK: - ICategoriesPresenter
 
-private extension CategoriesPresenter {
+private extension CategoryPlaylistsPresenter {
     func fetchCategoryPlaylist() {
         
         spotifyService.get().getCategoryPlaylists(categoryID: caterogy.id, limit: 50) { [weak self] result in

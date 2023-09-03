@@ -15,12 +15,12 @@ final class SearchRouter: ISearchRouter {
     
     // MARK: - Dependencies
     
-    private let categoriesAssembly: Lazy<ICategoriesAssembly>
+    private let categoriesAssembly: Lazy<ICategoryPlaylistsAssembly>
     weak var transitionHandler: UIViewController?
     
     // MARK: - Init
     
-    init(categoriesAssembly: Lazy<ICategoriesAssembly>) {
+    init(categoriesAssembly: Lazy<ICategoryPlaylistsAssembly>) {
         self.categoriesAssembly = categoriesAssembly
     }
     

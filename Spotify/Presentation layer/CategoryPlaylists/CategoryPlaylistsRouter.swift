@@ -7,11 +7,11 @@
 
 import UIKit
 
-protocol ICategoriesRouter {
+protocol ICategoryPlaylistsRouter {
     func showPlaylistScreen(model: Playlist)
 }
 
-final class CategoriesRouter: ICategoriesRouter {
+final class CategoryPlaylistsRouter: ICategoryPlaylistsRouter {
 
     // MARK: - Dependencies
 
