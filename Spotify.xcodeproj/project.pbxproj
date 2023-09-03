@@ -13,7 +13,7 @@
 		110432122A9E7278005418B9 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1104320E2A9E7278005418B9 /* CategoriesViewController.swift */; };
 		110432132A9E7278005418B9 /* CategoriesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1104320F2A9E7278005418B9 /* CategoriesAssembly.swift */; };
 		110432152A9E99DE005418B9 /* CategoryCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110432142A9E99DE005418B9 /* CategoryCollectionViewCellViewModel.swift */; };
-		110B44602A9D018F00FDF380 /* GenreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110B445F2A9D018F00FDF380 /* GenreCollectionViewCell.swift */; };
+		110B44602A9D018F00FDF380 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110B445F2A9D018F00FDF380 /* CategoryCollectionViewCell.swift */; };
 		1110FAEE2A52EF24007135BD /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1110FAED2A52EF24007135BD /* TabBarViewController.swift */; };
 		1110FAF02A52EFA3007135BD /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1110FAEF2A52EFA3007135BD /* SearchViewController.swift */; };
 		1110FAF22A52F1C6007135BD /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1110FAF12A52F1C6007135BD /* LibraryViewController.swift */; };
@@ -105,7 +105,7 @@
 		1104320E2A9E7278005418B9 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		1104320F2A9E7278005418B9 /* CategoriesAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesAssembly.swift; sourceTree = "<group>"; };
 		110432142A9E99DE005418B9 /* CategoryCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
-		110B445F2A9D018F00FDF380 /* GenreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreCollectionViewCell.swift; sourceTree = "<group>"; };
+		110B445F2A9D018F00FDF380 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		1110FAED2A52EF24007135BD /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		1110FAEF2A52EFA3007135BD /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		1110FAF12A52F1C6007135BD /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
@@ -483,7 +483,7 @@
 				112AE02D2A9924F100F75F56 /* SearchPresenter.swift */,
 				112AE02F2A99250100F75F56 /* SearchRouter.swift */,
 				112AE0312A99251300F75F56 /* SearchAssembly.swift */,
-				110B445F2A9D018F00FDF380 /* GenreCollectionViewCell.swift */,
+				110B445F2A9D018F00FDF380 /* CategoryCollectionViewCell.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -727,7 +727,7 @@
 				1195E0652A6FCBB800C096F6 /* Playlist.swift in Sources */,
 				DF58D9832A632CAC0062061E /* WelcomePresenter.swift in Sources */,
 				DF58D9862A6336340062061E /* ProfileAssembly.swift in Sources */,
-				110B44602A9D018F00FDF380 /* GenreCollectionViewCell.swift in Sources */,
+				110B44602A9D018F00FDF380 /* CategoryCollectionViewCell.swift in Sources */,
 				1104320A2A9E2973005418B9 /* AllCategoriesResponse.swift in Sources */,
 				1110FB002A52F2CF007135BD /* PlayerViewController.swift in Sources */,
 				DF58D98E2A633A8F0062061E /* SettingsPresenter.swift in Sources */,

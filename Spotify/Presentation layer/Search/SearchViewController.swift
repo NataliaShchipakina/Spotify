@@ -84,8 +84,8 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
     
     private func configureCollectionViewCell() {
         collectionView.register(
-            GenreCollectionViewCell.self,
-            forCellWithReuseIdentifier: GenreCollectionViewCell.identifier)
+            CategoryCollectionViewCell.self,
+            forCellWithReuseIdentifier: CategoryCollectionViewCell.identifier)
         collectionView.delegate = self
         collectionView.dataSource = self
     }
@@ -117,15 +117,16 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: GenreCollectionViewCell.identifier,
+            withReuseIdentifier: CategoryCollectionViewCell.identifier,
             for: indexPath
-        ) as? GenreCollectionViewCell else {
+        ) as? CategoryCollectionViewCell else {
             return UICollectionViewCell()
         }
         
         let title = presenter.categories!.categories.items[indexPath.row].name
-        
-        cell.configure(with: title)
+        let imageURL = presenter.categories!.categories.items[indexPath.row].icons.first?.url
+        guard let url = URL(optionalString: imageURL) else { fatalError() }
+        cell.configure(with: title, imageURL: url)
         return cell
     }
     
