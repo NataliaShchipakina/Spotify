@@ -106,7 +106,7 @@ extension CategoriesViewController: ICategoriesView {
 
 extension CategoriesViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        presenter.playlistDetailsResponse?.tracks.items.count ?? 0
+        presenter.categoriesPlaylistsResponse?.playlists.items.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -114,17 +114,17 @@ extension CategoriesViewController: UICollectionViewDelegate, UICollectionViewDa
             let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: FeaturedPlaylistCollectionViewCell.identifier,
                 for: indexPath) as? FeaturedPlaylistCollectionViewCell,
-            let playlist = presenter.playlistDetailsResponse?.tracks.items[indexPath.row]
+            let playlist = presenter.categoriesPlaylistsResponse?.playlists.items[indexPath.row]
         else {
             return UICollectionViewCell()
         }
-        
+
         cell.configure(with: FeaturedPlaylistCellModel(
-            name: playlist.track.name,
-            artworkURL: URL(optionalString: playlist.track.album?.images.first?.url),
-            creatorName: playlist.track.artists.first?.name ?? "Unknown author"
+            name: playlist.name,
+            artworkURL: URL(optionalString: playlist.images.first?.url),
+            creatorName: playlist.owner.displayName
         ))
-        
+
         return cell
     }
     

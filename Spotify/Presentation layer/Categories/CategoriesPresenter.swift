@@ -11,7 +11,7 @@ protocol ICategoriesPresenter {
     func viewDidLoad()
     func playlistDidTap(with index: Int)
     var caterogy: Category { get }
-    var playlistDetailsResponse: PlaylistDetailsResponse? { get }
+    var categoriesPlaylistsResponse: CategoriesPlaylistsResponse? { get }
 }
 
 final class CategoriesPresenter: ICategoriesPresenter {
@@ -20,7 +20,7 @@ final class CategoriesPresenter: ICategoriesPresenter {
     
     private let router: ICategoriesRouter
     private let spotifyService: Lazy<ISpotifyService>
-    var playlistDetailsResponse: PlaylistDetailsResponse?
+    var categoriesPlaylistsResponse: CategoriesPlaylistsResponse?
     let caterogy: Category
     
     weak var view: ICategoriesView?
@@ -38,8 +38,8 @@ final class CategoriesPresenter: ICategoriesPresenter {
     }
     
     func playlistDidTap(with index: Int) {
-        guard let model = playlistDetailsResponse?.tracks.items[index] else { return }
-//        router.showPlaylistScreen(model: <#T##Playlist#>)
+        guard let playlist = categoriesPlaylistsResponse?.playlists.items[index] else { return }
+        router.showPlaylistScreen(model: playlist)
     }
 }
 // MARK: - ICategoriesPresenter
@@ -47,11 +47,11 @@ final class CategoriesPresenter: ICategoriesPresenter {
 private extension CategoriesPresenter {
     func fetchCategoryPlaylist() {
         
-        spotifyService.get().getCategoryPlaylists(categoryID: caterogy.id) { [weak self] result in
+        spotifyService.get().getCategoryPlaylists(categoryID: caterogy.id, limit: 50) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case.success(let response):
-                    self?.playlistDetailsResponse = response
+                    self?.categoriesPlaylistsResponse = response
                     self?.view?.reloadData()
                 case .failure(let error):
                     print(error.localizedDescription)

@@ -17,6 +17,7 @@ struct Categories: Codable {
 
 struct Category: Codable {
     let id: String
+    let href: String
     let name: String
     let icons: [APIImage]
 }

@@ -18,7 +18,7 @@ enum SpotifyEndpoint {
     case getAlbumDetails(albumID: String)
     case getPlaylistDetails(playlistID: String)
     case getCategories(limit: Int)
-    case getCategoryPlaylists(categoryID: String)
+    case getCategoryPlaylists(categoryID: String, limit: Int)
 }
 
 // MARK: - Endpoint
@@ -44,8 +44,8 @@ extension SpotifyEndpoint: Endpoint {
             return "/playlists/\(playlistID)"
         case.getCategories:
             return "/browse/categories"
-        case .getCategoryPlaylists(categoryID: let categoryID):
-            return "/albums/\(categoryID)/playlists?limit=20"
+        case .getCategoryPlaylists(categoryID: let categoryID, limit: _):
+            return "/browse/categories/\(categoryID)/playlists"
         }
     }
     
@@ -74,8 +74,8 @@ extension SpotifyEndpoint: Endpoint {
             return []
         case .getCategories(limit: let limit):
             return [URLQueryItem(name: "limit", value: String(limit))]
-        case .getCategoryPlaylists:
-            return []
+        case .getCategoryPlaylists(categoryID: _, limit: let limit):
+            return [URLQueryItem(name: "limit", value: String(limit))]
         }
     }
     

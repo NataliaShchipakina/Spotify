@@ -16,7 +16,7 @@ protocol ISpotifyService {
     func getAlbumDetails(albumID: String, completion: @escaping ((Result<AlbumDetailResponse , Error>) -> Void))
     func getPlaylistDetails(playlistID: String, completion: @escaping ((Result<PlaylistDetailsResponse , Error>) -> Void))
     func getCategories(limit: Int, completion: @escaping ((Result<AllCategoriesResponse, Error>) -> Void))
-    func getCategoryPlaylists(categoryID: String, completion: @escaping ((Result<PlaylistDetailsResponse , Error>) -> Void))
+    func getCategoryPlaylists(categoryID: String, limit: Int, completion: @escaping ((Result<CategoriesPlaylistsResponse , Error>) -> Void))
 }
 
 final class SpotifyService: ISpotifyService {
@@ -74,8 +74,8 @@ final class SpotifyService: ISpotifyService {
         requestProcessor.load(endpoint, completion: completion)
     }
     
-    func getCategoryPlaylists(categoryID: String, completion: @escaping ((Result<PlaylistDetailsResponse, Error>) -> Void)) {
-        let endpoint = SpotifyEndpoint.getCategoryPlaylists(categoryID: categoryID)
+    func getCategoryPlaylists(categoryID: String, limit: Int, completion: @escaping ((Result<CategoriesPlaylistsResponse, Error>) -> Void)) {
+        let endpoint = SpotifyEndpoint.getCategoryPlaylists(categoryID: categoryID, limit: limit)
         requestProcessor.load(endpoint, completion: completion)
     }
 }
