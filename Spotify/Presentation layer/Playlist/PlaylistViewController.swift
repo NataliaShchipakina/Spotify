@@ -76,6 +76,7 @@ class PlaylistViewController: UIViewController {
     }
     
     private func setupUI() {
+        view.addSubview(collectionView)
         view.backgroundColor = .systemBackground
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: .action,
@@ -86,8 +87,6 @@ class PlaylistViewController: UIViewController {
     }
     
     private func configureCollectionViewCell() {
-        view.addSubview(collectionView)
-        
         collectionView.register(
             RecommendedTrackCollectionViewCell.self,
             forCellWithReuseIdentifier: RecommendedTrackCollectionViewCell.identifier
