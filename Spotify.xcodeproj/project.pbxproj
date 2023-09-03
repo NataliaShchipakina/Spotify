@@ -12,7 +12,7 @@
 		110432112A9E7278005418B9 /* CategoriesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1104320D2A9E7278005418B9 /* CategoriesRouter.swift */; };
 		110432122A9E7278005418B9 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1104320E2A9E7278005418B9 /* CategoriesViewController.swift */; };
 		110432132A9E7278005418B9 /* CategoriesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1104320F2A9E7278005418B9 /* CategoriesAssembly.swift */; };
-		110432152A9E99DE005418B9 /* CategoryCollectionViewCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110432142A9E99DE005418B9 /* CategoryCollectionViewCellVM.swift */; };
+		110432152A9E99DE005418B9 /* CategoryCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110432142A9E99DE005418B9 /* CategoryCollectionViewCellViewModel.swift */; };
 		110B44602A9D018F00FDF380 /* GenreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110B445F2A9D018F00FDF380 /* GenreCollectionViewCell.swift */; };
 		1110FAEE2A52EF24007135BD /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1110FAED2A52EF24007135BD /* TabBarViewController.swift */; };
 		1110FAF02A52EFA3007135BD /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1110FAEF2A52EFA3007135BD /* SearchViewController.swift */; };
@@ -104,7 +104,7 @@
 		1104320D2A9E7278005418B9 /* CategoriesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesRouter.swift; sourceTree = "<group>"; };
 		1104320E2A9E7278005418B9 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		1104320F2A9E7278005418B9 /* CategoriesAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesAssembly.swift; sourceTree = "<group>"; };
-		110432142A9E99DE005418B9 /* CategoryCollectionViewCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCellVM.swift; sourceTree = "<group>"; };
+		110432142A9E99DE005418B9 /* CategoryCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
 		110B445F2A9D018F00FDF380 /* GenreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreCollectionViewCell.swift; sourceTree = "<group>"; };
 		1110FAED2A52EF24007135BD /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		1110FAEF2A52EFA3007135BD /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -213,7 +213,7 @@
 				1104320C2A9E7278005418B9 /* CategoriesPresenter.swift */,
 				1104320D2A9E7278005418B9 /* CategoriesRouter.swift */,
 				1104320E2A9E7278005418B9 /* CategoriesViewController.swift */,
-				110432142A9E99DE005418B9 /* CategoryCollectionViewCellVM.swift */,
+				110432142A9E99DE005418B9 /* CategoryCollectionViewCellViewModel.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -722,7 +722,7 @@
 				112B92912A52D8D50037C97F /* HomeViewController.swift in Sources */,
 				DFF209C32A7C35A7009F6A6B /* LoadingAssembly.swift in Sources */,
 				1110FB082A52F490007135BD /* HapticsService.swift in Sources */,
-				110432152A9E99DE005418B9 /* CategoryCollectionViewCellVM.swift in Sources */,
+				110432152A9E99DE005418B9 /* CategoryCollectionViewCellViewModel.swift in Sources */,
 				11D0327B2A83DE1A0091DCC2 /* AlbumDetailsRouter.swift in Sources */,
 				1195E0652A6FCBB800C096F6 /* Playlist.swift in Sources */,
 				DF58D9832A632CAC0062061E /* WelcomePresenter.swift in Sources */,
