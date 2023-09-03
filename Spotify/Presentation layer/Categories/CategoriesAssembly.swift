@@ -1,5 +1,5 @@
 //
-//  SearchAssembly.swift
+//  CategoriesAssembly.swift
 //  Spotify
 //
 //  Created by Natalia Shchipakina on 25.08.2023.
@@ -7,11 +7,11 @@
 
 import UIKit
 
-protocol ISearchAssembly {
+protocol ICategoriesAssembly {
     func assembly() -> UIViewController
 }
 
-final class SearchAssembly: ISearchAssembly {
+final class CategoriesAssembly: ICategoriesAssembly {
     
     // MARK: - Dependencies
     
@@ -27,12 +27,12 @@ final class SearchAssembly: ISearchAssembly {
         self.spotifyService = spotifyService
         self.categoryPlaylistsAssembly = categoryPlaylistsAssembly
     }
-    // MARK: - ISearchAssembly
+    // MARK: - ICategoriesAssembly
         
     func assembly() -> UIViewController {
-        let router = SearchRouter(categoriesAssembly: categoryPlaylistsAssembly)
-        let presenter = SearchPresenter(router: router, spotifyService: spotifyService)
-        let viewController = SearchViewController(presenter: presenter)
+        let router = CategoriesRouter(categoriesAssembly: categoryPlaylistsAssembly)
+        let presenter = CategoriesPresenter(router: router, spotifyService: spotifyService)
+        let viewController = CategoriesViewController(presenter: presenter)
         
         router.transitionHandler = viewController
         presenter.view = viewController

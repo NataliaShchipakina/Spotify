@@ -15,7 +15,7 @@ final class CategoryPlaylistsViewController: UIViewController {
     
     // MARK: - Dependecies
     
-    private let presenter: ICategoriesPresenter
+    private let presenter: ICategoryPlaylistsPresenter
     
     // MARK: - CollectionView
     
@@ -47,7 +47,7 @@ final class CategoryPlaylistsViewController: UIViewController {
     
     // MARK: - Init
     
-    init(presenter: ICategoriesPresenter) {
+    init(presenter: ICategoryPlaylistsPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }

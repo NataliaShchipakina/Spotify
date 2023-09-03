@@ -1,5 +1,5 @@
 //
-//  SearchRouter.swift
+//  CategoriesRouter.swift
 //  Spotify
 //
 //  Created by Natalia Shchipakina on 25.08.2023.
@@ -7,11 +7,11 @@
 
 import UIKit
 
-protocol ISearchRouter {
-    func showACategoriesScreen(categories: Category)
+protocol ICategoriesRouter {
+    func showCategoriesScreen(categories: Category)
 }
 
-final class SearchRouter: ISearchRouter {
+final class CategoriesRouter: ICategoriesRouter {
     
     // MARK: - Dependencies
     
@@ -24,9 +24,9 @@ final class SearchRouter: ISearchRouter {
         self.categoriesAssembly = categoriesAssembly
     }
     
-    // MARK: - ISearchRouter
+    // MARK: - ICategoriesRouter
     
-    func showACategoriesScreen(categories: Category) {
+    func showCategoriesScreen(categories: Category) {
         let categoriesVC = categoriesAssembly.get().assembly(caterogy: categories)
         transitionHandler?.navigationController?.pushViewController(categoriesVC, animated: true)
     }

@@ -1,5 +1,5 @@
 //
-//  CategoriesRouter.swift
+//  CategoryPlaylistsRouter.swift
 //  Spotify
 //
 //  Created by Natalia Shchipakina on 29.08.2023.

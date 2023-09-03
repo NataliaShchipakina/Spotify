@@ -1,5 +1,5 @@
 //
-//  SearchViewController.swift
+//  CategoriesViewController.swift
 //  Spotify
 //
 //  Created by Natalia Shchipakina on 03.07.2023.
@@ -7,11 +7,11 @@
 
 import UIKit
 
-protocol ISearchView: AnyObject {
+protocol ICategoriesView: AnyObject {
     func reloadData()
 }
 
-class SearchViewController: UIViewController, UISearchResultsUpdating {
+class CategoriesViewController: UIViewController, UISearchResultsUpdating {
     
     //    MARK: - UI
     
@@ -50,12 +50,12 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
     
     // MARK: - Dependecies
     
-    private let presenter: ISearchPresenter
+    private let presenter: ICategoriesPresenter
     private var categories = [Category]()
     
     // MARK: - Init
     
-    init(presenter: ISearchPresenter) {
+    init(presenter: ICategoriesPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
@@ -113,7 +113,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
 
 // MARK: - UICollectionViewDelegate, UICollectionViewDataSource
 
-extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension CategoriesViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
@@ -140,7 +140,7 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
 }
 
-extension SearchViewController: ISearchView {
+extension CategoriesViewController: ICategoriesView {
     func reloadData() {
         collectionView.reloadData()
     }

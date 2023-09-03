@@ -7,14 +7,14 @@
 
 import Foundation
 
-protocol ICategoriesPresenter {
+protocol ICategoryPlaylistsPresenter {
     func viewDidLoad()
     func playlistDidTap(with index: Int)
     var caterogy: Category { get }
     var categoriesPlaylistsResponse: CategoriesPlaylistsResponse? { get }
 }
 
-final class CategoryPlaylistsPresenter: ICategoriesPresenter {
+final class CategoryPlaylistsPresenter: ICategoryPlaylistsPresenter {
     
     // MARK: - Dependencies
     

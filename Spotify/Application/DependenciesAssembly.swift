@@ -74,7 +74,7 @@ final class DependenciesAssembly: IDependenciesAssembly {
     var tabBarAssembly: Lazy<ITabBarAssembly> {
         Lazy(TabBarAssembly(viewControllers: [
             self.homeAssembly.get().assemble(),
-            self.searchAssembly.get().assembly(),
+            self.categoriesAssembly.get().assembly(),
             LibraryViewController()
         ]))
     }
@@ -86,8 +86,8 @@ final class DependenciesAssembly: IDependenciesAssembly {
         ))
     }
     
-    var searchAssembly: Lazy<ISearchAssembly> {
-        Lazy(SearchAssembly(spotifyService: self.spotifyService, categoryPlaylistsAssembly: self.categoryPlaylistsAssembly))
+    var categoriesAssembly: Lazy<ICategoriesAssembly> {
+        Lazy(CategoriesAssembly(spotifyService: self.spotifyService, categoryPlaylistsAssembly: self.categoryPlaylistsAssembly))
     }
     
     var authetificationAssembly: Lazy<IAuthetificationAssembly> {

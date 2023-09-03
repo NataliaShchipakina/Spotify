@@ -1,5 +1,5 @@
 //
-//  SearchPresenter.swift
+//  CategoriesPresenter.swift
 //  Spotify
 //
 //  Created by Natalia Shchipakina on 25.08.2023.
@@ -7,26 +7,26 @@
 
 import Foundation
 
-protocol ISearchPresenter {
+protocol ICategoriesPresenter {
     func viewDidLoad()
     func didTapCategory(indexRow: Int)
     var categories: AllCategoriesResponse? { get }
 }
 
-final class SearchPresenter: ISearchPresenter {
+final class CategoriesPresenter: ICategoriesPresenter {
     
     // MARK: - Dependencies
     
-    private let router: ISearchRouter
+    private let router: ICategoriesRouter
     private let spotifyService: Lazy<ISpotifyService>
     
     var categories: AllCategoriesResponse?
     
-    weak var view: ISearchView?
+    weak var view: ICategoriesView?
     
     // MARK: - Init
     
-    init(router: ISearchRouter, spotifyService: Lazy<ISpotifyService>) {
+    init(router: ICategoriesRouter, spotifyService: Lazy<ISpotifyService>) {
         self.router = router
         self.spotifyService = spotifyService
     }
@@ -39,12 +39,12 @@ final class SearchPresenter: ISearchPresenter {
     
     func didTapCategory(indexRow: Int) {
         guard let model = categories?.categories.items[indexRow] else { return }
-        router.showACategoriesScreen(categories: model)
+        router.showCategoriesScreen(categories: model)
     }
 }
-// MARK: - ISearchPresenter
+// MARK: - ICategoriesPresenter
 
-private extension SearchPresenter {
+private extension CategoriesPresenter {
     func fetchCategories() {
         spotifyService.get().getCategories(limit: 50) { [weak self] result in
             DispatchQueue.main.async {
