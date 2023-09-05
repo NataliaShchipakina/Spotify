@@ -16,16 +16,16 @@ final class CategoryPlaylistsAssembly: ICategoryPlaylistsAssembly {
     
     // MARK: - Dependencies
     
-    private let spotifyService: Lazy<ISpotifyService>
+    private let categoriesService: Lazy<ICategoriesService>
     private let playlistAssembly: Lazy<IPlaylistAssembly>
     
     // MARK: - Init
     
     init(
-        spotifyService: Lazy<ISpotifyService>,
+        categoriesService: Lazy<ICategoriesService>,
         playlistAssembly: Lazy<IPlaylistAssembly>
     ) {
-        self.spotifyService = spotifyService
+        self.categoriesService = categoriesService
         self.playlistAssembly = playlistAssembly
     }
     
@@ -33,7 +33,7 @@ final class CategoryPlaylistsAssembly: ICategoryPlaylistsAssembly {
     
     func assembly(caterogy: Category) -> UIViewController {
         let router = CategoryPlaylistsRouter(playlistAssembly: playlistAssembly)
-        let presenter = CategoryPlaylistsPresenter(router: router, spotifyService: spotifyService, caterogy: caterogy)
+        let presenter = CategoryPlaylistsPresenter(router: router, categoriesService: categoriesService, caterogy: caterogy)
         let viewController = CategoryPlaylistsViewController(presenter: presenter)
         router.transitionHandler = viewController
         presenter.view = viewController

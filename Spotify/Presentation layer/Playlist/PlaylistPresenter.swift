@@ -19,16 +19,16 @@ final class PlaylistPresenter: IPlaylistPresenter {
     // MARK: - Dependencies
     
     private let router: IPlaylistRouter
-    private let spotifyService: ISpotifyService
+    private let playlistsService: IPlaylistsService
     private let playlistModel: Playlist
     
     weak var view: IPlaylistView?
     
     // MARK: - Init
     
-    init(router: IPlaylistRouter, spotifyService: Lazy<ISpotifyService>, model: Playlist) {
+    init(router: IPlaylistRouter, playlistsService: Lazy<IPlaylistsService>, model: Playlist) {
         self.router = router
-        self.spotifyService = spotifyService.get()
+        self.playlistsService = playlistsService.get()
         self.playlistModel = model
     }
         
@@ -51,7 +51,7 @@ final class PlaylistPresenter: IPlaylistPresenter {
 
 private extension PlaylistPresenter {
     func fetchPlaylistDetails() {
-        spotifyService.getPlaylistDetails(playlistID: playlistModel.id) { [weak self] result in
+        playlistsService.getPlaylistDetails(playlistID: playlistModel.id) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case.success(let model):

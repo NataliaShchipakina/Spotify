@@ -8,26 +8,26 @@
 import UIKit
 
 protocol ICategoriesRouter {
-    func showCategoriesScreen(categories: Category)
+    func showCategoryPlaylistsScreen(category: Category)
 }
 
 final class CategoriesRouter: ICategoriesRouter {
     
     // MARK: - Dependencies
     
-    private let categoriesAssembly: Lazy<ICategoryPlaylistsAssembly>
+    private let categoryPlaylistsAssembly: Lazy<ICategoryPlaylistsAssembly>
     weak var transitionHandler: UIViewController?
     
     // MARK: - Init
     
-    init(categoriesAssembly: Lazy<ICategoryPlaylistsAssembly>) {
-        self.categoriesAssembly = categoriesAssembly
+    init(categoryPlaylistsAssembly: Lazy<ICategoryPlaylistsAssembly>) {
+        self.categoryPlaylistsAssembly = categoryPlaylistsAssembly
     }
     
     // MARK: - ICategoriesRouter
     
-    func showCategoriesScreen(categories: Category) {
-        let categoriesVC = categoriesAssembly.get().assembly(caterogy: categories)
+    func showCategoryPlaylistsScreen(category: Category) {
+        let categoriesVC = categoryPlaylistsAssembly.get().assembly(caterogy: category)
         transitionHandler?.navigationController?.pushViewController(categoriesVC, animated: true)
     }
 }

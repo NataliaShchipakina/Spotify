@@ -18,17 +18,17 @@ final class CategoriesPresenter: ICategoriesPresenter {
     // MARK: - Dependencies
     
     private let router: ICategoriesRouter
-    private let spotifyService: Lazy<ISpotifyService>
-    
+    private let categoriesService: Lazy<ICategoriesService>
+
     var categories: AllCategoriesResponse?
     
     weak var view: ICategoriesView?
     
     // MARK: - Init
     
-    init(router: ICategoriesRouter, spotifyService: Lazy<ISpotifyService>) {
+    init(router: ICategoriesRouter, categoriesService: Lazy<ICategoriesService>) {
         self.router = router
-        self.spotifyService = spotifyService
+        self.categoriesService = categoriesService
     }
     
     // MARK: - Lifecycle
@@ -39,14 +39,14 @@ final class CategoriesPresenter: ICategoriesPresenter {
     
     func didTapCategory(indexRow: Int) {
         guard let model = categories?.categories.items[indexRow] else { return }
-        router.showCategoriesScreen(categories: model)
+        router.showCategoryPlaylistsScreen(category: model)
     }
 }
 // MARK: - ICategoriesPresenter
 
 private extension CategoriesPresenter {
     func fetchCategories() {
-        spotifyService.get().getCategories(limit: 50) { [weak self] result in
+        categoriesService.get().getCategories(limit: 50) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case.success(let response):

@@ -19,7 +19,7 @@ final class CategoryPlaylistsPresenter: ICategoryPlaylistsPresenter {
     // MARK: - Dependencies
     
     private let router: ICategoryPlaylistsRouter
-    private let spotifyService: Lazy<ISpotifyService>
+    private let categoriesService: Lazy<ICategoriesService>
     var categoriesPlaylistsResponse: CategoriesPlaylistsResponse?
     let caterogy: Category
     
@@ -27,9 +27,9 @@ final class CategoryPlaylistsPresenter: ICategoryPlaylistsPresenter {
     
     // MARK: - Init
     
-    init(router: ICategoryPlaylistsRouter, spotifyService: Lazy<ISpotifyService>, caterogy: Category) {
+    init(router: ICategoryPlaylistsRouter, categoriesService: Lazy<ICategoriesService>, caterogy: Category) {
         self.router = router
-        self.spotifyService = spotifyService
+        self.categoriesService = categoriesService
         self.caterogy = caterogy
     }
     
@@ -47,7 +47,7 @@ final class CategoryPlaylistsPresenter: ICategoryPlaylistsPresenter {
 private extension CategoryPlaylistsPresenter {
     func fetchCategoryPlaylist() {
         
-        spotifyService.get().getCategoryPlaylists(categoryID: caterogy.id, limit: 50) { [weak self] result in
+        categoriesService.get().getCategoryPlaylists(categoryID: caterogy.id, limit: 50) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case.success(let response):

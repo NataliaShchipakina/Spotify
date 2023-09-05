@@ -19,6 +19,11 @@ protocol IDependenciesAssembly {
     
     var authetificationService: Lazy<IAuthetificationService> { get }
     var spotifyService: Lazy<ISpotifyService> { get }
+    var categoriesService: Lazy<ICategoriesService> { get }
+    var albumsService: Lazy<IAlbumsService> { get }
+    var playlistsService: Lazy<IPlaylistsService> { get }
+    var genresService: Lazy<IGenresService> { get }
+    var userService: Lazy<IUserService> { get }
     
     // MARK: - Presentation
     
@@ -29,6 +34,7 @@ protocol IDependenciesAssembly {
     var homeAssembly: Lazy<IHomeAssembly> { get }
     var settingsAssembly: Lazy<ISettingsAssembly> { get }
     var profileAssembly: Lazy<IProfileAssembly> { get }
+    var categoriesAssembly: Lazy<ICategoriesAssembly> {get}
 }
 
 final class DependenciesAssembly: IDependenciesAssembly {
@@ -60,6 +66,26 @@ final class DependenciesAssembly: IDependenciesAssembly {
         Lazy(SpotifyService(requestProcessor: self.requestProcessor))
     }
     
+    var categoriesService: Lazy<ICategoriesService> {
+        Lazy(CategoriesService(requestProcessor: self.requestProcessor))
+    }
+    
+    var albumsService: Lazy<IAlbumsService> {
+        Lazy(AlbumsService(requestProcessor: self.requestProcessor))
+    }
+    
+    var playlistsService: Lazy<IPlaylistsService> {
+        Lazy(PlaylistsService(requestProcessor: self.requestProcessor))
+    }
+    
+    var genresService: Lazy<IGenresService> {
+        Lazy(GenresService(requestProcessor: self.requestProcessor))
+    }
+    
+    var userService: Lazy<IUserService> {
+        Lazy(UserService(requestProcessor: self.requestProcessor))
+    }
+        
     // MARK: - Presentation
     
     var loadingAssembly: Lazy<ILoadingAssembly> {
@@ -87,7 +113,7 @@ final class DependenciesAssembly: IDependenciesAssembly {
     }
     
     var categoriesAssembly: Lazy<ICategoriesAssembly> {
-        Lazy(CategoriesAssembly(spotifyService: self.spotifyService, categoryPlaylistsAssembly: self.categoryPlaylistsAssembly))
+        Lazy(CategoriesAssembly(categoriesService: self.categoriesService, categoryPlaylistAssembly: self.categoryPlaylistsAssembly))
     }
     
     var authetificationAssembly: Lazy<IAuthetificationAssembly> {
@@ -108,23 +134,19 @@ final class DependenciesAssembly: IDependenciesAssembly {
     }
     
     var albumAssembly: Lazy<IAlbumAssembly> {
-        Lazy(AlbumDetailsAssembly(spotifyService: self.spotifyService))
+        Lazy(AlbumDetailsAssembly(albumsService: self.albumsService))
     }
     
     var playlistAssembly: Lazy<IPlaylistAssembly> {
-        Lazy(PlaylistAssembly(spotifyService: self.spotifyService))
+        Lazy(PlaylistAssembly(playlistsService: self.playlistsService))
     }
     
     var profileAssembly: Lazy<IProfileAssembly> {
-        Lazy(ProfileAssembly(
-            spotifyService: self.spotifyService
-        ))
+        Lazy(ProfileAssembly(userService: self.userService))
     }
     
     var categoryPlaylistsAssembly: Lazy<ICategoryPlaylistsAssembly> {
-        Lazy(CategoryPlaylistsAssembly(
-            spotifyService: self.spotifyService,
-            playlistAssembly: self.playlistAssembly
-        ))
+        Lazy(CategoryPlaylistsAssembly(categoriesService: self.categoriesService, playlistAssembly: self.playlistAssembly))
     }
+    
 }
