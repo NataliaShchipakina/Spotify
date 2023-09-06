@@ -60,18 +60,12 @@ class HomeViewController: UIViewController {
         }
     )
     
-    private let spinner: UIActivityIndicatorView = {
-        let spinner = UIActivityIndicatorView()
-        spinner.tintColor = .label
-        spinner.hidesWhenStopped = true
-        return spinner
-    }()
-    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        configureCollectionView()
         setupConstraints()
         presenter.viewDidLoad()
     }
@@ -85,8 +79,6 @@ class HomeViewController: UIViewController {
             target: self,
             action: #selector(didTapSettings)
         )
-        view.addSubview(spinner)
-        configureCollectionView()
     }
     
     private func configureCollectionView() {
