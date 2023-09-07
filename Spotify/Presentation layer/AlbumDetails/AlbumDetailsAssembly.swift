@@ -15,19 +15,19 @@ final class AlbumDetailsAssembly: IAlbumAssembly {
     
     // MARK: - Dependencies
     
-    private let spotifyService: Lazy<ISpotifyService>
+    private let albumsService: Lazy<IAlbumsService>
     
     // MARK: - Init
     
-    init(spotifyService: Lazy<ISpotifyService>) {
-        self.spotifyService = spotifyService
+    init(albumsService: Lazy<IAlbumsService>) {
+        self.albumsService = albumsService
     }
     
     // MARK: - IAlbumAssembly
     
     func assemble(model: Album) -> UIViewController {
         let router = AlbumDetailsRouter()
-        let presenter = AlbumDetailsPresenter(router: router, spotifyService: spotifyService, model: model)
+        let presenter = AlbumDetailsPresenter(router: router, albumsService: albumsService, model: model)
         let viewController = AlbumDetailsViewController(presenter: presenter)
         
         router.transitionHandler = viewController

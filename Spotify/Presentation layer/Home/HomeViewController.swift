@@ -19,11 +19,11 @@ enum BrowseSectionType {
     var title: String {
         switch self {
         case .newReleases:
-            return "New Released Albums"
+            return "New Releases"
         case .featuredPlaylists:
             return "Featured Playlists"
         case .recommendedTracks:
-            return "Recommended"
+            return "Recommended Tracks"
         }
     }
 }
@@ -60,23 +60,13 @@ class HomeViewController: UIViewController {
         }
     )
     
-    private let spinner: UIActivityIndicatorView = {
-        let spinner = UIActivityIndicatorView()
-        spinner.tintColor = .label
-        spinner.hidesWhenStopped = true
-        return spinner
-    }()
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        collectionView.frame = view.bounds
-    }
-    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        configureCollectionView()
+        setupConstraints()
         presenter.viewDidLoad()
     }
     
@@ -89,8 +79,6 @@ class HomeViewController: UIViewController {
             target: self,
             action: #selector(didTapSettings)
         )
-        view.addSubview(spinner)
-        configureCollectionView()
     }
     
     private func configureCollectionView() {
@@ -116,6 +104,17 @@ class HomeViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.backgroundColor = .systemBackground
+    }
+    
+    private func setupConstraints() {
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
     }
     
     @objc func didTapSettings() {

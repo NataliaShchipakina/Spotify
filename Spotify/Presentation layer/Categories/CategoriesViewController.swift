@@ -1,5 +1,5 @@
 //
-//  SearchViewController.swift
+//  CategoriesViewController.swift
 //  Spotify
 //
 //  Created by Natalia Shchipakina on 03.07.2023.
@@ -7,9 +7,11 @@
 
 import UIKit
 
-protocol ISearchView: AnyObject { }
+protocol ICategoriesView: AnyObject {
+    func reloadData()
+}
 
-class SearchViewController: UIViewController, UISearchResultsUpdating {
+class CategoriesViewController: UIViewController, UISearchResultsUpdating {
     
     //    MARK: - UI
     
@@ -48,11 +50,12 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
     
     // MARK: - Dependecies
     
-    private let presenter: ISearchPresenter
+    private let presenter: ICategoriesPresenter
+    private var categories = [Category]()
     
     // MARK: - Init
     
-    init(presenter: ISearchPresenter) {
+    init(presenter: ICategoriesPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
@@ -69,6 +72,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
         setupUI()
         configureCollectionViewCell()
         setupConstraints()
+        presenter.viewDidLoad()
     }
     
     func setupUI() {
@@ -80,8 +84,8 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
     
     private func configureCollectionViewCell() {
         collectionView.register(
-            GenreCollectionViewCell.self,
-            forCellWithReuseIdentifier: GenreCollectionViewCell.identifier)
+            CategoryCollectionViewCell.self,
+            forCellWithReuseIdentifier: CategoryCollectionViewCell.identifier)
         collectionView.delegate = self
         collectionView.dataSource = self
     }
@@ -103,32 +107,41 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
               !query.trimmingCharacters(in: .whitespaces).isEmpty else {
             return
         }
-        // resultsController.update(with: results)
         print(query)
-        // Perform search
     }
 }
 
 // MARK: - UICollectionViewDelegate, UICollectionViewDataSource
 
-extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension CategoriesViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: GenreCollectionViewCell.identifier,
+            withReuseIdentifier: CategoryCollectionViewCell.identifier,
             for: indexPath
-        ) as? GenreCollectionViewCell else {
+        ) as? CategoryCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.configure(with: "Rock")
+        
+        let title = presenter.categories!.categories.items[indexPath.row].name
+        let imageURL = presenter.categories!.categories.items[indexPath.row].icons.first?.url
+        guard let url = URL(optionalString: imageURL) else { fatalError() }
+        cell.configure(with: title, imageURL: url)
         return cell
     }
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        presenter.categories?.categories.items.count ?? 0
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        presenter.didTapCategory(indexRow: indexPath.row)
+    }
+}
+
+extension CategoriesViewController: ICategoriesView {
+    func reloadData() {
+        collectionView.reloadData()
     }
 }

@@ -14,7 +14,7 @@ class TitleHeaderCollectionReusableView: UICollectionReusableView {
         let label = UILabel()
         label.textColor = .label
         label.numberOfLines = 1
-        label.font = .systemFont(ofSize: 22, weight: .regular)
+        label.font = .systemFont(ofSize: 20, weight: .semibold)
         return label
     }()
     
@@ -35,10 +35,10 @@ class TitleHeaderCollectionReusableView: UICollectionReusableView {
     private func setupConstraints() {
         label.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
-            label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
-            label.topAnchor.constraint(equalTo: topAnchor),
-            label.bottomAnchor.constraint(equalTo: bottomAnchor)
+            label.leadingAnchor.constraint(equalTo: leadingAnchor),
+            label.trailingAnchor.constraint(equalTo: trailingAnchor),
+            label.topAnchor.constraint(equalTo: topAnchor, constant: 5),
+            label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5)
         ])
     }
 }

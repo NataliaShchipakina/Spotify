@@ -17,7 +17,7 @@ class PlaylistViewController: UIViewController {
     // MARK: - Dependecies
     
     private let presenter: IPlaylistPresenter
-    
+
     // MARK: - CollectionView
     
     private let collectionView = UICollectionView(
@@ -37,7 +37,7 @@ class PlaylistViewController: UIViewController {
                     widthDimension: .fractionalWidth(1),
                     heightDimension: .absolute(60)
                 ),
-                subitem: item,
+                repeatingSubitem: item,
                 count: 1
             )
             
@@ -76,6 +76,7 @@ class PlaylistViewController: UIViewController {
     }
     
     private func setupUI() {
+        view.addSubview(collectionView)
         view.backgroundColor = .systemBackground
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: .action,
@@ -86,8 +87,6 @@ class PlaylistViewController: UIViewController {
     }
     
     private func configureCollectionViewCell() {
-        view.addSubview(collectionView)
-        
         collectionView.register(
             RecommendedTrackCollectionViewCell.self,
             forCellWithReuseIdentifier: RecommendedTrackCollectionViewCell.identifier
