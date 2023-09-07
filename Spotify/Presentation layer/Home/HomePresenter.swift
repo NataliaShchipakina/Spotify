@@ -62,7 +62,7 @@ final class HomePresenter: IHomePresenter {
 }
 
 private extension HomePresenter {
-    fileprivate func extractedFunc(_ group: DispatchGroup) {
+    func extractedFunc(_ group: DispatchGroup) {
         spotifyService.getFeaturedPlaylists(limit: 30) { [weak self] result in
             defer {
                 group.leave()

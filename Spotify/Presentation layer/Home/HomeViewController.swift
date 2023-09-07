@@ -19,11 +19,11 @@ enum BrowseSectionType {
     var title: String {
         switch self {
         case .newReleases:
-            return "New Released Albums"
+            return "New Releases"
         case .featuredPlaylists:
             return "Featured Playlists"
         case .recommendedTracks:
-            return "Recommended"
+            return "Recommended Tracks"
         }
     }
 }
